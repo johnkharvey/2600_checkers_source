@@ -1,0 +1,26826 @@
+\V 
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+.TITLE "VCS CHECKERS BY CAROL SHAW15/15/80 
+
+
+'(ywJ. 1 
+
+
+0000 
+
+0000 
+
+0000 
+
+!-000 
+
+
+“PAL = 
+PRNT 
+
+STACK = 
+ROMSTR = 
+
+
+-Q 
+
+0 
+
+0 
+
+$F000 
+
+
+J0 =&gt; NTSC, i=&gt; PAL VERSION 
+;0 =&gt; ROM, 1=&gt; DEBUG VERSION WHICH PRINTS ON TI TERMINAL 
+
+;0 =&gt; NORMAL ALPHA-BETA "STACK", 1 =&gt; EXTRA LARGE ST ACK _ 
+
+;ROM START ADDR 
+
+
+DK1:SCHKG. SRC 
+COPYRTGHTATARr, 1980 
+STARTED 10/1/79 
+
+THE ALPHA-BETA PRUNING ALGORITHM USED HEREIN IS BASED ON THE LISP 
+PROGRAM ON PAGE 321 OF "ARTIFICIAL INTELLIGENCE" BY PATRICK HENRY 
+
+WINSTON, 1977, ADDISON-WESLEY PUBLISHING COMPANY, INC. PHILIPPINES._ 
+
+ALSO ON "SOME STUDIES IN MACHINE LEARNING USING THE GAME OF CHECKERS", 
+
+BY A. L. SAMUEL, PARTS I AND II, IN THE IBM JOURNAL OF RESEARCH AND DEVELOPMENT, 
+JULY 1959 AND NOVEMBER 1967. PART I IS ALSO IN "COMPUTERS AND THOUGHT", 
+
+BY EDWARD A. FEIGENBAUM AND JULIAN FELDMAN, PP. 71-105, 1963, MCGRAW-HILL. 
+
+
+STELLA” &lt;TI A) REGISTER ADDRESSES 
+
+
+0000 
+
+VSYNC 
+
+$00 
+
+oooi 
+
+(/BLANK = 
+
+$oi 
+
+0002 
+
+WS YNC 
+
+$02 
+
+0003 
+
+RSYNC 
+
+$03 
+
+0004 
+
+NUSlZO = 
+
+$04 
+
+0005 
+
+NUSIZ1 
+
+$05 
+
+oooa 
+
+COLUPO = 
+
+$06 
+
+"0007 
+
+COLOR 1 = 
+
+
+0008 
+
+CQLUPF = 
+
+$08 
+
+0009 
+
+COLUEK = 
+
+$09 
+
+OOOA” 
+
+CTRLPF = 
+
+$0A 
+
+OOOB 
+
+REFPO 
+
+$0B 
+
+OOOC 
+
+REFP1 
+
+$0C 
+
+GOOD 
+
+PFO 
+
+$0D ~ 
+
+OOOE 
+
+PF1 
+
+$0E 
+
+OOOF 
+
+PF2 
+
+$0F 
+
+0010 
+
+RESPO 
+
+$10 
+
+0011 
+
+RESP1 
+
+$11 
+
+0012 
+
+RESMO 
+
+$12 
+
+
+0013 
+0014 
+0015 
+”0016 
+0017 
+0018 
+0019 
+001A 
+
+
+RESBL 
+
+AUDCO 
+
+AUDC1 
+
+AUDFO 
+
+AUDF1 
+
+AUDVO 
+
+AUDV1 
+
+
+$14 
+
+$15 
+
+
+$16 
+
+$17 
+
+$18 
+
+
+$T9” 
+
+$1A 
+
+
+BIT 1 
+
+BIT 75; T” 
+STROBE 
+STROBE 
+
+BITS 54 210 
+BITS 54 210 
+BITS 7654321 
+
+
+BITS 7654321 
+BITS 7654321 
+BITS 7654321 
+BITS 54 210 
+BIT 3 
+
+BIT 3 
+
+BITS 7654 
+BITS ALL 
+BITS ALL 
+STROBE 
+STROBE 
+STROBE 
+STROBE 
+STROBE 
+
+BITS 3210 
+
+B I TS “ 3210 
+
+BITS 3210 
+
+BITS 3210 
+
+3210 
+3210 
+
+
+VERTICAL SYNC SET-CLR 
+VERTICAL BLANK SET-CLR 
+WAIT FOR HORIZ BLANK 
+
+RESET HORIZ SYNC COUNTER_ 
+
+NUMBER-SIZE PLAYER/MISSILE 0 
+NUMBER-SIZE PLAYER/MISSILE 1 
+COLOR(4)—LUM(3) PLAYER O 
+COLOR(4)—LUM(3) PLAYER 1 
+COLOR (4)—LUM(3 &gt; PLAYFIELD 
+COLOR(4)-LUM(3) BACKGROUND 
+PLAYFIELD CONTROL &amp; BALL 
+REFLECT PLAYER 0. 1=&gt;REFLECT 
+REFLECT PLAYER 1 
+PLAYFIELD REG BYTE O (REVERSED) 
+
+
+1= &gt;START _ 
+
+PORT CONTROL 11NPT0—1NPT5) 
+
+
+BITS 
+
+i BITS 
+
+
+PLAYFIELD REG BYTE 
+PLAYFIELD REG BYTE 
+RESET PLAYER O 
+RESET PLAYER 1 
+RESET MIS SILE 0 
+RESET MISSILE 1 
+RESET BALL 
+AUDIO CONTROL 6 
+AUDIO CONTROL 1 
+AUDIO FREQUENCY 0 
+AUDIO FREQUENCY 1 
+AUDIO VOLUME 0 
+AUDIO VOLUME 1 
+
+
+(REVERSED) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+00 IB GRPO = $1B 
+
+001C GRP 1 = $1C 
+
+BITS ALL GRAPHICS FOR PLAYER 0 
+
+BITS ALL GRAPHICS FOR PLAYER 1 
+
+001D ENAMO = " $1D 
+
+00 IE ENAM1 = $1E 
+
+00IF ENABL = $1F 
+
+“BTT --1 ENABLE MISSILE 0. 1=&gt; ENABLE 
+
+BIT 1 ENABLE MISSILE 1 
+
+BIT 1 ENABLE BALL 
+
+0020 HMPO = *20- 
+
+0021 HMP1 = $21 
+
+0022 HMMO = $22 
+
+BITS 7654 HORIZ MOTION PLAYER 0. 0-7 -&gt; LEFT 
+
+BITS 7654 HORIZ MOTION PLAYER 1. F-8 =&gt; RIGHT 
+
+BITS 7654 HORIZ MOTION MISSILE 0 
+
+" 0023 HMM1 " - $23 
+
+0024 HMBL = $24 
+
+0025 VDELPO = $25 
+
+BITS 7654 HORIZ MOTION MISSILE I 
+
+BITS 7654 HORIZ MOTION BALL 
+
+BIT 0 VERTICAL DELAY PLAYER 0. 1=&gt; VDEL ON 
+
+0026 VDELFl = $26 
+
+0027 VDELBL = $27 
+
+0028 RESMPO = $28 
+
+BIT 0 VERTICAL DELAY PLAYER 1 
+
+BIT 0 VERTICAL DELAY BALL 
+
+BIT 1 RESET MISSILE TO PLAYER 0. 1=&gt; MISSILE RESET TO PLAYER 
+
+0029 RESMPl = $29 
+
+002A 'HMOVE = $2A 
+
+002B HMCLR = $2B 
+
+BIT' 1 RESET MISSILE TO PLAYER 1 
+
+STROBE ACT ON HORIZ MOTION 
+
+STROBE CLEAR ALL HM REGISTERS _ 
+
+0020 CXGOT~ =' $2C j STROBE - ~CCEAR COLLISION LATCHES 
+
+; READ ADDRESSES - BITS 7 &amp; 6 ONLY 
+
+0030 CXMOP = $30 
+
+0031 CXM1P = $31 
+
+M0*P1 MO*PO 
+
+M1*P0 M1*P1 j._ 
+
+0032 CXPOFB = $32 
+
+0033 CXP1FB = $33 
+
+0034 CXMOFB = $34 
+
+PO*PF PO*BL 
+
+P1#PF P1*BL 
+
+MO*PF MO*BL 
+
+0035 CXM1FB = $35 &gt;M1*PF M1*BL 
+
+0036 CXBLPF = $36 ;BL*PF 
+
+0037 CXPPMM = $37 ;PQ*P1 M0*M1 
+
+0038 INF TO = $38 ) POT 0. BlT7=l -&gt; POT CAPACITOR IS COMPLETELY CHARGED? 
+
+0039 INPT1 = $39 i POT 1 
+
+003A INPT2 = $3A iPOT 2 
+
+- 003B " INPT3 = $3B 
+
+003C INPT4 = $3C 
+
+003D INPT5 = $3D 
+
+POT 3 
+
+JOYSTICK 0 BUTTON. B7=0 =&gt; BUTTON PRESSED 
+
+JOYSTICK 1 BUTTON 
+
+; PIA AND TIMER (6532) LOCATIONS 
+
+0280 SWCHA = $280 
+
+0281 CTLSWA = $281 
+
+0282 SWCHB = $282 
+
+POiPl JOYSTICKS (RLDUiRLDV ) &gt; PD1 TRIGGERS/ KEYBOARD/ DRIVING CONTROLLER 
+SWCHA I/O CONTROL 1=0UTPUT 
+
+CONSOLE SWITCHES (READ ONLY) P1B/POB,X,X/B/W, X, SELECT.RESET IF 0 
+
+0283 CTLSWE = $283 
+
+0284 INTIM = $284 ) 
+
+0294 TIM1T = $294 ; 
+
+UNUSED 
+
+INTERVAL TIMER INPUT 0=&gt;TIMER UP 
+
+TIMER OUTPUT: 1 MACHINE CYCLE/TICK (.838 MICROSEC) 
+
+0295 TIM8T = $295 ;8 MACHINE CYCLES/TICK 
+
+0296 TIM64T = $296 ; 64 MC'S/TICK 
+
+0297 T1024T = $297 ; 1024 MACHINE CYCLES/TICK (858. 2 MICROSECONDS) 
+
+; KIM SUBROUTINES 
+
+- IE2F - CRLF = $1E2F 
+
+JE3B PRTBYT = $1E3B 
+
+1E5A GETCH = $1E5A 
+
+PRINT CRLF ON TI 
+
+PRINT ACCUMULATOR IN HEX ASCII ON TI 
+
+READ ASCII CHAR FROM TI INTO A 
+
+J E9E ~ ' ' OUTSP = S1E9E 
+JEAO OUTCH = $1EA0 
+JF9D GETBYT = $1F9D 
+
+PRINT SPACE ON TI 
+
+PRINT ACCUMULATOR AS ASCII CHAR ON TI 
+
+READ TWO HEX ASCII CHARS FROM TI INTO A 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OOOB 
+
+
+MAXMAX 
+
+
+;MAX STACK DEPTH FOR ALPHA-BETA 
+
+
+CHECKERS EQUATES 
+= 11 
+
+. IF STACK 
+
+MAXMAX = 22 
+
+. ENDIF 
+
+
+0009 
+
+JMPLEN 
+
+= 
+
+9 
+
+; LENGTH OF JMPTBL (LIST OF JUMPED PIECES! 
+
+6010 
+
+LINCHR 
+
+= 
+
+15 
+
+;# OF LINES/CHAR 
+
+0000 
+
+EMPTY 
+
+= 
+
+0 
+
+i EMPTY SQUARE INDEX INTO CHARACTER TABLE 
+
+0010 
+
+CHECKER 
+
+= 
+
+1*LINCHR 
+
+
+0020 
+
+KING 
+
+= 
+
+2*LINCHR 
+
+
+0030 
+
+CURS 
+
+= 
+
+3*LINCHR 
+
+
+OOAA 
+
+BLANK 
+
+= 
+
+10 * 16+10 
+
+iTWO BLANK CHARS 
+
+OOBB 
+
+JP 
+
+= 
+
+11*16+11 
+
+i "JP" 
+
+
+0000 CLFO = 0 ;PLAYER O (HUMAN, LEFT JOYSTICK) 
+
+0030 CLP 1 = $80 ;PLAYER 1 (COMPUTER, RIGHT PLAYER) 
+
+
+0010 HUMCHK = 
+0020 HUMKNG = 
+0030 HUMCRS = 
+0090 CMFCHK = 
+OOAO CMPKNG = 
+OOBO ’ CMPCRS = 
+
+
+CLPO+CHECKER 
+
+CLPO+KING 
+
+CLPO+CURS 
+
+CLP1+CHECKER 
+
+CLP1+KING 
+
+CLP1+CURS 
+
+
+iHUMAN CHECKER (NOT KING) 
+i HUMAN KING 
+;HUMAN CURSOR 
+7 COMPUTER CHECKER 
+iCOMPUTER KING 
+;COMPUTER CURSOR 
+
+
+0005 
+
+
+HMIN = 5 
+
+
+; MIN. GAMIMO FOR HARD BOARD COLORS 
+
+
+0036 
+OOOC 
+0000 
+0034 
+0036 
+OOBO 
+0026 
+0026 
+OOOC 
+0092 
+002D 
+0025 
+002C 
+00 IE 
+002D 
+
+
+DARK = 
+
+LIGHT 
+ED ARK 
+ELIGHT = 
+ELI AT 
+HDARK 
+HLIGHT = 
+HLIAT 
+
+LTCHR_= 
+
+DRKCHR = 
+GSCON 
+OVRCON = 
+VBLCON = 
+VBTIM 
+FRZTIM = 
+
+
+$36 
+
+$0C 
+
+0 
+
+$34 
+
+$36 
+
+$B0 
+
+$26 
+
+$26 
+
+$0C 
+
+$92 
+
+45 
+
+$25 
+
+44 
+30 
+
+45 
+
+
+iDARK CHECKER COLOR/LUM 
+i LIGHT CHECKER COLOR/LUM 
+
+iEASY DARK SQUARE COLOR. 0 IS ACTUALLY USED INSTEAD OF EDARK 
+i EASY LIGHT SQUARE COLOR (RED) 
+
+;EASY LIGHT IF ATTRACT 
+;HARD DARK SQUARE COLOR (GREEN) 
+
+;HARD LIGHT SQUARE COLOR (BUFF OR CREAM OR WHITE) 
+iHARD LIGHT SQUARE IF ATTRACT 
+iLIGHT CHAR COLOR 
+;DARK CHARACTER COLOR 
+iGAME SELECT TIMER INITIAL VALUE 
+;OVERSCAN TIMER INITIAL VALUE 
+iVBLANK TIMER INITIAL VALUE 
+
+i 1/2 SEC. VBLANK AFTER CALCULATION — CHANGE FOR PAL 
+;FREEZE TIMER FOR END OF HUMAN MOVE 
+
+
+PAL VERSIONS OF THE ABOVE 
+
+
+
+. IF 
+
+PAL 
+
+DARK 
+
+= 
+
+$66 
+
+LIGHT 
+
+= 
+
+$0C 
+
+EDARK 
+
+= 
+
+0 
+
+ELIGHT 
+
+=_ 
+
+$64 
+
+EL I AT 
+
+= 
+
+$66 
+
+HDARK 
+
+= 
+
+$50 
+
+HLIGHT 
+
+= 
+
+$46 
+
+HLIAT 
+
+
+$46 
+
+LTCHR 
+
+= 
+
+$0C 
+
+DRKCHR 
+
+= 
+
+$B2 
+
+GSCON 
+
+= 
+
+38 
+
+
+i DARK CHECKER COLOR/LUM 
+;LIGHT CHECKER COLOR/LUM 
+;EASY DARK SQUARE COLOR 
+;EASY LIGHT SQUARE COLOR (RED) 
+
+;EASY LIGHT IF ATTRACT 
+»HARD DARK SQUARE COLOR (GREEN) 
+
+iHARD LIGHT SQUARE COLOR (BUFF OR CREAM OR WHITE) 
+;HARD LIGHT SQUARE IF ATTRACT 
+;LIGHT CHAR COLOR 
+;DARK CHARACTER COLOR 
+;GAME SELECT TIMER INITIAL VALUE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+- SL 
+
+OVRCON = $2B 
+
+VBLCON = $36 
+
+VBTIM = $32 
+
+FRZTIM = 38 
+
+.ENDIF 
+
+FFFB 
+
+FFFC 
+
+0004 
+
+0005 
+
+RB = -5 
+
+LB = ‘ -4 
+
+RF = 4 
+
+LF_=_ 5 
+
+0010 
+
+PLAY2 = $10 
+
+0036 
+
+0030 
+
+0004 
+
+OOOF 
+
+DROP = $36 
+
+PICKUP = $30 
+
+PURE2 = 4 
+
+ERRSND =15 
+
+0008 
+
+0004 
+
+MLT = $08 
+
+MST = $04 
+
+0004 
+
+CORN = 4 
+
+0008 
+
+ENDPC = 4*2 
+
+0020 
+
+ADDTRM = $20 
+
+
+i OVERSCAN TIMER INITIAL VALUE 
+; VBLANK TIMER INITIAL VALUE 
+
+j 1/2 SEC. VBLANK AFTER CALCULATION — CHANGE FOR PAL 
+i FREEZE TIMER FOR END OF HUMAN MOVE 
+
+
+SQUARE # OFFSET FOR RIGHT BACKWARD (DOWN) MOVEMENT 
+LEFT EACKWARD 
+RIGHT FORWARD 
+
+LEFT FORWARD _ 
+
+
+;TWO-PLAYER GAME # IN DECIMAL 
+
+
+; PIECE DROPPING SOUND FOR AUDVO 
+;PIECE PICKUP SOUND FOR AUDVO 
+iPURE TONE/4 FOR AUDCO 
+iERROR SOUND FOR AUDCO 
+
+;MULTIPLE JUMP MASK 
+s MUST JUMP MASK 
+
+;DOUBLE CORNER CREDIT 
+
+
+i MIN NUMBER OF HUMAN PIECES FOR NON-END GAME 
+
+; TERM TO ADD TO MAGNITUDE OF SCORE IF STACK IS FULL IN TERMNQDE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+• 
+
+
+
+*=$80 
+
+
+VARIABLES (RAM PAGE ZERO) 
+
+
+• t 
+
+
+;A-B MEANS USED BY 
+SAVE MEANS ALPHA- 
+
+THE FOLLOWING RAM" LOGS ARE CLEARED DURING RESET: 
+ALPHA-BETA PRUNING ROUTINE 
+
+BETA PRUNING ROUTINE DOES NOT ALTER 
+
+
+m 
+
+
+0080 
+
+ZROBGN 
+
+BOARD 
+
+*=*+35 
+
+
+iCHECKER BOARD (1 BYTE / SQUARE) SQUARES 8,17,26 ARE NOT 
+
+USED. A-B 
+
+• 
+
+"OOA3 
+
+PIECE 
+
+*=*+1 
+
+
+/CURRENT PIECE BEING MOVED. A-B 
+
+
+0 
+
+
+00A4 
+
+00 A 5 
+
+JMPI ~ 
+
+*=*+1 
+
+MSTJMP 
+
+
+;INDEX INTO JMPLST — &lt;0 =&gt; NO JUMPS. A-B 
+
+
+0 
+
+00A6 
+
+*=*+1 
+
+MLTJMP 
+
+*=*+1 
+
+
+/0 =&gt; ACTIVE PLAYER CAN'T JUMP 4 =&gt; ACTIVE PLAYER MUST 
+
+iS =&gt; CONTINUING MULTIPLE JUMP. A-B &amp; MAIN 
+
+jump: A-B 
+
+0 
+
+
+O0A7 
+
+00A8 
+
+MSTFLG 
+
+*=*+1 
+
+MLTFLG 
+
+
+/MSTJMP SAVED WHILE NEW MSTJMP IS COMPUTED. A-B 
+
+
+
+
+*=*+1 
+
+
+;MLTJMP BACKUP. A-B 
+
+
+• 
+
+00A9 
+
+HPIECE 
+
+
+
+
+• 
+
+
+00 A A 
+
+*=*+1 
+
+CPIECE 
+
+*=*+1 
+
+
+; HUMAN PIECE COUNT. KING=3, CHECKER=2. A-B 
+
+/COMPUTER PIECE COUNT. A-B 
+
+
+
+OOAB 
+
+CURSOR 
+
+*=*+1 
+
+
+; SQUARE # FOR BLINKING CURSOR. SAVE 
+
+
+• 
+
+OOAC " 
+
+OOAD 
+
+FRORB 
+
+*=*+1 
+
+TOSQRE 
+
+
+/BINARY "FROM" SQUARE (INTERNAL NUMBERING). A-B 
+
+
+
+
+*=*+1” 
+
+
+/BINARY "TO" SQUARE7 A-B 
+
+
+• 
+
+OOAE HKING 
+
+
+
+
+
+
+*=*+r 
+
+OOAF CKING 
+
+*=#+1 
+
+
+z HUMAN KTNCTTIOUNT ~ 
+
+/COMPUTER KING COUNT (1 FOR EACH KING) _ 
+
+
+3 
+
+OOBO 
+
+ZROEND 
+
+3 
+
+
+GAMNO = 1 TO 
+
+THE FOU_UWJLNU KW1 LUL HKt NUI Ktbt 1 : 
+
+GMAX2 IN DECIMAL 
+
+
+
+I- 9 “ 
+
+10 
+
+II- 19 
+
+
+REGULAR CHECKERS 
+
+2-PLAYER (EITHER) 
+
+GIVE-AWAY (LOSING) 
+
+
+»; 
+
+
+-OOBO GAMNO 
+
+*=*+1 
+
+GOBI COLHUM 
+
+
+/GAME NUMBER 
+
+
+
+
+--——— 1 —~ *=*+1 
+
+00B2 COLCMP 
+
+#=*+1 
+
+
+/Human checker color (no attract added in), save 
+
+/COMPUTER CHECKER COLOR (NO ATTRACT ADDED IN). SAVE? 
+
+
+r 
+
+
+00B3 T0 
+
+*=*+1 
+
+
+; TEMP (USED IN KERNEL, ETC. ). A-B 8t MAIN _ 
+
+
+• 
+
+
+OOB4 T1 
+
+*=*+1 
+
+XSAVE = 
+
+T1 
+
+/TEMP (USED IN KERNEL, ETC. ). A-B &amp; MAIN 
+; X REG SAVED FOR JMPCHK SUBROUTINE. A-B &amp; MAIN 
+
+
+
+00B4 Aan _ — 
+
+00B5 T2 
+
+
+
+
+
+
+_ 
+
+
+_^ —_ mkiW? aE -^JHpi-- 
+
+
+
+€ 
+
+I 
+
+f 
+
+c 
+
+e 
+
+t 
+
+c 
+
+
+a 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+w 
+
+m, 
+
+• f 
+
+9 
+
+9 
+
+VCS CHECKERS 
+
+BY CAROL SHAW 5/15/SO 9:41 
+
+AM 
+
+- 
+
+|_ 0QB5 
+
+*=*+1 
+
+YSAVE 
+
+T2 
+
+;A-B &amp; MAIN t 
+
+! . A-B &amp; MAIN 
+
+00B6 
+
+nUm — 
+
+T3 
+
+*=#+1 
+
+
+&gt;2 BYTE NUMERATOR FOR STATIC EVALUATION DIVIDE (USED FOR RATIO OF PIECE COUNTS). A—B 
+
+; A-B St MAIN 
+
+GOB 6 
+OOB7 
+
+ANYMVE = 
+
+T6 
+
+*=*+1 
+
+T3 
+
+i &gt;0 -&gt; ACTIVE PLAYER CAN MOVE. A-B &amp; MAIN — USED ONLY BY JMPCHK 
+
+;ANOTHER TEMP 
+
+OOBS 
+
+00B9 
+
+DEN 
+
+*=*+1 
+
+T7 
+
+
+iDENOMINATOR. A-B 
+
+OOBA 
+
+*=*+1 
+
+TS 
+
+*=*+1 
+
+
+7 TEMP - 
+
+;YET ANOTHER TEMP — USED TO SAVE BK COLOR 
+
+
+OOBB 
+
+ACTIVE 
+
+*•=#■+1 
+
+
+; ACTIVE OR CURRENT PLAYER (HUMAN=0, COMPUTER=$SO&gt;. A-B Zt MAIN 
+
+| ! 
+
+ODBC 
+
+T3EPTH 
+
+«■=«■+1 
+
+
+;CURRENT DEPTH OF TREE SEARCH. A-B &amp; SET UP BY MAIN 
+
+
+OOBD 
+
+OOBE 
+
+JMPSQR 
+
+#=#+1 
+
+INDEX 
+
+
+; SQUARE # FOR PIECE BEING JUMPED. A-B 
+
+
+OOBF 
+
+*=*+1 
+
+FRSMOV 
+
+*=#+1 
+
+
+" iCURRENT OFFSET INDEX &lt;0-3). A-B 
+
+;$80 =&gt; FIRST MOVE (MAY BE MULTIPLE JUMP). A-B 
+
+
+OOCO 
+
+; B7=l =&gt; 
+
+XMOVE 
+
+*=*+1 
+
+FIRST 
+
+MOVE, B6=l =&gt; FIRST MOVE AT THIS LEVEL, BETTER MOVE FOUND 
+
+;"FROM" MOVE SQUARE FROM MOVCHK. A-B &amp; MAIN 
+
+
+OOC1 
+
+TIMOOT 
+
+
+jggg g S' V ^ x v i ; |§| I m ; ] 
+
+* L 
+
+
+*=•»•+1 
+
+
+/timer 
+
+
+X70C2 
+
+OLDPBQ 
+
+
+
+i 
+
+
+*=*+1 
+
+
+;SWCHB FOR THIS FRAME. 
+
+
+OOC 3 
+
+FRAME 
+
+
+
+
+
+
+
+i FRAME COUNTER --""COUNTS "OP." -^-----1 
+
+
+OOC4 
+
+PRNCNT 
+
+
+
+
+
+*=*+1 
+
+■ - 
+
+; B7=l =&gt; PRUNE (FOR MULTIPLE JUMPS). B6-B0 = RANDOM MOVE COUNTER 
+
+
+) 
+
+1 
+
+i 
+
+I 
+
+
+OOC 5 JMPLST 
+
+*=#+JMPLEN ;SQUARES FOR PIECES JUMPED BY COMPUTER, -CO =&gt; KING. A-B &amp; MAIN 
+
+OOCE " ' ' JMPEND 
+
+; THE FOLLOWING ALPHA-BETA "STACK" OVERLAP THE MAIN PROGRAM VARS WHICH 
+
+7 ARE" LISTED LAST. THEY ALSO OVERLAP JMPLST WITH THE EXCEPTION OF THE FIRST 3 BYTES. 
+
+
+*=JMPLST+3 
+TTF STACK" 
+
+AX=* 
+
+*•=$180 
+
+. ENDIF' ;ALLOW FOR BIGGER STACK"IF DEBUG 
+
+OOCS FROMT 
+
+*=*+MAXMAX ;FROM&lt;1-1) = FROM SQUARE FOR DEPTH I. A-B 
+
+B7=l =&gt; FIRST MOVE, B6=l =&gt; FIRST MOVE AT THIS LEVEL, BETTER MOVE FOUND 
+
+00D3 OTHER 
+
+_ *=*+MAXMAX ^OTHER(1-1) = OTHER FOR DEPTH I. A-B 
+
+' B7-6 = CAPTURED PIECE, B5-4 = MOVED’ FI EC E, B3 = MLTJMP, B2 = MSTJMP, Bl-0 = OFFSET INDEX 
+
+OODE ALPHAL 
+
+*=*+MAXMAX+l+l ;ALPHAL(I) = ALPHA&lt;DEPTH) LSB. A-B 
+
+OOEB 
+
+
+SCPHAH 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCR CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+0 
+
+
+00F8 
+
+ALPEND 
+
+*=*+maxmax+i+i 
+
+i ALPHAH(I) = ALPHA(DEPTH)/256. A-B 
+
+ft 
+
+1 
+
+1 
+
+
+
+.IF STACK 
+
+*=AX 
+
+
+9 
+
+9 
+
+
+
+
+.ENDIF 
+
+
+&gt; m 
+
+3 
+
+
+
+' 
+
+*=UMPLST+JMPLEN 
+
+THE FOLLOWING VARS OVERLAP THE ALPHA-BETA "STACK" AND T4—SCRRPF: 
+
+c 
+
+3 
+
+
+OOCE 
+
+OOCF 
+
+COLPO 
+
+C0LP1 
+
+*=*+! 
+
+iCOLOR OF PO (ATTRACT ADDED IN) 
+
+i { 
+
+» 
+
+
+OODO 
+
+COLO 
+
+*=*+1 
+
+iCOLOR OF PI 
+
+c 
+
+• 
+
+
+00D2 
+
+C0L1 
+
+*=*+2 
+
+.COLOR OF 1ST PIECE IN ROW (FOR KERNEL ONLY) 
+
+c 
+
+3 
+
+
+O0D4^ 
+
+00D6 
+
+C0L2 
+
+COLS 
+
+#=*+2 
+
+
+• 
+
+3 
+
+L 
+
+00D8 
+
+PNTRO 
+
+*=*+2 
+
+
+ft 
+
+_1 
+
+3 
+
+
+OODA 
+
+PNTR1 
+
+*=*+2 
+
+#=#+2 
+
+i POINTERS TO SQUARE GRAPHICS 
+
+* 
+
+1 
+
+H" 
+
+i_ 
+
+OODC 
+
+OODE 
+
+PNTR2 
+
+PNTR3 
+
+*=#+2 
+
+
+J fc 
+
+
+
+
+
+#=*+2 ‘ 
+
+
+
+&gt; 
+
+
+OOEO 
+
+SQUARE 
+
+
+
+
+
+
+OOE1 
+
+SQREND 
+
+*=*+1 
+
+; SQUARE # FOR USE IN KERNEL 
+
+_j« 
+
+1 
+
+
+
+
+THE FOLLOWING PARTIALLY OVERLAP BOTH THE ALPHA-BETA "STACK" AND 
+
+COLPO-SQUARE. 
+
+ft 
+
+’ [ 
+
+
+OOCE 
+
+T4 
+
+*=JMPLST+JMPLEN 
+
+#=*+1 
+
+
+_] • 
+
+
+
+OOCF 
+
+T5 
+
+*=*+1 
+
+
+Cl 
+
+
+
+OODO 
+
+00D5 
+
+SCRLPO 
+
+SCRRP1 
+
+*=#+5 : 
+
+i PO “SCORE" GRAPHICS 
+
+* 
+
+
+
+OODA 
+
+SCRLPF 
+
+*=*+5 i 
+
+#=-if-+5 i 
+
+rpi 
+
+LEFT PF1 GRAPHICS 
+
+y 
+
+fg 
+
+
+OODF 
+
+SCRRPF 
+
+#=*+5 i 
+
+i RIGHT PF1 GRAPHICS 
+
+j y 
+
+
+
+00E4 
+
+MOVVAL 
+
+*=*+1 ; 
+
+VALUE IN MOVE SQUARE. SET UP AT END OF A-B. DON'T SAVE 
+
+
+
+* 
+
+
+00E5 
+
+
+MOVFLG 
+
+
+*=*+1 
+
+
+; 1 =&gt; DISPLAY COMPUTER'S MOVE. DON'T SAVE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0 
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM ' • 
+
+
+0 
+
+OOE6 
+
+WINSAV 
+
+*=*+1 
+
+; WINNING PLAYER, 0=&gt; NO WIN. DON'T SAVE 
+
+
+,t 
+
+OOE7 
+
+FROMTO 
+
+*=*+1 
+
+iO =&gt; FROM, 1=&gt; TO. DON'T SAVE 
+
+
+
+00E8 
+
+00E9 
+
+CURSC 
+
+*=*+1 
+
+MOVE 
+
+;COMPUTER CURSOR. SET UP AT END OF A-B. DON'T SAVE 
+
+
+
+OOEA 
+
+*=*+1 
+
+OLDINP 
+
+*•=*+1 
+
+;CURRENT MOVE. SET UP AT END OF A-B. DON'T SAVE 
+
+i JOYSTICK BUTTON VALUE FOR CURRENT PLAYER FOR LAST FRAME. DON'T SAVE 
+
+
+
+~ OOEB 
+
+GSTIM 
+
+*=*+1 
+
+i GAME SELECT TIMER — COUNTS DOWN TO 0. DON'T SAVE 
+
+f; 
+
+
+OOEC 
+
+OOED 
+
+0LDPB6 
+
+*=*+1 
+
+ILEGAL 
+
+; OLD SWCHB VALUE, 0=&gt;N0RMAL, 00=&gt;SETUP &lt;EIT 6 ONLY). DON'T SAVE 
+
+€ 
+
+
+OOEE 
+
+*=*+1 
+
+ATIM 
+
+*=#+1 
+
+; &gt;0 =&gt; MAKE ILLEGAL MOVE SOUND. DON'T SAVE 
+
+; ATTRACT MODE TIMER — COUNTS UP. DON'T SAVE 
+
+&lt; 
+
+
+OOEF 
+
+OOFO 
+
+GFLG2 
+
+#=*+1 
+
+BLNKTM 
+
+; 0=&gt;ATTRACT &lt;&gt; 0 =&gt; NOT ATTRACT. DON'T SAVE 
+
+
+
+00F1 
+
+*=*+1 
+
+SNDTIM 
+
+*=*+1 
+
+;FRAME‘COUNTER FOR VBLANK AFTER CALCULATION(DOWN TO 0). DON'T SAVE 
+
+; TIMER FOR SOUNDS (COUNTS DOWN TO 0). DON'T SAVE 
+
+
+
+“ OOF 2 
+
+OOFS 
+
+FREEZE 
+
+*=#+1 
+
+COLSQ 
+
+; TIMER FOR FREEZE AFTER HUMAN MOVE (0=END OF FREEZE) 
+
+
+
+
+*=#+1 
+
+TSQUARE^COLOR FOR KERNEL 
+
+
+
+00F4 
+
+OOF 5 
+
+‘FROM 
+
+*=*+1 
+
+TOSGR 
+
+; FROM SQUARE FOR •'SCORE" . DON'T SAVE 
+
+
+
+00F6 
+
+*=■*+ 1 
+
+SCPO 
+
+#=*+1 
+
+; TO SQUARE FOR "SCORE". DON'T SAVE 
+
+; GAME # FOR "SCORE". SAVE _ 
+
+
+
+OOF7 
+
+SCP1 
+
+*=*+1 
+
+;# OF PLAYERS FOR "SCORE". DON'T SAVE 
+
+
+
+i F8-FF ARE USED FOR STACK (4 LEVELS DEEP FOR NOW) 
+
+L_____-_ 
+
+
+« 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+♦ 
+
+VCS CHECKERS 
+
+BY CAROL 
+
+SHAW 5/15/80 9:41 AM 
+
+
+, 
+
+*=ROMSTR 
+
+fe f 
+
+
+
+
+. IF PRNT 
+
+*=$E000 
+
+JMP PSTART 
+
+
+FOOO 
+
+
+JMPBAK 
+
+. ENDIF 
+
+e 
+
+FOOO A2 
+
+F002 
+
+04 
+
+SC0R2 
+
+LDX 
+
+#5—1 
+
+
+T-002 AO 
+
+02 
+
+
+LDY 
+
+#2 
+
+
+F004 
+
+
+SC0R3 
+
+
+
+
+F004 85 
+
+02 
+
+
+STA 
+
+WSYNC 
+
+
+F006 B5 
+
+DA 
+
+
+LDA 
+
+SCRLPFiX 
+
+
+F008 85 
+
+OE 
+
+
+STA 
+
+PF1 
+
+
+F00A B5 
+
+DO 
+
+
+LDA 
+
+SCRLPOiX 
+
+
+FOOC 85 
+
+IB 
+
+
+STA 
+
+GRPO 
+
+$ 
+
+FOOE B5 
+
+D5 
+
+
+LDA 
+
+SCRRP1 &gt; X 
+
+
+F010 85 
+
+1C 
+
+
+STA 
+
+GRP 1 
+
+• 
+
+F012 A9 
+
+00 
+
+
+LDA 
+
+#0 
+
+
+r~ r-oi4 eo 
+
+02 
+
+
+CPX 
+
+#2 
+
+3 
+
+F'016 DO 
+
+01 
+
+
+BNE 
+
+SC0R4 
+
+
+F018 8A 
+
+
+
+TXA 
+
+
+
+FO19 
+
+
+SC0R4 
+
+
+
+3 
+
+F019 85 
+
+ID 
+
+
+STA 
+
+ENAMO 
+
+
+-- F0 !e B5 
+
+DF 
+
+
+LDA 
+
+SCRRPF,X 
+
+3 
+
+F01D 88 
+
+
+
+DEY 
+
+
+
+FOIE 85 
+
+OE 
+
+
+STA 
+
+PF1 
+
+
+F020 DO E2 
+
+
+BNE 
+
+SC0R3 
+
+§ 
+
+F022 CA 
+
+
+
+DEX 
+
+
+
+F 023 10 
+
+DD 
+
+
+BPL “ 
+
+SC0R2 
+
+i 
+
+
+
+
+
+
+
+
+
+SCORE KERNEL (TOP LINE OF CHARS) 
+
+
+; RELOCATE IF DEBUG TO MAKE ROOM FOR MORE CODE 
+
+
+;5 BYTES PER CHARACTER 
+
+MACHINE CYCLE COUNTS ARE GIVEN 
+; 50 49 REPEAT EACH BYTE TWICE 
+
+; 47 53 46 52_ 
+
+&gt; 4 
+
+;7 GAME # (AT LEFT) 
+
+ill __ 
+
+i T4 “FROM" SQUARE 
+
+i 21 "TO" SQUARE___ 
+
+
+i23 MISSILE 0 FOR DA SH BETWEEN “FROM" AND "TO" 
+i25 X=0 ON LAST TIME THROUGH SO CARRY IS CLEAR 
+
+i 27 28 
+i 29 X=2 
+
+
+; 32 31 
+
+i 36 35 
+i 38 37 
+
+i41 40 # OF PLAYERS (AT RIGHT) 
+;44 43 43 42 
+
+
+;45 44_ 
+
+i48 47 46 X=$FF Y=0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+CHECKERBOARD KERNEL 
+
+
+F025 A5 F3 
+F027 85 02 
+F029 85 07 
+F02B ST 31 
+r-02D 85 OA 
+F02F 84 OE 
+F031 84 IB 
+F033 84 1C 
+
+
+LDA“~ 
+
+STA 
+
+STA 
+
+LDA 
+
+STA 
+
+STY 
+
+
+COLSQ 
+
+WSYNC 
+
+C0LUP1 
+
+Wl 
+
+CTRLPF 
+
+PF1 
+
+
+- X=*FF Y=0 
+
+CARRY IS CLEAR =&gt; LAST SQUARES AT LEFT, 
+NEXT SQUARES AT RIGHT. 
+
+
+GRPO 
+
+GRP 1 
+
+
+SET UP PI COLOR FOR TOP RIGHT OF TOP RIGHT SQUARE 
+75 8 CLOCK BALL, REFLECT PLAYFIELD 
+
+
+F037 85 24 
+F039 8A 
+T03A~“85 33~ 
+F03C 85 D9 
+F03E 85 11 
+
+
+LDA 
+
+STA 
+
+TXA 
+
+
+wro 
+
+HMBL 
+
+
+SET HORIZONTAL POSITION OF PLAYERS, MISSILE AND BALL 
+
+
+STA 
+
+STA 
+
+STA 
+
+
+19 2 TO RIGHT 
+
+
+24 INIT MSB'S OF CHAR POINTERS FOR KERNEL 
+27 $FX — 1 TO RIGHT 
+
+
+f- 040 A2 06 
+• F042 86 04 
+
+F044 84 21 
+
+LDX~ 
+
+STX 
+
+STY 
+
+#6 
+
+NUSIZO 
+
+HMP1 
+
+
+; 35 NOTE THAT RESET TAKES 4-6 CLOCKS 
+
+i 38 3 COPIES OF PLAYER, MEDIUM SEPARATION 
+
+; 41 Y=0 
+
+i-046 85 10 
+• F048 A2 30 
+
+F04A 86 05 
+
+STA 
+
+LDX 
+
+STX 
+
+RESPO 
+
+#$30 
+
+NUSIZ1 
+
+
+i 44 POSITION PO (MUST OCCUR AT THIS TIME) 
+
+; 46 
+
+,49 8 CLOCK MISSILE, 1 COPY OF PLAYER 0 
+
+F04C 85 DB 
+• F04E 85 DD 
+
+F050 85 DF 
+
+STA 
+
+STA 
+
+STA 
+
+PNTRl+1 
+
+PNTR2+1 
+
+PNTR3+1 
+
+
+; 52 
+; 55 
+f 58 
+
+F052” A9 ~10 
+
+LDA 
+
+#$10 
+
+
+60 F T0~LEFT--- 
+
+• 1 F054 85 20 
+
+STA 
+
+HMPO 
+
+
+63 
+
+F056 85 14 
+
+STA 
+
+RESBL 
+
+
+66 POSITION BALL (MUST OCCUR AT THIS TIME) 
+
+F058 85 13 
+
+STA 
+
+RESM1 
+
+
+69 POSITION MISSILE #1 
+
+0 F 05A 85 02 
+
+STA 
+
+WSYNC 
+
+
+72 0 
+
+F05C 85 2A 
+
+STA 
+
+HMOVE 
+
+
+3 MOVE OBJECTS A FEW CLOCKS FOR EXACT POSITIONING 
+
+F05E A5 BA 
+
+f LDA 
+
+T8 
+
+
+CHANGE BK~~COLOR~ 
+
+0 1 F060 85 09 
+
+ISTA 
+
+COLUBK 
+
+
+IF B/W 
+
+F062 85 02 
+
+STA 
+
+WSYNC 
+
+
+12 
+
+F064 85 2B 
+
+STA 
+
+RM’CLR 
+
+
+3 
+
+0 F066 A9 CO 
+
+LDA 
+
+#$C0 
+
+
+5 
+
+F068 85 21 
+
+STA 
+
+HMP 1 
+
+
+8 4 TO RIGHT 
+
+F06A 85 20 
+
+3TA 
+
+HMPO 
+
+
+11 
+
+} F06C AO IF 
+
+LDY 
+
+#35-4 
+
+
+13 START AT TOP LEFT OF BOARD — BQARD(31) TO BOAI 
+
+
+DISPLAY NEXT ROW OF CHECKERS 
+
+
+F06E 
+
+F06E 84 EO 
+“F070 A2 06 
+
+
+LT5X #3*2 
+
+SET UP GRAPHICS IN RAM 
+
+
+;16 25 _ 
+
+i 18 27 SET UP COLORS AND GRAPHICS FOR 4 CHECKERS IN THIS ROW 
+
+
+F07 2 
+
+F072 B? 80 00 
+F075 30”D9 
+f-077 95 D8 
+F079 A5 CE 
+F07B 4C 86 FO 
+
+
+LDA BOARD, Y 
+
+BMI KRNlO 
+
+STA PNTRO,X 
+
+LDA COLPO 
+
+~K*N15 
+
+
+10 HUMAN PIECE OR EMPTY 
+13 
+T6T 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vcs CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F07E BO 50 
+
+
+F080 
+
+1080 29 7F 
+F-082 95 D8 
+F0B4 A5 CF 
+1086 
+
+■-086 95 DO 
+F088 C8 
+F089 CA 
+FOSA CA 
+FOSB 10 E5 
+
+
+LOOP 15 BCS 
+KRN10 
+
+
+i34 FOR L00P2 DELAY 
+
+
+AND 
+
+STA~ 
+
+LDA 
+
+
+#$7F 
+PNTRO, X 
+C0LP1 
+
+
+&gt;9 COMPUTER PIECE 
+; 13 
+i 16 
+
+
+STA 
+I NY 
+DEX 
+DEX 
+BPL 
+
+
+i 26 
+
+&gt;29 4*29-1 = 115 M. C. 'S 
+
+
+MIN = 18+115+3 = 136 = 
+MAX = 27+115+3 = 145 = 
+
+
+76+60 
+
+76+69 
+
+
+•&gt; 
+
+&lt;9 
+
+
+■ IP PAL ;PUT TWO EXTRA LINES AT BOTTOM OF SQUARE IF PAL 
+
+USR WAIT2 iDO 2 WSYNC'S. JSR &amp; RTS EACH TAKE 6 MC'S $ 
+
+. ENDIF 
+
+FOOD 85 02 STA WSYNC ;3 
+
+F08F 85 2A STA HMOVE ;3 MOVE PLAYERS 4 MORE CLOCKS (RIGHT OR LEFT) ® 
+
+; SET UP BALL AND PLAYFIELD 
+
+F091 BO 09 BCS K100 
+
+F093 38 SEC 
+
+F094 A9 C3 LDA #*C3 
+
+5 6 
+
+7 CS =&gt; AT RIGHT f 
+
+9 PLAYFIELD 2 
+
+F096 A2 03 LDX #3 
+
+F098 AO 02 LDY #2 
+
+F09A BO 06 BCS KUO 
+
+11 PF1 
+
+13 ENABLE BALL f 
+
+16 JMP 
+
+F09C K100 “ ~ 
+
+F09C 18 CLC 
+
+F09D A9 3C LDA #$3C 
+
+8 CC =&gt; AT LEFT &lt; 
+
+10 PLAYFIELD 2 
+
+F09F AA TAX 
+
+FOAO AO 00 LDY #0 
+
+F0A2 KUO 
+
+12 PF1 
+
+14 DISABLE BALL 
+
+F0A2 85 OF STA PF2 
+
+F0A4 86 OE STX PF1 
+
+F0A6 84 IE STY ENAM1 
+
+!-0A8 84 IF STY ENABL 
+
+; 19 17 
+
+22 
+
+25 
+
+28 
+
+
+FOAA 85 02 
+FOAC 85 2A 
+
+
+STA WSYNC 
+
+STA HMOVE 
+
+.IF PAL 
+
+JSR WAIT3 
+
+. ENDIF 
+
+. IF PAL-1 
+
+
+31 29 MOVE 4 MORE CLOCKS_ 
+
+3 ~ 
+
+PUT TWO EXTRA LINES AT BOTTOM OF SQUARE IF PAL 
+DO 3 WSYNC'5. JSR &amp; RTS EACH TAKE 6 MC'S 
+
+
+FOAE 85 02 
+
+
+WSYNC 
+
+
+
+FOBO A9 40 
+F0B2 BO 02 
+I-0B4 A9 CO 
+F0B6 
+
+F0B6 85 20 
+FOBS 85 21 
+
+
+WAIT 1 MORE LINE 
+4 TO LEFT 
+4 TO RIGHT 
+
+
+STA_ HMPO 
+
+STA HMP1 
+
+
+; 9 8 
+i 12 11 
+
+
+FOBA AO OF 
+
+
+#LINCHR-1 
+
+
+; 14 13 
+
+DISPLAY ONE ROW OF CHECKER BOARD 
+
+
+DISPLAY NEXT TV LINE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL 
+
+SHAW 5/15/80 9: 
+
+41 AM 
+
+FOBC 
+
+L00P2 
+
+
+i'-OBC 85 02 
+
+STA 
+
+WSYNC 
+
+FOBE A5 DO 
+
+LDA 
+
+COLO 
+
+FOCO 85 07 
+
+STA 
+
+C0LUP1 
+
+F0C2 B1 D8 
+
+LDA 
+
+(PNTRO),Y 
+
+F0C4 85 1C 
+
+STA 
+
+GRP 1 
+
+F0C6 A5 D2 
+
+LDA 
+
+C0L1 
+
+F0C8 85 06 
+
+STA 
+
+COLUPO 
+
+FOCA B1 DA 
+
+LDA 
+
+(PNTRl), Y 
+
+FOCC 85 IB 
+
+STA 
+
+GRPO 
+
+FOCE BO AE 
+
+BCS 
+
+LOOP15 
+
+i-QDO 
+
+L00P20 
+
+
+FODO A5 F3 
+
+LDA 
+
+COLSQ 
+
+F0D2 85 07 
+
+STA 
+
+C0LUP1 
+
+F0D4 A6 D4 
+
+LDX 
+
+C0L2 
+
+F0D6 B1 DC 
+
+LDA 
+
+(PNTR2),Y 
+
+T-0D8 86 06 
+
+STX 
+
+COLUPO 
+
+FODA 85 IB 
+
+STA 
+
+GRPO 
+
+FODC A6 D6 
+
+LDX 
+
+C0L3 
+
+FODE B1 DE 
+
+LDA 
+
+(PNTR3)» Y 
+
+FOEO 85 IB 
+
+STA 
+
+GRPO 
+
+F0E2 86 06 
+
+STX 
+
+COLUPO 
+
+F0E4 88 
+
+DEY 
+
+IT00P2 ~ 
+
+
+F0E7 
+
+85 
+
+02 
+
+
+STA 
+
+WSYNC 
+
+F0E9 
+
+85 
+
+2A 
+
+
+STA 
+
+HMOVE 
+
+FOEB 
+
+C8 
+
+
+
+I NY 
+
+
+FOEC 
+
+84 
+
+1C 
+
+
+STY 
+
+GRP 1 
+
+5-0EE 
+
+84 
+
+IB 
+
+
+STY 
+
+GRPO 
+
+FOFO 
+
+85 
+
+02 
+
+
+STA 
+
+WSYNC 
+
+F0F2 
+
+85 
+
+2A 
+
+
+STA 
+
+HMOVE 
+
+F0F4 
+
+08 
+
+
+
+PHP 
+
+
+F0F5 
+
+A5 
+
+EO 
+
+
+LDA 
+
+SQUARE 
+
+F0F"7~E9 
+
+04 
+
+
+BBC 
+
+“#4~” 
+
+F0F9 
+
+28 
+
+
+
+PLP 
+
+
+FOFA 
+
+A8 
+
+
+
+TAY 
+
+
+FOFB 
+
+30 
+
+28 
+
+
+BMI 
+
+FRAMLP 
+
+FOFD 
+
+4C 
+
+6E FO 
+
+
+JMP 
+
+LOOP 1 
+
+
+; 16 15 72 76 0 WAIT FOR NEXT LINE 
+;3 STORE COLOR AND GRAPHICS FOR LEFT CHECKER 
+
+i 6 ____ 
+
+5 11 
+
+; 14 
+
+; 17 STORE COLOR AND GRAPHICS FOR NEXT CHECKER 
+; 20 
+
+i 25_ 
+
+; 28 
+
+i 30 31 4 EXTRA MACHINE CYCLES IF CARRY SET (SQUARES SHIFTED TO RI GHT) 
+
+i33 37 LOAD DARK SQUARE COLOR 
+
+,36 40 __ 
+
+;39 43 STORE COLOR &amp; GRAPHICS FOR NEXT CHECKER 
+
+; 44 48 ____ 
+
+;47 51 TIMING IS CRITICAL FROM HERE TO NEXT WSYNC 
+; 50 54 
+
+;53 57 STORE COLOR &amp; GRAPHICS FOR RIGHT CHECKER 
+; 58 62 
+; 61 65 
+; 64 68 
+
+; 66 70 
+
+; 69 73 "68 72 CONTINUE FOR REST OF LINES IN THIS ROW OF SQUARES 
+
+MOVE TO RIGHT OR LEFT 16 CLOCKS FOR NEXT ROW__ 
+
+(4 CLOCKS/MOVE * 4 MOVES) Y=$FF 
+i 71 75 
+
+;3 EXECUTE MOVE 
+7 5 Y=0 
+
+; 8 
+; 11 
+
+; 14 0 
+
+;3 MOVE SOME MORE 
+i 6 SAVE CARRY 
+
+ill “SUBTRACT 5 IF CARRY IS CLEAR (COMPENSATES FOR BOARD NUMBERING) 
+
+;15 RESTORE CARRY 
+; 17 
+
+i 19 
+
+;22 CONTINUE 
+END OF KERNELS “ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+m 
+
+k r 
+
+.r 
+
+
+F100 78 
+F101 D8 
+FI02 A2 00 
+F104 8A 
+
+
+FT05 95 00 
+
+F107 ES 
+F10S DO FB 
+
+
+F10A CA 
+F10E 9A 
+
+
+F10C E6 BO 
+
+
+F10E AD 82 02 
+
+Fill 85 C2 
+FI13 29 40 
+
+
+INITIALIZATION 
+
+
+I NLP 
+
+
+SEI 
+
+CLD 
+
+LDX 
+
+TXA 
+
+STA" 
+
+INX 
+
+BNE 
+
+
+DEX 
+
+TXS 
+
+
+. IF 
+STA 
+
+
+#0 
+
+0, X 
+I NLP 
+
+
+PRNT 
+
+PRFLG 
+
+
+STA PRDEP 
+STA PRCNT 
+.ENDIF 
+
+
+INC 
+
+
+GAMNO 
+
+
+LDA 
+
+STA 
+
+AND 
+
+
+SWCHB 
+
+OLDPBQ 
+
+#$40 
+
+
+FI 15 
+
+85 
+
+EC 
+
+STA 
+
+0LDPB6 
+
+FI 17 
+
+A2 
+
+30 
+
+LDX 
+
+#$30 
+
+FI 19 
+
+86 
+
+18 
+
+STX 
+
+AUDF1 
+
+TUB 
+
+E8 
+
+
+INX“ 
+
+
+F11C 
+
+86 
+
+OA 
+
+STX 
+
+CTRLPF 
+
+FI IE 
+
+A2 
+
+04 
+
+LDX 
+
+#4 
+
+F120 
+
+“86 
+
+16 
+
+~BT5T~ 
+
+AUDC1 
+
+F122 
+
+20 
+
+82 F9 
+
+JSR 
+
+RESET 
+
+
+DISABLE INTERRUPTS 
+BINARY ARITHMETIC 
+
+
+CLEAR HARDWARE REGISTERS AND RAM 
+
+
+$FF 
+
+INIT S TACK PTR _ 
+
+0 — CLEAR PRINT FLAGS IF DEB UG 
+
+SAVE INITIAL PORT READING 
+
+FOR WIN SOUND _ 
+
+$31: 8 CLOCK BALL, REFLECT PLAYFIELD 
+
+
+SET UP BOARD 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+_FI 25 
+
+t 
+
+
+F125 85 02 
+
+F127 A2 25 
+FI29 85 02 
+F12B 8E 96 02 
+FI2ET ~A2~00 
+FI30 86 OF 
+FI32 86 OE 
+
+
+FRAMLP 
+
+—jp- PAL 
+
+JSR WAIT3 
+
+. ENDIF 
+
+.IF PAL-1 
+
+STA WSYNC 
+
+. ENDIF 
+
+LDX ttOVRCON 
+
+STA WSYNC 
+
+STX TIM64T 
+
+LDX” #0- 
+
+STX PF2 
+
+_ STX PF1 
+
+
+FI 34 
+
+E6 
+
+C3 
+
+INC 
+
+FRAME 
+
+FI36 
+
+DO 
+
+08 
+
+BNE 
+
+FRMLP2 
+
+FI 38 
+
+E6 
+
+EE 
+
+INC 
+
+ATIM 
+
+F13A 
+
+DO 
+
+04 
+
+BNE 
+
+FRMLP2 
+
+F13C 
+
+A9 
+
+00 
+
+LDA 
+
+#0 
+
+F13E 
+
+85 
+
+EF 
+
+STA 
+
+GFLG2 
+
+FI 40 
+
+
+
+FRMLP2 
+
+
+FI 40" 
+
+A5 
+
+E5 
+
+LDA 
+
+MOVFLG 
+
+FI 42 
+
+FO 
+
+OA 
+
+BEQ 
+
+FRAM10 
+
+
+FI 44 18 
+
+FI45 20 CE F9 
+
+FI48 A6 - ES 
+
+F14A A9 00 
+F14C 95 80 
+FI 4E 
+
+F14E A6 E9 
+FI50 A5 E4 
+
+
+CLC 
+
+JSR JMPSET 
+
+-LDX-CURBC 
+
+LDA #0 
+
+STA BOARD,X 
+
+FRAMTO 
+
+LDX MOVE 
+
+LDA MOVVAL 
+
+-STA-BOARD, X 
+
+
+
+FI 54 A6 AB 
+F156“A5 A3 
+
+FI 58 95 80 
+
+
+FI5A A5 FO 
+F15C DO 6F 
+
+
+F15E AD 82 02 
+
+F15T“AA 
+
+F162 45 C2 
+FI64 86 C2 
+-FI 66 10 - 62 
+
+
+LDX CURSOR 
+
+LDA-PIECE 
+
+STA BOARD,X 
+
+
+LDA ELNKTM 
+
+BNE BLKJMP 
+
+
+LDA SWCHB 
+TAX ~ 
+
+EOR OLDPBQ 
+STX OLDPBQ 
+BPL NOREV 
+
+
+END OF FRAME — RESTORE BOARD AFTER DISPLAY 
+
+;TWO EXTRA LINES AT BOTTOM OF BOTTOM SQUARE IF PAL 
+;DO 3 WSYNC'S AND RETURN 
+
+iANOTHER LINE AT BOTTOM OF BOARD IF NOT PAL 
+
+iSET TIMER FOR OVER SCAN (? LIN ES ) 
+iCLEAR PLAYFIELD 
+
+
+iGO INTO ATTRACT 
+
+iNO COMPUTER MOVE 
+
+COMPUTER MOVE - IS BEING DISPLAYED - RESTORE 
+
+;CLEAR OUT JUMPED PIECES, IF AN Y_ 
+
+
+; "TO" 
+
+
+; "FROM"__ 
+
+;RESTORE CURRENT SQUARE 
+
+i STILL BLANKING AT END OF COMPUTER MOVE? 
+;YE5. SKIP __ 
+
+
+;NO. SAVE NEW CONSOLE SWITCH PORT VALUE 
+; IN OLDPBQ BUT DON'T CHANGE 0LDPB6 YET. 
+
+
+NO CHANGE IN BIT 7 OF OLDPBQ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+; RIGHT DIFFICULTY SWITCH MOVED MEANS TO REVERSE BOARD 
+
+(SWITCH SIDES) 
+
+
+
+. 
+
+; MOVE CURSOR# FROMB# TOSQRB 
+
+
+FI68 A2 02 
+F16A A5 AD 
+F16C 30 07 
+F16E 
+
+F16E A9 22 
+P170 38 
+F171 F5 AB 
+F173 95 AB 
+1-175 
+F175 CA 
+
+
+LDX #2 
+
+LDA_ TOSQRB 
+
+BMI SW10 
+
+
+;NO "TO" SQUARE 
+
+
+J 
+
+J 
+
+
+SEC 
+
+SBC CURSOR,X 
+
+STA CURSOR,X 
+
+
+© 
+
+O 
+
+i 
+
+4 
+
+I 
+
+I) 
+
+D 
+
+ft 
+
+
+FI93 A5 E4 
+FI95 FO 04 
+FI97 49 80 
+FI99 85 E4 
+F19B 
+
+
+F19B A2 10 
+F19D AO 00 
+
+
+F19F 
+
+F19F B5 92 
+F1A1 48 
+F1A2 B9 80 00 
+F1A5 95 92 
+F1A7 68 
+
+F1A8 99 80 00 
+F1AB C8 
+FIAC CA 
+F1AD 10 FO 
+
+
+F1AF 20 14 FB 
+I-1B2 A5 B1 
+F1B4 A6 B2 
+
+F1B6 86 B1 
+
+
+FI78 A9 22 
+
+F17A 38 
+
+
+LDA 
+
+SEC 
+
+#34 
+
+jCHANGE CURSC, MOVE 
+
+
+P17B E5 E8 
+
+F17D 85 E8 
+
+F17F A9 22 
+
+
+SBC 
+
+STA 
+
+LDA 
+
+CURSC 
+
+CURSC 
+
+#34 
+
+
+■ 
+
+I 
+
+" F181~3B 
+
+FI82 E5 E9 
+
+FI84 85 E9 
+
+
+SEC 
+
+SBC 
+
+STA 
+
+MOVE 
+
+MOVE 
+
+
+
+SWITCH SIDES FOR EACH PIECE ON BOARD, PIECE 
+
+Fl86 A2 23 
+
+FI 88 
+
+F188 B5 80 
+
+NORLP 
+
+LDX 
+
+LDA 
+
+#34+1 
+
+BOARD,X 
+
+
+
+FIBS F0~ 04 
+
+F18C 49 80 
+
+F18E 95 80 
+
+
+BEQ 
+
+EOR 
+
+STA 
+
+N0R05 
+
+#$80 
+
+BOARD, X 
+
+
+
+-FT90 
+
+F190 CA 
+
+F191 10 F5 
+
+NOR 05 
+
+DEX 
+
+BPL 
+
+NORLP 
+
+
+
+~ . — 
+
+
+f, 
+
+% 
+
+- • 
+
+
+LDA 
+
+BEQ 
+
+EOR 
+
+STA 
+
+
+MOWAL 
+
+N0R06 
+
+#$80 
+
+MOWAL 
+
+
+; SWITCH MOWAL 
+
+
+LDX 
+
+LDY 
+
+
+REVERSE BOARD 
+
+iO TO 16 (17 IS UNUSED), 18-34 
+
+
+LDA 
+
+PHA 
+
+LDA 
+
+STA 
+
+PiTAT 
+
+STA 
+I NY 
+DEX 
+BPL 
+
+
+BOARD,Y 
+BOARD+18,X 
+
+
+ft 
+
+J 
+
+J 
+
+I 
+
+
+BSWLP 
+
+
+JSR 
+
+LDA 
+
+LDX 
+
+STX 
+
+
+SWIT 
+
+COLHUM 
+
+COLCMP 
+
+COLHUM 
+
+
+;REVERSE ACTIVE 
+,- SWITCH COLORS 
+
+
+A 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F1B8 
+
+85 
+
+B2 
+
+STA 
+
+COLCMP 
+
+
+
+F1BA 
+
+A5 
+
+A9 
+
+LDA 
+
+HPIECE 
+
+iSWITCH 
+
+HPIECE CPIECE 
+
+F1BC 
+
+A6 
+
+AA 
+
+LDX 
+
+CPIECE 
+
+
+
+FI BE 
+
+86 
+
+A9 
+
+STX 
+
+HPIECE 
+
+
+
+F1C0 
+
+85 
+
+AA 
+
+STA 
+
+CPIECE 
+
+
+
+F1C2 
+
+A5 
+
+AE 
+
+LDA 
+
+HKING 
+
+iSWITCH 
+
+HKING &amp; CKING 
+
+F1C4 
+
+A6 
+
+AF 
+
+LDX 
+
+CKING 
+
+
+
+F1C6 
+
+86 
+
+AE 
+
+STX 
+
+HKING 
+
+
+
+F1C8 
+
+85 
+
+AF 
+
+STA 
+
+CKING 
+
+
+
+
+F1CA 
+
+
+NOREV 
+
+
+PICA 20 44 F9 
+
+
+JSR 
+
+
+GSRST 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VC8 CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+PI CD 
+
+BLKJMP 
+
+
+
+BEGINNING OF FRAME — CHECK FOR SET UP MODE 
+
+
+
+F1CF AE 84 02 
+F1D2 DO FB 
+
+OVSLP 
+
+LDX 
+
+BNE 
+
+#3 
+
+INTIM 
+
+OVSLP 
+
+; B6=0 =&gt; DISABLE LATCHES. Bl = l =&gt; START VSYNC &amp; VBLANK 
+;WAIT FOR END OF OVERSCAN 
+
+
+
+F1D4 85 02 
+
+F1D6 85 00 
+
+
+STA 
+
+STA 
+
+WSYNC 
+
+VSYNC 
+
+START VERTICAL BLANK 
+
+iSTART VERTICAL SYNC 
+
+
+
+FIDA 86 15 
+
+FI DC 85 OA 
+
+pmc — Cjr;— - 
+
+
+STA 
+
+STX 
+
+STA 
+
+VBLANK 
+
+AUDCO 
+
+CTRLPF 
+
+;N0 SOUND 
+
+;STORE 3 — SCORE. REFLECT PLAYFIELD 
+
+
+
+» HJt 03 Ud 
+
+F1E0 85 02 
+
+F1E2 AO 2C 
+
+
+STA 
+
+STA 
+
+LDY 
+
+WSYNC 
+
+WSYNC 
+
+ttVBLCON 
+
+;37 LINES 
+
+
+
+F1E4 85 02 
+
+F1E6 86 00 
+
+F1E8 8C 96 02 
+
+
+STA 
+
+STX 
+
+STY 
+
+WSYNC 
+
+VSYNC 
+
+TIM64T 
+
+;END VERTICAL SYNC &lt;X=0) 
+
+
+
+F1EB A5 FO 
+
+FIED FO 03 
+
+
+LDA 
+
+BEQ 
+
+BLNKTM 
+
+NOBL 
+
+
+
+
+FIEF 4C D6 F7 
+
+F1F2 
+
+NOBL 
+
+JMP 
+
+ATTRfO 
+
+&gt; DO NOTHING 
+
+
+
+F1F2 A5 C2 
+
+F1F4 A6 EC 
+
+
+LDA 
+
+LDX 
+
+OLDPBQ 
+
+0LDPB6 
+
+CHECK FOR SETUP MODE (LEFT PRO/AM SWITCH UP (=1)) 
+
+
+F1F6 DO 67 
+
+
+BNE 
+
+STUP25 
+
+
+
+F1F8 29 40 
+
+
+AND 
+
+#$40 
+
+;PREVIOUSLY IN NORMAL MODE 
+
+. 
+
+FIFA DO 4E 
+
+
+BNE 
+
+STUP10 
+
+
+
+
+
+STILL 
+
+IN NORMAL MODE (NORMAL -&gt; NORMAL) 
+
+
+FTFC A5 E6 
+
+
+LDA 
+
+WINSAV 
+
+
+
+FIFE FO 13 
+
+
+BEQ 
+
+COMPOS 
+
+i NO WIN 
+
+
+
+
+SUntUNt HAS WUIN - 
+
+OUTPUT WINSOUND 
+
+
+F200 A6 EF 
+
+
+LDX 
+
+GFLG2 
+
+
+
+F202 FO OC 
+
+F204 C6 FI 
+
+
+BEQ 
+
+DEC 
+
+WIN70 
+
+SNDTIM 
+
+;ATTRACT MODE 
+
+
+F206 A6 FI 
+
+
+LDX 
+
+SNDTIM 
+
+
+
+F208 86 EF 
+
+
+STX 
+
+GFLG2 - 
+
+0=5 DONE WITH SOUND, DO ATTRACT 
+
+— i 
+
+F20A FO 02 
+
+
+BEQ 
+
+WIN60 
+
+
+
+F20C A6 C3 
+
+
+LDX 
+
+FRAME 
+
+
+
+f'20E 
+
+WIN60 
+
+
+
+
+-—..! 
+
+F20E 86 1A 
+
+
+STX 
+
+AUDV1 
+
+
+
+F210 
+
+WIN70 
+
+
+
+
+
+
+F2T0 4C 66 F7 JMP CRSBLK 
+
+
+-CHECK FOR COMPUTER OR HUMAN MOVE 
+
+
+F213 COMPOS 
+
+F213A6 BO LDX GAMNO 
+
+
+F215 A5 F2 
+
+F217 FO IF 
+
+LDA 
+
+BEQ 
+
+FREEZE 
+
+C0MP06 
+
+; FREEZE DISPLAY AFTER MOVE'? 
+
+;NO. CONTINUE 
+
+F219 C6 F2 
+
+DEC 
+
+FREEZE 
+
+;FREEZE OVER YET? 
+
+F21B DO F3 
+
+BNE 
+
+WIN70 
+
+;NO. JMP CRSBLK 
+
+F21D EO 10 
+
+CPX 
+
+#PLAY2 
+
+
+
+I pif DO IB BNE C0MP07 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCCi CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+1-221 20 E8 F9 
+i-224 FO 64 
+
+1-226 A5 AB- 
+
+F228 A6 E8 
+F22A 85 E8 
+F22C 86 AB 
+F22E B5 80 
+F230 85 A3 
+! 232 20 E2 FA 
+F235 4C D6 F7 
+
+
+F23S — 
+
+F238 EO 10 
+F23A FO 04 
+F23C 
+
+F23C A6 BB 
+F23E 30 03 
+i-240 
+
+F240 4C A7 F5 
+F243 
+
+
+LDX 
+
+BMI 
+
+
+JMPWIN 
+
+STUP50 
+
+CURSOR 
+
+CURSC 
+
+CUR SC 
+
+CURSOR 
+
+BOARD, X 
+
+PIECE 
+
+TOSET 
+
+ATTR10 
+
+
+#PLAY2 
+COMP 10 
+
+
+ACTIVE 
+
+CMPMVE 
+
+
+; REVERSE COMPUTER AND HUMAN CURSORS 
+
+;CLEAR TOSQRB, MOVFLG 
+
+i 2-PLAYERJ5AME 
+
+; COMPUTER'S MOVE _ 
+
+i2-PLAYER GAME OR HUMAN'S MOVE 
+
+
+F243 20 E8 F9 
+F246 FO 42 
+
+F248 DO 43 
+
+
+JSR 
+
+BEQ 
+
+BNE 
+
+JMPWIN 
+
+STUP50 
+
+COMPUT 
+
+; SET UP MSTJMP, XMOVE, YMOVE, ETC. 
+
+;GAME OVER — GOTO ATTR10 
+
+,-JMP DEFINITELY DO COMPUTER'S MOVE 
+
+
+
+
+CHANGE 
+
+TO SETUP MODE 
+
+
+
+
+
+&lt; NORMAL -&gt; SETUP) 
+
+
+F24A 
+
+STUP10 
+
+
+
+
+
+F24A 85 EC 
+
+F24C 20 El FE 
+F24F 20 F3 FA 
+
+
+STA 
+
+USR 
+
+•JSR 
+
+0LDPB6 
+
+MOVCLR 
+
+TONORM 
+
+;SET MOVE TO OFF BOARD SQUARE 
+fNOT SOFT ATTRACT &lt; RETURNS Y=$FF) 
+
+
+F25284 A4 
+
+F254 20 E2 FA 
+F257 84 1A 
+
+
+STY - 
+
+JSR 
+
+STY 
+
+JMPT 
+
+TOSET 
+
+AUDV1 
+
+i $FF — NO JUMPS FOR COMPUTER 
+iSET UP TOSQRB, MOVFLG, RETURN Y=0, EQ 
+iCLEAR WIN SOUND 
+
+
+F259 84 E7 
+
+F25B B4 A5 
+! 25D FO 04 
+
+
+Si Y 
+
+STY 
+
+BEG 
+
+FROMTO 
+
+MSTJMP 
+
+STUP30 
+
+;N0 JUMP 
+; JMP 
+
+
+; PREVIOUSLY IN SETUP MODE 
+
+F25F 
+
+F25F 29 40 
+
+STUP25 
+
+AND 
+
+#$40 
+
+
+
+F26I 85 EC 
+
+
+
+0LDPB6 
+
+
+
+F 263 
+
+F263 20 FB FA 
+
+1 
+
+5TUP30 
+
+JSR 
+
+CRSTUP 
+
+;SET UP ACTIVE, COLHUM, COLCMP 
+
+
+F266 A6 AB 
+
+F268 B5 80 
+
+F26A FO 04 
+
+
+cur 
+
+LDA 
+
+BEQ 
+
+CURSOR 
+
+BOARD,X 
+
+STUP35 
+
+iCURSOR SQUARE DETERMINES STARTING PLAYER AFTER SET UP 
+i UNLESS EMPTY— USE RIGHT DIFFICULTY SWITCH FROM CRSTUP 
+
+
+F26C29 SO 
+
+F26E 85 BB 
+'•270 
+
+STUP35 
+
+AND 
+
+STA 
+
+#$80 
+
+ACTIVE 
+
+
+
+F37U~fi3~U0 
+
+F272 86 E6 
+
+F274 86 E5 
+
+
+LDX 
+
+STX 
+
+STX 
+
+#0 
+
+WINSAV 
+
+MOVFLG 
+
+; NO COMPUTER MOVE 
+
+
+
+F276 A6 EC 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+• r 7 
+
+F278 
+
+DO 
+
+C&amp; 
+
+
+
+BNE 
+
+COMP 10 
+
+/GOTO NOCHCK IF STILL IN SETUP (NORMAL-&gt;SETUP OR SETUP-&gt;SETUP) 
+
+*\ 
+
+
+
+
+
+! 
+
+OUT OF 
+
+SETUP (SETUP 
+
+-&gt; NORMAL) 
+
+
+
+
+
+
+. IF 
+
+PRNT 
+
+
+
+
+
+
+
+
+JSR 
+
+PRBRD 
+
+
+i 
+
+
+
+
+
+
+.ENDIF 
+
+
+
+
+F27A 
+
+20 
+
+F3 
+
+FA 
+
+
+JSR 
+
+TQNORM 
+
+» MAKE SURE WE'RE NOT IN ATTRACT MODE 
+
+o 
+
+F27D 
+
+A6 
+
+BO 
+
+
+
+LDX 
+
+GAMNO 
+
+
+
+F27F 
+
+EO 
+
+10 
+
+
+
+CPX 
+
+#PLAY2 
+
+i TWO-PLAYER GAME? 
+
+
+:-28i 
+
+FO 
+
+04 
+
+
+
+' BEQ 
+
+STUP49 
+
+; YES. 
+
+F283 
+
+A5 
+
+BB 
+
+
+
+LDA 
+
+ACTIVE 
+
+;NO. COMPUTER PLAYER? 
+
+1_ 
+
+F285 
+
+30 
+
+03 
+
+
+
+BMI 
+
+STUP50 
+
+; YES. 
+
+
+F287 
+
+
+
+
+STUP49” 
+
+
+
+
+11 
+
+F287 
+
+20 
+
+ES 
+
+F9 
+
+
+JSR 
+
+JMPWIN 
+
+;CHECK FOR JUMPS, MOVES, WINS FOR HUMAN PLAYER 
+
+
+F28A 
+
+
+
+
+STUP50 
+
+
+
+
+
+iSKIP THE REST UNTIL NEXT TIME 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+CALL ALPHA-BETA PRUNING ROUTINE 
+THIS IS A "RECURSIVE" TREE SEARCH. 
+
+TO SAVE SPACE/ THE STACK IS NOT USED. INSTEAD, THE ROUTINE RETURNS 
+TO ABRET1 IF DEPTH=1 AND OTHERWISE RETURNS TO ITSELF. 
+
+EVENTUALLY, WE WANT TO CHECK TO SEE IF THERE IS ONLY ONE POSSIBLE MOVE 
+FIRST, FOR FASTER RESPONSE. 
+
+
+F28D 
+
+
+
+COMPUT 
+
+
+
+F2SD 
+
+A2 
+
+01 
+
+LDX 
+
+#1 
+
+
+F28F 
+
+86 
+
+BC 
+
+STX 
+
+DEPTH 
+
+;START AT DEPTH=1 
+
+F291 
+
+86 
+
+DE 
+
+STX 
+
+ALPHAL+O 
+
+
+F293 
+
+86 DF 
+
+STX 
+
+ALPHAL+1 
+
+
+F295 
+
+CA 
+
+
+DEX 
+
+
+i 0 
+
+F296 
+
+86 
+
+A6 
+
+STX 
+
+MLTJMP 
+
+iNOT MULTIPLE JUMP YET 
+
+F29S 
+
+86 
+
+01 
+
+STX 
+
+VBLANK 
+
+;MAKE SURE VBLANK IS OFF 
+
+F29A 
+
+86 
+
+C4 
+
+STX 
+
+PRNCNT 
+
+;CLEAR PRUNE FLAG AND BEST MOVE COUNTER 
+
+F29C 
+
+A9 
+
+80 
+
+LDA 
+
+#$80 
+
+;ALPHA(0) = ALPHA&lt;1) = $8001 = -INFINITY 
+
+F29E 
+
+85 
+
+EB 
+
+STA 
+
+ALPHAH+O 
+
+
+F2A0 
+
+85 
+
+EC 
+
+STA 
+
+ALPHAH+1 
+
+
+F2A2 85 BF 
+
+STA 
+
+FRSMOV 
+
+;FIRST MOVE — NO BETTER MOVE YET 
+
+
+F2A4 A5 C2 
+F2A6 6A 
+F2A7 BO 13 
+FZA9 A5C3 
+
+F2AB 29 07 
+F2AD AA 
+F2AEBD6ETFF 
+F2B1 85 C5 
+F2B3 29 3F 
+F2B5 85 AC 
+F2B7 85 ES 
+F2B9 4C 5A F5 
+F2BC 
+
+
+IF RESET PRESSED THEN PICK OPENING MOVE AT RANDOM 
+
+
+LlJA OLDPBQ 
+
+ROR A 
+
+BCS C0MPU2 
+
+LDA FRAME 
+
+AND #7 
+
+TAX 
+
+LDA FRSTAB,X 
+
+STA JMPLST 
+
+AND #$3F 
+
+STA FROMB 
+
+STA CURSC 
+
+JMP NOJUMP 
+
+
+RESET SWITCH PRESSED? 
+
+NO. 
+
+YES. PICK FROM 7 OPENING MOVES 
+
+AT RANDOM &lt;22-19) IS TWICE AS LIKELY AS THE OTHERS). 
+
+
+; JMP 
+
+
+C0MPU2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+P2F0 AA 
+
+
+TAX 
+
+
+
+F2F1 A5 A5 
+
+
+LDA 
+
+MSTJMP 
+
+
+!-2F3 DO 33 
+
+
+BNE 
+
+A JUMP 
+
+;MUST JUMP 
+
+
+L 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+; NO JUMP 
+
+-- ORDINARY MOVE 
+
+
+
+
+
+
+F2F5 B5 80 
+
+LDA 
+
+BOARD, X 
+
+IS "TO" SQUARE OCCUPIED? 
+
+
+
+
+
+F2F7 DO 37 
+
+BNE 
+
+C0NT2J 
+
+YES. TRY NEXT OFFSET 
+
+
+
+
+
+F2F9 86 AD 
+
+STX 
+
+TOSQRB 
+
+NO. HAVE POTENTIAL MOVE 
+
+
+
+
+
+F2FB 84 BE 
+
+STY 
+
+INDEX 
+
+SAVE TO SQUARE AND INDEX 
+
+
+
+
+
+5-2FD A5 A3 
+
+LDA 
+
+PIECE 
+
+LOAD PIECE AND CHECK FOR NEW 
+
+KING- 
+
+
+
+
+P2FF 20 BC FE 
+
+JSR 
+
+KNGCK2 
+
+CHANGES A AND PIECE COUNT IF 
+
+NEW KING 
+
+
+
+
+F302 95 80 
+
+STA 
+
+BOARD, X 
+
+CHANGE TOSQR TO FROM SQUARE 
+
+
+
+
+
+F304 A9 00 
+
+“IDA 
+
+#0 
+
+!CLEAR FROM SQUARE 
+
+
+
+
+
+F306 A6 AC 
+
+LDX 
+
+FROMB 
+
+
+
+
+
+
+1-308 95 80 
+
+STA 
+
+BOARD, X 
+
+
+
+
+
+
+F30A 20 CE FB 
+
+JSR 
+
+TERMNODE 
+
+iCHECK FOR TERMINAL NODE 
+
+
+
+
+
+F30D BO OC 
+
+BCS 
+
+TER 
+
+;YES. — TERMINAL 
+
+
+
+
+
+
+NOT TERMINAL NODE — SAVE VARS. FOR THIS LEVEL 
+
+
+!-30F A5 A3 LDA PIECE 
+
+F311 29 30 AND #$30 ;BIT 5-4 INDICATES KING OR CHECKER 
+
+F313 05 BE ORA INDEX ;BIT 1-0 IS MOVTAB INDEX (MSTJMP AND MLTJMP ARE O) 
+
+F315 20 AF FE JSR SAVE1 ; SAVE OTHER, FROMT, INC DEPTH. RETURN X=DEPTH 
+
+F31S 4C- 76 F3 JMP ALPJMP ________ 
+
+
+F31B 
+
+F31B 20 14 FB 
+
+
+J TER — ORDINARY MOVE — NOT JUMP — TERMINAL NODE 
+
+TER __. __ 
+
+JSR SUIT 
+
+
+i TAKE MOVE BACK ___ 
+
+I-3IE 20 62 FB JSR RESTOR 
+
+f-321 A9 00 LDA #0 &gt; MAKE SURE MSTJMP IS CLEAR BECAUSE IF AT MAXMAX DEPTH, . 
+
+i THEN TERMNODE MIGHT HAVE DETECTED JUMP. 
+
+,'•323 35 A5 3TA MSTJMP 
+
+1-325 4C 4A F4 JMP FINSH3 i CHECK NEW STATIC VALUE, POSSIBLY MODIFY ALPHA 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCvS- CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+F328 
+
+F32S B5 80 
+F32A FO 04 
+F32C 45 BB 
+F32E 30 03 
+F330 
+
+F330 4C D2 F4 
+F333 
+
+F333 86 BD 
+F335 20 C9 FA 
+F338 BO F6 
+F33A AA 
+
+F33B B5 80 
+F33D DO FI 
+
+
+; AJUMP — MUST JUMP 
+
+AJUMP 
+
+LDA BOARD,X 
+
+BEG C0NT2J 
+
+EOR ACTIVE 
+
+_BMI_AJQ5_ 
+
+C0NT2J 
+
+JMP C0NT2 
+
+AJ05 
+
+STX JMPSGR 
+
+JSR 0NBRD2 
+
+BCS C0NT2J 
+
+TAX 
+
+LDA BOARD,X 
+
+_BNE CPNT2J 
+
+
+F33F 86 AD 
+F341 84 BE 
+F343 A5 A3 
+F345 20 DF FF 
+F348 95 80 
+F34A A0 ~00 
+F34C A6 AC 
+F34E 94 80 
+F350 A6 BD 
+F352 B5 80 
+F354 OA 
+F3550A- 
+
+F356 05 BD 
+F35S 85 BD 
+“F35A“9'4”B0 
+F35C 20 51 FE 
+
+
+STX TOSQRB 
+
+STY INDEX 
+
+’LDA PIECE 
+
+JSR KNGCHK 
+
+STA BOARD,X 
+
+X.DY #cr~ 
+
+LDX FROMB 
+
+STY_ B OARD, X 
+
+LDX JMPSQR 
+
+LDA BOARD,X 
+
+ASL A 
+
+ASL W “ 
+
+ORA JMPSGR 
+
+STA JMPSGR 
+
+sty-board; X 
+
+JSR CHGCNT 
+
+
+P35FA5A5 
+F 361 FO 07 
+F363 A6 AD 
+T3S5rS0“2Dn=7Y 
+
+F368 90 22 
+
+
+LDA 
+
+BEG 
+
+LDX 
+
+
+MSTJMP 
+
+MJ05 
+
+TOSQRB 
+
+MOVCHK 
+
+MJ08 
+
+
+"J5R" 
+
+BCC 
+
+
+EMPTY— TRY NEXT OFFSET 
+
+
+;ACTIVE PLAYER — CAN'T JUMP OWN PIECE 
+
+iSAVE SQUARE WHICH WE ARE JUMPING OVER 
+;ADD MOVTAB OFFSET. OFF BOARD? 
+
+;YES. TRY NEXT OFFSET 
+
+
+i TO S QUARE IS OCCUPIED — T RY N EXT O FFSE T 
+i SUCCESS — SAVE SQUARE 
+
+
+&gt; IF NEW KING THEN SET CARRY, INC PIECE COUNT S&lt; MODIFY MSTJMP 
+
+;STORE IN TO SQUA RE _ 
+
+iCLEAR FROM SQUARE 
+
+
+;SAVE J UMPED PIECE_IN B7-6 
+
+; COMBINE WITH JUMP SQUARE 
+
+;CLEAR JUMP SQUARE 
+; CHANGE PIECE COUNTS 
+
+
+; MOST JUMP? 
+
+i NO — NEW KING MUST STOP — CHECK FOR NEW JUMP 
+
+
+; ANOTHER JUMP FOR THIS PIECE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/30 9:41 AM 
+
+
+e 
+
+e 
+
+« 
+
+e 
+
+e 
+
+e 
+
+e 
+
+e 
+
+e 
+
+■t 
+
+I 
+
+• 
+
+
+NEW KING OR END OF JUMP 
+
+
+F36A 
+
+F36A A9 00 
+F36C 85 A6 
+
+F36E 20 CE FB 
+
+
+STA MLTJMP 
+
+JSR TERMNODE 
+
+
+1-371 BO 14 
+
+
+i-373 20 9F FE 
+
+F376 
+
+F376 B5 DC 
+F37S95T5E 
+F37A B5 E9 
+F37C 95 EB 
+
+
+F37E A9 00 
+F380 85 BF 
+~F382~S5 - A5 - 
+
+
+BCS 
+
+JSR 
+
+LDA 
+
+STfT 
+
+LDA 
+
+STA 
+
+LDA 
+
+STA 
+
+
+MJ07 
+JMPSAV 
+
+
+ALPHAL-2, X 
+ALP HAL.. X 
+ALPHAH-2. X 
+ALPHAH,X 
+
+
+;NOT MULTIPLE JUMP NEXT TIME 
+
+
+; SWITCH PLAYERS --- CHECK FOR TERMINAL 
+SET UP XMOVE, MSTJMP FOR NEXT LEVEL 
+;TERMINAL 
+NOT TERMINAL 
+
+; INC DEPTH ST SAVE VARS RETURN X=NEW DEPTH 
+
+
+#0 
+
+FRSMOV 
+
+MLTJMP 
+
+
+iNOT FIRST MOVE 
+
+
+F384 4C BC F2 
+
+F387 
+
+
+-F3S720'14FEF 
+
+F38A BO OF 
+
+
+jsr —sarr 
+
+BCS MJl5 
+
+
+iTERMINAL —SWITCH ACTIVE BACK 
+; JMP 
+
+
+MULTIPLE JUMP — MSTJMP ALREADY SET 
+
+
+F3BC 
+
+F38C A9 08 
+F38E 85 A6 
+
+
+F390 20 14 FB 
+F393 20 E5 FB 
+F396 20 14 FB 
+
+
+F399 90 OD 
+
+
+LDA 
+
+STA 
+
+JSR 
+
+JSR 
+
+JSR 
+
+BCC 
+
+
+#MLT 
+
+MLTJMP 
+
+SRTT 
+
+ALP200 
+
+SWIT_ 
+
+~"RJ20 
+
+
+i CHECK FOR MAXMAXDEPTH 
+;OK - KEEP GOING 
+
+
+F39B 
+
+F39B A5 SD 
+F39D"29“3F 
+
+F39F AA 
+F3A0 A5 BD 
+
+F3A2 20 3C FB 
+
+F3A5 4C~4A~ F4~ 
+
+
+STACK FULL — MUST S TOP — UNDO JUMP 
+
+
+MJl 5 
+
+
+LDA 
+
+“AND 
+
+TAX 
+
+LDA 
+
+JSR 
+
+JMP 
+
+
+JMPSGR 
+
+#$3F 
+
+JMPS GR 
+
+RESTR5 
+
+F1NSH3 
+
+
+i RESTORES MSTJMP; MLTJMP, ETC. 
+TCHECK NEW STATIC'VALUE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+SAVE VARS -- MULTIPLE JUMP NEXT TIME 
+
+
+F3A8 MJ20 
+
+F3A8 20 9F FE JSR JMPSAV ; INC DEPTH &amp; SAVE VARS (MSTFLG, MLTFLG, ETC. ) 
+
+
+F3AB A5 BF LDA FRSMOV 
+
+P-3AD 29 80 AND #$80 ; FIRST MOVE STAYS THE SAME, EXCEPT NO BETTER MOVE 
+
+F3AF 85 BF STA “ FRSMOV 
+
+
+F3B1 B5 DD LDA ALPHAL-1,X 
+
+F3B3 95 DE ' STA ALPHAL, X 
+
+F3B5 B5 EA LDA ALPHAH-1,X 
+
+F3B7 95 EB STA_ ALPHAH, X 
+
+
+F3B9 B5 DC LDA ALPHAL--2, X 
+
+F3BB 95 DD STA ALPHAL-1,X 
+
+-F3BD B5 E9 LDA ALPHAH-2, X 
+
+F3BF 95 EA STA ALPHAH-1, X 
+
+F3C1 4C BC F2 JMP ALPHBETA 
+
+
+iUSE SAME ALPHA 
+
+
+;ALSO SAME BETA (PREVIOUS ALPHA) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+RETURN FROM RECURSIVE ALFHBETA CALL 
+
+
+RESTORE VARS 
+
+
+F3C4 
+
+F3C4 C6 BC 
+F3C6 A6 BC 
+
+F3C8 B5 C7 
+:-3CA 29 3F 
+F3CC 85 AC 
+F3CE B5 D2 
+F3D0 29 08 
+F3D2 85 A8 
+F3D4 B5 D2 
+F3D6 29 04 
+F3D8 85 A7 
+F3DA B5 D2 
+F3DC 29 03~ 
+F3DE 85 BE 
+
+F3E0A5 A7 
+
+F3E2 DO 29 
+
+
+F3E4 20 14 FB 
+-F3E7"A5 AB 
+
+F3E9 85 A6 
+F3EB A5 A7 
+F3ED 85 A5 
+
+F3EF B5 D2 
+F3F1 29 30 
+F3F3 05 BB 
+F3F5 85 A3 
+
+F3F7 B5 C7 
+F3F9 29 CO 
+F3FB 85 BF 
+
+F3FD A5 AC 
+F3FF”A4 BE 
+F401 18 
+F402 79 66 FF 
+F405 85 AD 
+F407 20 62 FB 
+F40A 4C 19 F4 
+
+
+F40D 
+
+F40D A4 A6 
+I-40F DO 10 
+
+
+DEC DEPTH 
+
+LDX DEPTH 
+
+
+LDA 
+
+AND' 
+
+STA 
+
+LDA 
+
+AND 
+
+STA 
+
+LDA 
+
+"AND 
+
+STA 
+
+LDA 
+
+AND 
+
+STA 
+
+"LDA" 
+
+BNE 
+
+
+FROMT-1, 3 
+"#$3F 
+FROMB 
+OTHER-1j I 
+#MLT 
+MLTFLG 
+OTHER-1, ! 
+#MST 
+MSTFLG 
+OTHER-1, ) 
+#3 
+
+INDEX 
+
+MSTFLG 
+
+WASJ 
+
+
+;WAS MOVE A JMP? 
+i YES. 
+
+
+NOT A JUMP 
+
+
+JSR 
+
+LDA 
+
+STA 
+
+LDA 
+
+STA 
+
+LDA 
+
+AND 
+
+ORA 
+
+STA 
+
+LDA 
+
+AND 
+
+STA 
+
+LDA 
+
+LDY 
+
+CLC 
+
+ADC 
+
+STA 
+
+JSR 
+
+JMP 
+
+
+SWIT 
+
+MLTFLG 
+
+MLTJMP 
+
+MSTFLG 
+
+MSTJMP 
+
+OTHER-1, X 
+#$30 
+ACTIVE 
+PIECE 
+
+
+;SWITCH ACTIVE PLAYER 
+i no: NOT JUMP 
+
+
+;SET UP PIECE 
+
+
+FROMT-1, 
+
+#$C0 
+
+FRSMOV 
+
+
+Hii 
+
+
+FROMB 
+
+INDEX 
+
+MOVTAB^ 
+
+TOSQRB 
+
+RESTOR 
+
+PRNJMP 
+
+
+; RESTORE SOME VARS BOARD 
+
+; CLEAR PRUNE FLAG CHECK NEW VALUE AGAINST ALPHA 
+
+
+
+WAS A JUMP 
+
+
+LDY MLTJMP 
+
+BNE WASJ10 
+
+
+WAS NOT A MULTIPLE JUMP 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCIi CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+I 
+
+F411 20 
+
+14 FB 
+
+
+JSR 
+
+SWIT 
+
+iSWITCH ACTIVE PLAYER 
+
+
+F414 B5 
+
+C7 
+
+
+LDA 
+
+FROMT-li X 
+
+
+
+1-416 20 
+
+TB FB 
+
+
+JSR 
+
+RESTR6 
+
+i SET UP FRSMOV,PIECE,MSTJMP, MLTJMP, RESTORE BOARD 
+
+1 
+
+F419 
+
+
+PRNJMP 
+
+
+
+
+
+F419 06 
+
+C4 
+
+
+ASL 
+
+PRNCNT 
+
+_J CLEAR PRUNE FLAG WITHOUT DISTURBING COUNTER__ 
+
+
+F41B 18 
+
+
+
+cue 
+
+
+
+
+F41C 66 
+
+C4 
+
+
+ROR 
+
+PRNCNT 
+
+
+
+F41E 4C 
+
+4A F4 
+
+
+JMP 
+
+FINSH3 
+
+____I 
+
+
+_ i NEXT LEVEL CONTINUED MULTIPLE JUMP — MOVE BETA &amp; NEW ALPHA BACK 
+
+F421 WASJ10 
+
+. IF PRNT _ 
+
+LDA PRFLG 
+
+AND #$80 iFLAG SET? 
+
+B EQ SKIP 1 ; NO. 
+
+TXA ;YES. SAVE X AND PRINT "MULTIPLE JUMP" MESSAGE 
+
+PIHA 
+
+_ LDA #MJ _ _ 
+
+
+
+
+
+JSR 
+
+PLA 
+
+TAX 
+
+BLECCH 
+
+;RESTORE X 
+
+
+
+- ~ SKIP1 " 
+
+. ENDIF 
+
+F423 
+
+F425 
+
+95 DD 
+B5 EE 
+
+
+LDA 
+
+STA 
+
+LDA 
+
+ALPHAL, )f 
+
+ALPHAL—1,X 
+ALPHAH,X 
+
+;MOVE BETA 
+
+
+
+F427" 
+
+95EA 
+
+
+"STB- 
+
+ALPHAH-I, X 
+
+
+
+
+F429 
+
+B5 EC 
+
+
+LDA 
+
+ALPHAH+1, X 
+
+i MOVE ALPHA 
+
+
+
+-F42B" 
+
+F42D 
+
+F42F 
+
+95 EB 
+B5 DF 
+95 DE 
+
+
+STA 
+
+LDA 
+
+STA 
+
+ALPHAH, X 
+ALPHAL+1,X 
+ALPHAL,X 
+
+
+
+
+F431 
+
+F433 
+
+A5 C4 
+10 06 
+
+
+LDA 
+
+BPL 
+
+PRNCNT 
+
+NEW50 
+
+;PRUNE? 
+
+; NO. 
+
+
+
+F435 
+
+F438 
+
+20 IF 
+4C OA 
+
+FB 
+
+F5 
+
+JSR 
+
+JMP 
+
+RESTR4 
+
+ABD2 
+
+&gt; YES. LEAVE FRSMOV AS IS. RESTORE OTHER JUNK 
+; GOTO PRUNE__ 
+
+
+
+- T-43B 
+
+
+
+-NEW50 
+
+
+
+
+
+F43B 
+
+24 BF 
+
+
+BIT 
+
+FRSMOV 
+
+;FIRST MOVE? (NEXT LEVEL) 
+
+
+
+F43D 
+
+F43F 
+
+TO 05" 
+50 03 
+
+
+BPL 
+
+BVC 
+
+SKIP 2 
+
+SKIP2 
+
+;NO. BETTER MOVE? 
+
+; NO. DON'T SAVE MOVE BUT RESTORE JUNK 
+
+
+
+
+MULTIPLE JUMP— FIRST MOVE &amp; BETTER MOVE 
+
+
+KEEP FRSMOV &amp; BETTER MOVE FROM PREVIOUS LEVEL (BOTH SET) 
+
+
+P441 WASJ17 
+
+F441 2 0 6A F E_ JSR JMPSV2 
+
+. IF PRNT 
+
+LDA PRFLG 
+
+------AND" #$40 
+
+BEQ SKIP2 
+
+LDA #MJBA 
+
+-:--- JSR BLECCH 
+
+
+i "MULTIPLE JU MP - FIR S T MOVE &amp; BETTE R A LPHA" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+. ENDIF 
+
+
+~F444 
+
+[-444 20 IF FB 
+F447 4C DO F4 
+
+
+JSR 
+
+JMP 
+
+
+RESTR4 
+
+CONTI 
+
+
+• SET UP PIECE,MSTJMP,MLTJMP, RESTORE BOARD 
+; SKIP ALPHA CHECKING AND DO NEXT INDEX 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s CHECKERS BV CAROL SHAW 5/15/80 9:41 AM 
+
+
+r 44A 
+
+
+J-44A A6 BC 
+
+I 44C 24 BF 
+I 44E 10 06 
+r 450 F6 DF 
+I 452 DO 02 
+1-454 F6 EC 
+f 456 
+
+I 456 B5 DE 
+1-458 18 
+r-459 75 DF 
+F45B 85 B3 
+F45D B5 EB 
+F45F 75 EC 
+F461 50 02 
+f 463 B5 EB 
+F465 
+
+f-465 30 34 
+
+
+I 467 70 2F 
+F469 DO 2D 
+I-46B 24 BF 
+f 46D 10 29 
+F46F A5 B3 
+t-471 DO 25 
+
+
+1473 A5 C3 
+1475 A8 
+F476 DO 04 
+
+l 478 A9 62 
+F47A 05 C3 
+
+
+CHECK NEW VALUE AGAINST ALPHA 
+
+MAY BE STATIC VALUE OR VALUE PASSED BACK BY CALL TO NEXT DEPTH." - *" 
+
+HUMAN PASSES UP -C/H, COMPUTER TRIES TO MAXIMIZE +C/H &lt;MAKE H SMALLER RELATIVE TO C) 
+COMPUTER PASSES UP +C/H, HUMAN TRIES TO MAXIMIZE -C/H (MAKE H LARGER RELATIVE TO C &gt; 
+
+
+FINSH3 
+
+
+NEW 10 
+
+
+FH5 
+
+
+SKIP7 
+
+
+IF -ALPHA&lt;DEPTH+1) &gt; ALPHA(DEPTH) THEN HAVE BETTER ALPHA. 
+
+I.E. IF ALPHA(DEPTH) + ALPHA(DEPTH+1) &lt; 0 THEN HAVE BETTER ALPHA. 
+
+
+LDX 
+
+DEPTH 
+
+
+BIT 
+
+FRSMOV 
+
+;FIRST MOVE? 
+
+BPL 
+
+NEW 10 
+
+; NO. 
+
+INC 
+
+ALPHALH-1, X 
+
+;YES. INCREASE -ALPHA BY 1 (TO MAKE RANDOMNESS WORK) 
+
+BNE 
+
+NEW 10 
+
+
+INC 
+
+ALPHAH+1,X 
+
+;IF LSB WENT TO 0 THEN INC MSB 
+
+LDA 
+
+ALPHAL,X 
+
+
+CLC 
+
+
+
+ADC 
+
+ALPHAL+1.X 
+
+
+STA 
+
+TO 
+
+JSAVE LSB 
+
+LDA 
+
+ALPHAH, X 
+
+
+ADC " 
+
+ALPHAH+1, X 
+
+
+BVC 
+
+FH5 
+
+; OVERFLOW? 
+
+LDA 
+
+ALPHAH,X 
+
+;YES. OVERFLOW -- LOAD SIGN 
+
+BMI 
+
+FH7 
+
+; NEGATIVE «=»&gt; HAVE BETTER ALPHA 
+
+NEW VALUE IS THE SAME 
+
+AS OLD ALPHA OR WORSE 
+
+BVS 
+
+FH6 
+
+;OVERFLOW SET — NOT 0 — WORSE 
+
+BNE 
+
+FH6 
+
+;MSB NOT 0 — WORSE 
+
+BIT 
+
+FRSMOV 
+
+»FIRST MOVE? 
+
+BPL 
+
+FH6 
+
+j NO. FORGET THIS MOVE 
+
+LDA 
+
+TO 
+
+&gt; NEW VALUE - ALPHA? 
+
+BNE 
+
+FH6 
+
+;NO. FORGET THIS MOVE 
+
+. IF 
+
+PRNT 
+
+
+LDA 
+
+PRFLG 
+
+
+AND 
+
+#*02 
+
+
+BEG 
+
+SKIP7 
+
+
+LDY 
+
+DEPTH 
+
+
+CPY 
+
+PRDEP 
+
+
+BCS 
+
+SKIP 7 
+
+(DON'T PRINT IF DEPTH&gt;=PRDEP 
+
+LDA 
+
+#RAN 
+
+;"RANDOM" 
+
+JSR 
+
+0UTAL3 
+
+
+LDX 
+
+DEPTH 
+
+
+. ENDIF 
+
+
+
+LDA 
+
+FRAME 
+
+(SUM IS 0 — USE NEW VALUE AT "RANDOM" 
+
+TAY 
+
+
+(MOVE OLD FRAME VALUE TO Y AND COMPUTE NEW VALUE 
+
+BNE 
+
+FRAQ 
+
+
+LDA 
+
+#$62 
+
+;SET TO NEW VALUE IF 0 
+
+8TA 
+
+FRAME 
+
+
+
+
+
+
+
+
+VC8 CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+F47C 
+
+F47C 2A 
+
+FRAG 
+
+ROL 
+
+A 
+
+;B7—&gt; CARRY 
+
+F47D 26 C3 
+
+
+ROL 
+
+FRAME 
+
+
+F47F 2A 
+
+
+ROL 
+
+A 
+
+i OLD B6 -&gt; CARRY 
+
+F430 2A 
+
+
+ROL 
+
+A 
+
+;OLD B6—&gt; BO 
+
+f-481 29 01 
+
+
+AND #1 
+
+
+F483 45 C3 
+
+
+EOR 
+
+FRAME 
+
+
+F485 85 C3 
+
+
+STA 
+
+FRAME 
+
+
+F487 A5 C4 
+
+
+LDA 
+
+PRNCNT 
+
+;LOAD COUNTER 
+
+F489 29 7F 
+
+
+AND 
+
+#$7F 
+
+iMASK OFF PRUNE FLAG 
+
+F4SB C9 05 
+
+
+CMP 
+
+
+;EQUAL TO 5? 
+
+F48D BO 02 
+
+
+BCS 
+
+NEW40 
+
+iYES. LIMIT TO 5 
+
+F48F E6 C4 
+
+
+INC 
+
+PRNCNT 
+
+; NO. INCREMENT EQUAL MOVE COUNTER 
+
+F491 AA 
+
+NEW40 
+
+TAX 
+
+
+
+F492 98 
+
+
+TYA 
+
+
+
+
+
+CMP 
+
+RANTAB, X 
+
+i IS RANDOM NUMBER &lt; 1/2, 1/3, 1/4 ETC? 
+
+F496 90 IF 
+
+
+BCC 
+
+FHQ 
+
+• YES. KEEP MOVE 
+
+
+
+NEW 
+
+VALUE WAS THE SAME 
+
+AND WE ARE NOT USING THIS MOVE OR 
+
+
+
+NEW 
+
+VALUE WAS WORSE THAN THE OLD ALPHA. 
+
+F498 
+
+FH6 
+
+. IF 
+
+PRNT 
+
+
+
+
+LDA 
+
+PRFLG 
+
+
+
+
+AND 
+
+#$20 
+
+
+
+
+BEG 
+
+SKIP3 
+
+
+
+
+LDA 
+
+#WA 
+
+)"WORSE ALPHA" 
+
+
+
+JSR 
+
+BLECCH 
+
+
+SKIP3 
+
+
+
+
+
+
+. ENDIF 
+
+
+F498 4C DO F4 
+
+
+UMP 
+
+CONTI 
+
+
+
+
+IF ALPHA &gt;= BETA THEN 
+
+PRUNE TREE — OPPONENT WOULD NEVER LET US PICK THIS MOVE 
+
+
+
+I. E. 
+
+IF ALPHA(DEPTH) + 
+
+ALPHA(DEPTH-1) &gt;= 0 THEN PRUNE TREE 
+
+
+
+BETA(DEPTH) = -ALPHA(DEPTH-1) 
+
+F49B f 
+
+-H7 
+
+
+
+NEGATE ALPHA+1 AND NUVE IU ALrHA (X=DEPTH ON INPUT) 
+
+F49B A9 00 
+
+
+LDA 
+
+#0 
+
+;NEGATE AND MOVE NEW VALUE TO ALPHA 
+
+F49D 38 
+
+
+SEC 
+
+
+
+F49E F5 DF 
+
+
+SBC 
+
+ALPHAL+1,X 
+
+
+F4A0 95 DE 
+
+
+STA 
+
+ALPHAL,X 
+
+
+F4A2 A9 00 
+
+
+LDA 
+
+#0 
+
+
+F4A4 F5 EC 
+
+
+SBC 
+
+ALPHAH+1,X 
+
+
+| F4A6 95 EB 
+
+
+STA 
+
+ALPHAH,X 
+
+
+F4A8 B5 DE 
+
+
+LDA 
+
+ALPHAL, X 
+
+
+I-4AA 18 
+
+
+CLC 
+
+
+
+F4AB 75 DD 
+
+
+ADC 
+
+ALPHAL-1,X 
+
+
+F4AD B5 EB 
+
+
+LDA 
+
+ALPHAH.X 
+
+
+F4AF 75 EA 
+
+
+ADC 
+
+ALPHAH-1,X 
+
+
+:-4Bl 50 02 
+
+
+BVC 
+
+FH20 
+
+
+F4B3 B5 EB 
+
+
+LDA 
+
+ALPHAH,X 
+
+;OVERFLOW — LOAD SIGN 
+
+
+F4B5 
+
+!4B5 10 53 
+
+
+;MOVE REJECTED =&gt; PRUNE 
+
+
+BPL 
+
+
+ABD2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+f 
+
+
+BEST MOVE SO FAR - 
+RESULT OF ADDITION 
+
+SAVE IN JMPLST IF FIRST MOVE. 
+
+WAS NEGATIVE 
+
+
+
+
+
+F4B7 
+
+F4B7 A5 BF 
+
+F4B9 09 40 
+
+FHQ 
+
+LDA 
+
+ORA 
+
+FRSMOV 
+
+#$40 
+
+;INDICATE BETTER MOVE 
+
+
+
+
+
+F4BB 85 BF 
+
+
+STA 
+
+FRSMOV 
+
+
+
+
+
+
+
+
+. IF 
+
+BMI 
+
+LDA 
+
+PRNT 
+
+FHBLEC 
+
+PRFLG 
+
+;BRANCH IF FIRST MOVE 
+
+
+
+
+
+
+
+AND 
+
+BEQ 
+
+LDA 
+
+#$10 
+
+SKIP4 
+
+#BANFM 
+
+;"BETTER ALPHA - NOT FIRST MOVE" 
+
+
+
+
+
+
+SKIP4 
+
+JSR 
+
+JMP 
+
+BLECCH 
+
+CONTI 
+
+
+
+
+
+
+F-4BD 10 11 
+
+F4BF 
+
+FHBLEC 
+
+. ENDIF 
+BPL 
+
+CONTI 
+
+;IF NOT DEBUG THEN BRANCH IF NOT FIRST MOVE 
+
+
+
+
+
+F4BF A9 00 
+
+F4C1 85 C4 
+
+F4C3 A9 FF 
+
+
+“EDA 
+
+STA 
+
+LDA 
+
+#0 
+
+PRNCNT 
+
+#$FF 
+
+;FIRST MOVE =&gt; CLEAR PRUNE FLAG &amp; COUNTER 
+
+
+
+
+
+FAC5 A6A5 
+
+F4C7 FO 02 
+
+F4C9 A5 BC 
+
+
+LDX 
+
+BEQ 
+
+LDA 
+
+MSTJMP 
+
+FH21 
+
+DEPTH 
+
+; JUMP 
+
+
+
+
+
+F4CB 85 A4 
+
+FHZ1 
+
+STA 
+
+JMP I 
+
+
+
+
+
+
+F4CD "20T 6A FET 
+
+
+JSR 
+
+JMPSV2 
+
+iSAVE MOVE IN JMPLST 
+
+
+
+
+
+
+
+. IF 
+
+PRNT 
+
+
+
+
+
+
+
+
+LDA 
+
+AND 
+
+BEQ 
+
+PRFLG 
+
+#$08 
+
+SKIPS 
+
+
+
+
+
+
+
+SKIP 5 
+
+LDA 
+
+JSR 
+
+#BAFM 
+
+BLECCH 
+
+;"BETTER ALPHA - FIRST MOVE" 
+
+
+
+
+
+. ENDIF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+
+
+
+
+
+
+
+; 
+
+TRY 
+
+NEXT INDEX 
+
+
+
+1“ 
+
+F4D0 
+
+CONTI 
+
+
+
+
+• 
+
+
+F4D0 A4 BE 
+
+
+LDY 
+
+INDEX 
+
+
+
+
+
+
+TRY 
+
+NEXT INDEX — 
+
+Y=INDEX 
+
+• 
+
+
+F4D2 
+
+C0NT2 
+
+
+
+
+
+
+-F4D2 AS AC 
+
+
+LDX 
+
+FROMB 
+
+
+
+
+F4D4 8S 
+
+
+DEY 
+
+
+
+• 
+
+
+F4D5 30 OD 
+
+
+BMI 
+
+C0NT3 
+
+iDONE WITH THIS SQUARE 
+
+
+
+I 4D7 CO 01 
+
+
+CRY 
+
+#1 
+
+
+I _ 
+
+
+F4D9 DO 06 
+
+
+BNE 
+
+ALJ 
+
+
+• 
+
+
+P4DB B5 80 
+
+
+LDA 
+
+BOARD,X 
+
+
+_j 
+
+
+I-4DD C9 10 
+
+
+CMP 
+
+#HUMCHK 
+
+iSTOP IF HUMAN CHECKER 
+
+
+
+F4DF FO 03 
+
+
+BEQ 
+
+C0NT3 
+
+
+c 
+
+
+F4E1 
+
+ALJ 
+
+
+
+
+_ 
+
+
+F4E1 4C E7 F2 
+
+
+JMP 
+
+ALP H10 
+
+;CONTINUE 
+
+
+
+
+. 
+
+
+
+
+f 
+
+
+
+
+TRY NEXT SQUARE - 
+
+- X=SQUARE 
+
+f 
+
+
+F4E4 
+
+C0NT3 
+
+
+
+
+
+
+-F4E4 C6 Cl 
+
+
+DEC 
+
+TIMOUT 
+
+;TIME UP? 
+
+
+
+F-4E6 DO 18 
+
+
+BNE 
+
+AB30 
+
+; NO. 
+
+» 
+
+
+F4E8 AD 82 02 
+
+
+LDA 
+
+SWCHB 
+
+
+
+
+-F4EB 29 ~0B 
+
+
+AND 
+
+#8 
+
+;COLOR TV? 
+
+
+
+F4ED DO 07 
+
+
+BNE 
+
+AB10 
+
+i YES. 
+
+f 
+
+
+F4EF A5 BC 
+
+
+LDA 
+
+DEPTH 
+
+;NO. B/W — USE DEPTH TO SET LUMINANCE 
+
+
+
+F4F1 OA 
+
+
+ASL 
+
+A 
+
+
+
+
+F4F2 29 06 
+
+
+AND 
+
+#6 
+
+
+€ 
+
+m 
+
+F4F4 10 08 
+
+
+BPL 
+
+AB20 
+
+; JMP 
+
+
+
+“F4F6 
+
+AE10~ 
+
+
+
+
+
+
+F4F6 A5 BC 
+
+
+LDA 
+
+DEPTH 
+
+;COLOR TV 
+
+
+
+F4F8 6A 
+
+
+ROR 
+
+A 
+
+
+
+
+F4F9 6A 
+
+
+ROR 
+
+ft 
+
+
+
+
+F4FA 6A 
+
+
+ROR 
+
+A 
+
+
+i 
+
+in 
+
+F4FB 6A 
+
+
+ROR 
+
+A 
+
+
+_j 
+
+
+F4FC 09 02 
+
+
+ORA 
+
+#2 
+
+iSET LUMINANCE 
+
+
+
+F4FE 
+
+AB20 
+
+
+
+
+i 
+
+
+F4FE 85 09 
+
+
+STA 
+
+COLUBK 
+
+
+
+
+~ P500 
+
+AS30 
+
+
+
+
+
+
+F500 A5 A6 
+
+
+LDA 
+
+MLTJMP 
+
+
+1 
+
+
+" F502 DO 11 
+
+
+BNE 
+
+ABDONE 
+
+;MULTIPLE JUMP =&gt; DONE (ONLY TRY ONE SQUARE) 
+
+
+
+F504 CA 
+
+
+DEX 
+
+
+
+
+
+F505 30 OE 
+
+
+BMI 
+
+“ ABDONE 
+
+; SKIP 
+
+
+
+F507 4C D7 F2 
+
+# 
+
+JMP 
+
+AL00P1 
+
+;CONTINUE 
+
+
+
+
+
+DONE 
+
+WITH ALL SOU/ 
+
+NRES — RETURN 
+
+
+
+F50A 
+
+ABD2 
+
+
+
+
+
+
+
+
+. IF 
+
+PRNT 
+
+;WE COME HERE FOR PRUNING 
+
+
+
+
+
+LDA 
+
+PRFLG 
+
+
+
+
+
+
+AND 
+
+#$04 
+
+
+
+
+
+
+BEQ 
+
+SKIP6 
+
+
+
+
+
+
+LDA 
+
+#PRUNE 
+
+; '‘PRUNE" 
+
+
+
+
+
+JSR 
+
+BLECCH 
+
+
+
+
+SKIP6 
+
+
+.ENDIF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+
+
+
+“ -- 
+
+F50A 
+
+06 C4 
+
+
+ASL 
+
+PRNCNT 
+
+i SET PRUNE FLAG (FOR MULTIPLE JUMPS) 
+
+F 50C 
+F50D 
+F50F 
+
+38 
+
+66 C4 
+A5 BF 
+
+
+SECT 
+
+ROR 
+
+LDA 
+
+PRNCNT 
+
+FRSMOV 
+
+;NOT BETTER MOVE 
+
+«~511 
+
+F513 
+F515 
+
+29 80 
+85 BF 
+
+ABDONE 
+
+AND 
+
+STA 
+
+#$80 
+
+FRSMOV 
+
+
+F 515 
+
+F517 
+F519 
+
+A5 BC 
+C9 01 
+FO 03 
+
+
+LDA 
+
+CMP 
+
+BEQ 
+
+DEPTH 
+
+#1 
+
+ABRET1 
+
+iRETURN FOR DEPTH = 1 
+
+! - 51B 
+
+4C C4 
+
+F3~ 
+
+JMP 
+
+ABRET2 ' 
+
+/RETURN FOR DEPTH &gt; 1 
+
+
+
+
+
+
+
+. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SSlillll 
+
+
+
+
+
+
+: , 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F51E 
+
+F51E A5 C5 
+F520 29 3F 
+F522 85 AC 
+F524 85 ES 
+F526 A6 A4 
+F528 30 30 
+
+
+LDA 
+AND 
+STA 
+1ST A 
+LDX 
+BMI 
+
+
+JMPLST 
+
+#*3F 
+
+FROMB 
+
+CURSC 
+
+JMPI 
+
+NOJUMP 
+
+
+iSTART SQUARE 
+
+
+F52A 
+
+F52C 
+
+F52E 
+
+F530 
+
+F532 
+
+F534 
+
+F535 
+
+F537 
+
+
+C6 A4 
+85 B3 
+A9 00 
+85 B4 
+06 C5 
+2A 
+
+06 C5 
+2A 
+
+
+DEC 
+
+STA 
+
+LDA 
+
+STA 
+
+ASL 
+
+ROL 
+
+ASL 
+
+ROL 
+
+TAY 
+
+
+T1 
+
+JMPLST 
+
+
+iCHANGE 1-9 TO 0-8 (JMPLST INDEX) 
+
+
+;JUMPS 
+
+;START WITH JMPLST+O 
+
+
+; B7-6 = INDEX INTO MOVTAB 
+
+
+&lt;3 
+
+F539 20 80 FB 
+
+JSR 
+
+JUMP1 
+
+;SET UP JMPLST FOR FIRST JUMP 
+
+F53C BO OE 
+
+BCS 
+
+JTHRU 
+
+; DONE 
+
+
+f*53E A5 C7 
+
+LDA 
+
+JMPLST+2 
+
+iMOVE 3RD BYTE TO END OF JMPLST TO SAVE IT 
+
+° L 
+
+F540 48 
+
+PHA 
+
+
+
+F541 A5 C6 
+
+LDA 
+
+JMPLST+1 
+
+i2ND BYTE CONTAINS 4 MOVTAB INDEXES 
+
+
+F543 20 B 5 FB 
+
+JSR 
+
+JUMP 4 
+
+TD0“4 JUMPS 
+
+&lt;3 
+
+F546 68 
+
+PLA 
+
+
+
+F547 BO 03 
+
+BCS 
+
+JTHRU 
+
+;BRANCH IF THROUGH 
+
+
+F54920B5FB 
+
+JSR 
+
+JQMP4 
+
+
+3 
+
+1 
+
+F54C JTHRU 
+
+
+
+
+
+~ F54C A6 AC' 
+
+“LDX 
+
+FROMB . 
+
+
+» 
+
+F54E B5 80 
+
+LDA 
+
+BOARD, X 
+
+
+
+F550 48 
+
+PHA 
+
+
+
+
+F551 A9 00 
+
+LDA“ 
+
+#0 
+
+;CLEAR FROM SQUARE 
+
+f ! 
+
+F553 95 80 
+
+STA 
+
+BOARD, X 
+
+
+
+f-555 A5 B3 
+
+LDA 
+
+TO 
+
+;TO SQUARE 
+
+
+NO JUMP"-- JUST MAKE 1 MOVE A=START SQUARE FROM JMPLST 
+
+
+F55A 
+F55A AA 
+F55B B5 80 
+F55D 48 
+F55E A9 00 
+F560 95 80 
+F562 06 C5 
+
+
+r-'564 2A 
+F565 06 C5 
+F567 2A 
+F568 A8 
+F569 8A 
+F56A 18 
+I-56B 79 66 FF 
+F56E 
+!• 56E AA 
+f-56F 85 AD 
+
+
+TAX 
+LDA 
+PHA 
+LDA 
+STA 
+ASL 
+“ROC 
+ASL 
+ROL 
+TAY ' 
+TXA 
+CLC 
+ADC 
+
+TAX 
+
+STA 
+
+
+BOARD, X 
+
+#0 
+
+BOARD, X 
+JMPLST 
+s 
+
+JMPLST 
+
+
+TOFFSET INDEX 
+
+;TO SQUARE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCfi CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F571 
+
+1-573 
+
+85 
+
+68 
+
+E9 
+
+STA 
+
+PLA 
+
+MOVE 
+
+F574 
+
+20 
+
+BC FE 
+
+JSR 
+
+KNGCK2 
+
+F577 
+
+95 
+
+80 
+
+STA 
+
+BOARD/ X 
+
+1-579 
+
+85 
+
+E4 
+
+STA 
+
+MOVVAL 
+
+
+;PIECE BEING MOVED 
+
+
+CHANGE AND INCREMENT PIECE COUNT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+RESTORE VARIABLES 
+
+
+F57B 20 8A F5 VSR RSV 
+
+F57E A6 AB LDX CURSOR 
+
+r-5B0 B5 80 LDA BOARD* X 
+
+F582 85 A3 _ STA PIECE 
+
+
+F584 20 E8 F9 USR JMPWIN 
+
+F587 4C D6 F7 _UMP_ ATTR 10 
+
+
+F58A 
+
+F58A AD 82 02 
+F58D 
+
+F58D 85 C2 
+
+F58r29"^0 
+
+F591 85 EC 
+
+T^93“20~F3~FA 
+F596 C8 
+T-597 84 A6 
+
+P599 84 BE 
+
+F59B 84 E7 
+F59D 84 ED 
+T^9F~8 
+
+F5A1 84 F2 
+F5A3 C8 
+F5A4 W4 E5 — 
+
+
+RSV 
+
+" LDA SWCHB 
+
+RSV2 
+
+STA OLDPBQ 
+
+ANO #$40 
+
+STA 0LDPB6 
+
+JSR TONORM 
+
+I NY 
+
+STY MLTJMP 
+
+—-STY ACTIVE 
+
+STY FRQMTO 
+
+STY ILEGAL 
+
+STY WINSAV 
+
+STY FREEZE 
+
+I NY 
+
+-~-“STY MOVFLG 
+
+. IF PRNT 
+
+USR PRMOVE 
+
+.ENDIF 
+
+RTS _ 
+
+
+F5A6 60 
+
+
+END OF COMPUTER MOVE 
+
+
+; SET UP PIECE IN CASE CURSOR'S PIECE WAS JUMPED 
+
+
+;CHECK FOR WIN 
+
+
+;MAKE SURE IN NORMALMODE, Y&lt;-$FF 
+; 0 
+
+;NOT MULTIPLE JUMP CONTINUATION 
+
+-; HUMAN IS ACTIVE 
+
+i“FROM" 
+
+; NOT ILLEGAL MOVE 
+
+;NOWTN 
+
+;NO FREEZE 
+
+i 1 
+
+;DISPLAY COMPUTER'S MOVE 
+
+
+;PRINT MOVE ON TI 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS- CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+TJ0Y2" 
+
+PASK 
+
+
+F5A7 A5 EC 
+
+"HjA? FO 51 
+
+F5AB A5 3C 
+F5AD 10 04 
+
+
+. ENDIF 
+
+LDA 0LDPB6 
+
+Teo- jo y i i 
+
+LDA INPT4 
+
+BPL _J0Y3 
+
+
+BUTTON NOT PRESSED 
+
+
+F5AF 18 
+F5B0 4C D7 F6 
+
+
+FSB3 A5 C3 
+FSB5 29 IF 
+
+
+BNEO 
+
+
+F5B7”DCr57 
+F5B9 A5 A3 
+F5BB A2 04 
+
+
+FRAME 
+
+#$1F 
+
+
+LDA 
+AND 
+
+BNE JOYlil 
+LDA PIECE 
+LDX #4 
+
+
+F5BD DD 4E FF 
+F5C0 FO 03 
+F5C2 CA 
+
+F5C3 10 F8 
+
+
+NXTAB,X 
+J0Y9 
+
+
+3 
+
+9 
+
+3 
+
+* 
+
+♦ 
+
+9 
+
+
+.IF PRNT 
+
+LDA #$FF 
+
+STA PRFLG 
+
+
+JSR 
+
+JMP 
+
+7SNDTF 
+
+
+" F5C5 A5 A9 
+
+F5C7 18 
+F5C8 7D 3E FF 
+F5CB 85 A9~~ 
+
+F5CD A5 AA 
+F5CF 18 
+F5D0^77B"4D~FF'~ 
+
+F5D3 85 AA 
+
+
+CLC 
+
+ADC 
+
+STA 
+
+LDA 
+
+CLC 
+
+ADC” 
+
+STA 
+
+
+HTAB,X 
+HPIECET 
+CPIECE 
+
+”CTASrX~ 
+
+CPIECE 
+
+
+” F5D5 A5 "AE 
+
+F5D7 18 
+F5D8 7D 43 FF 
+F5DB 85 AE 
+F5DD A5 AF 
+F5DF 18 
+
+~ ^F5F(D”7D”45”FF 
+F5E3 85 AF 
+
+
+LDA ~ 
+
+CLC 
+
+ADC 
+
+"STA 
+
+LDA 
+
+CLC 
+
+ADC 
+
+STA 
+
+DEX 
+
+
+HKTAB/ X 
+
+HKING 
+
+CKING 
+
+“CKTAB7X 
+
+CKING 
+
+
+F5E5 DA 
+
+
+CHECK “JOYSTICK BUTTON — SET UP MODE?" 
+
+
+IS RIGHT JOYSTICK BUTTON PUSHED? 
+YES. INPUT PRFLG FROM TI 
+
+
+;SETUP MODE: CHECK PUSHBUTTON 
+
+
+» ALWAYS USE PO'S JOYSTICK IN SETUP 
+; UNCOND JMP 
+
+
+;BUTTON IS PUSHED 
+;MOVE ONLY ON CERTAIN FRAMES 
+;GOTO CRSBLK 
+
+i ALTERNATE BETWEEN COMPUTER &amp; HUMAN CHECKER, COMPUTER &amp; HUMAN KING, &amp; SPACE 
+
+
+FIND CURRENT SQUARE CONTENTS IN TABLE 
+FOUND 
+
+uumroND 
+
+CONTINUE 
+
+
+;PRINT ERROR MESSAGE ON TI 
+/ERROR (SHOULD NEVER OCCUR) 
+
+
+iMODIFY”PrECE COUNT TO REFLECT CHANGE 
+
+
+/MODIFY KING COUNT TO REFLECT CHANGE 
+
+
+l 
+
+
+iTAKE PREVIOUS ENTRY FROM TABLE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F5E6 
+
+10 
+
+02 
+
+
+
+BPL 
+
+JOY 10 
+
+F5E8 
+
+A2 
+
+04 
+
+
+
+LDX 
+
+#4 
+
+F5EA 
+
+F5EA 
+
+BD 
+
+4E 
+
+FF 
+
+JOY 10 
+
+LDA 
+
+NXTABiX 
+
+F5ED 
+
+A6 
+
+AB 
+
+
+
+LDX 
+
+CURSOR 
+
+F5EF 
+
+20 
+
+BC 
+
+FE 
+
+
+JSR 
+
+KNGCK2 
+
+F5F2 
+
+85 
+
+A3 
+
+
+
+STA 
+
+PIECE 
+
+F-5F4 
+
+95 
+
+80 
+
+
+
+STA 
+
+BOARD/ X 
+
+r-5F6 
+
+20 
+
+F3 
+
+FA 
+
+
+JSR 
+
+TONORM 
+
+F5F9 
+
+4C 
+
+CA 
+
+F6 
+
+
+JMP 
+
+J0Y81 
+
+
+0 GOES TO 4 
+
+
+LOAD NEXT SQUARE VALUE 
+MUST HAVE KING IF' LAST ROW 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCJ-&gt; CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F5FC JOY 11 
+
+FSFCrA5 BE LDA ACTIVE 
+
+F5FE OA ASL A 
+
+F5FF 2A ROL A 
+
+F600 A8 TAY 
+
+
+F601 B9 3C 00 
+F604 A8 
+F605 45 EA 
+F607 30 IB 
+F609 98 
+T-60A 30 07 
+F60C A5 ED 
+f-60E DO 57 
+F610 4C 66 F7 
+F613 
+
+F613 A5 ED 
+
+F615 10 06 
+
+F617 A5 BB 
+
+F619 2A 
+
+F61A 4C DD F6 
+
+F61D 
+
+F61D A9 00 
+F61F 85 ED 
+F621 
+
+F621 4C D4 F6 
+F624 
+
+F624 84 EA 
+F626 98 
+F627 30 F8 
+
+
+LDA INPT4.Y 
+
+TAY- 
+
+EOR OLDINP 
+
+BMI NOCHDO 
+
+TYA 
+
+BMI JPM05 
+
+LDA ILEGAL 
+
+BNE J0Y20 
+
+JOY111 JMP CRSBLK 
+
+JPM05 
+
+LDA ILEGAL 
+
+BPL JPM06 
+
+LDA ACTIVE 
+
+ROL A 
+
+JMP MOVE12 
+
+JPM06 
+
+LDA BO 
+
+STA ILEGAL 
+
+JPM10 
+
+JMP MOVE10 
+
+NOCHDO 
+
+STY OLDINP 
+
+-TYA--- 
+
+BMI JPM10 
+
+
+F629 A5 E7 LDA FROMTO 
+
+F62B DO 46 BNE T010 
+
+
+T62D 20 E2 FA 
+F630 A6 AB 
+T632 20 2D FA 
+f-635 90 06 
+F637 FO IF 
+
+
+JSR TOSET 
+
+LDX CURSOR 
+
+JSR MOVCHK 
+
+BCC FR0M10 
+
+BEQ J0Y12 
+
+
+1-639 A5 A5 LDA MSTJMP 
+F63B DO IB BNE 30Y12"' 
+F63D FR0M10 
+
+I-63D E6 E7 INC FROMTO 
+
+
+F63F A6 AB 
+f-641 86 E9 
+F643 B5 BO 
+1645 85 A3 
+F647 85 E4 
+F649 A9 00 
+F64B 85 A6 
+F64D 20 F3 FA 
+F650 A9 30 
+F652 20 EB FF 
+f-655 4C D6 F7 
+
+
+LDX CURSOR 
+
+STX MOVE 
+
+LDA-BOARD, X" 
+
+STA PIECE 
+
+STA MOVVAL 
+
+LDA #0 
+
+STA MLTJMP 
+
+JSR TONORM 
+
+LDA #PICKUP 
+
+JSR SOUND1 
+
+JMP ATTR10 
+
+
+CHECK JOYSTICK BUTTON 
+
+
+— NOT SET UP MODE 
+
+
+&gt; Y=0 IF ACTIVE=0» 1 IF ACTIVE =$80 
+i IF BUTTON PRESSED THEN DROP PIECE IF LEGAL 
+
+
+;N0 CHANGE IN PUSHBUTTON 
+I NOT PRESSED 
+iBUTTON PRESSED 
+i ILLEGAL NOISE SOUND 
+
+jOK— wait for letup 
+
+iJOYSTICK MOVEMENT ERROR? 
+
+» NO. 
+
+&gt;SET UP CARRY TO INDICATE PLAYER 
+) YES. CHECK JOYSTICK MOTION 
+; OK 
+
+
+.CHECK JOYSTICK 
+
+;STORE NEW BUTTON READING _ 
+
+l NOT PRESSED 
+BUTTON JUST PRESSED 
+
+i TO __ 
+
+FROM 
+
+i DON'T DISPLAY COMPUTER'S MOVE, SET UP TOSQRB 
+
+
+I CAN JUMP 
+CAN'T MOVE 
+
+J MUST JUMP? 
+
+i YES, NOT LEGAL PIECE TO PICK UP 
+i CAN MOVE - DO TO NEXT 
+
+
+i NO MULTIPLE JUMPS YET 
+
+
+
+
+
+
+
+
+
+
+
+r r 
+
+F658 
+
+F65S A9 01 
+
+JOY 12 
+
+LDA #1 
+
+MAKE NOISE 
+
+—£ ° 
+
+1 0 
+
+F65A 85 ED 
+
+J0V13T 
+
+
+
+I 
+
+F65C 20 F3 FA 
+F65FA5 A5 
+
+OSR TONORM 
+
+' ILLEGAL M0VE NOISE WILL CONTINUE UNTIL BUTTON IS RELEASED 
+
+
+d 
+
+1 • 
+
+F661 F0 04 
+
+F663 A9 BB 
+r-665 85 AD 
+
+BEQ J0Y20 
+
+LDA #JP 
+
+~ ~ — - 
+
+
+
+1 * 
+
+F667 
+
+F667 A9 30 
+!-669 A2 08 ~ 
+
+J0Y20 
+
+LDA #$30 
+
+iAUDFO 
+
+
+
+1 0 
+
+F 66 B AO OF 
+
+F 66 D 20 EF FF 
+
+ldy #errsnd 
+
+JSR S0UND3 
+
+; AUDVO ---__ 
+
+;AUDCO 
+
+
+
+m 
+
+
+'IMP CRSBLK 
+
+_1 _"TO 11 MODE 
+
+— 
+
+-1 
+
+0 
+
+F673 
+
+F673 A 6 AB 
+
+F675 AF 00 - 
+
+T010 
+
+LDX CURSOR 
+
+; FROM SQUARE 
+
+-1 
+
+i # r 
+
+F677 95 80 
+
+F679 E4 E9 
+
+STA BOARD,X 
+
+_ CPX MOVE 
+
+; FROM SQUARE = TO SQUARE'? 
+
+jpEg 
+
+
+» 
+
+F67D A4 A 6 
+
+F67F DO D7 
+
+PTTO'i nn —nir —crnr- 
+
+LDY MLTJMP 
+
+BNE J0Y12 
+
+i NO. ... . •.—9-I- 
+
+;YES. MULTIPLE JUMP? 
+
+; YES. MUST MOVE THIS PIECE TO CONTINUE MULTIPLE JUMP 
+
+
+
+9 
+
+• oo l c.\J JJt. rfc. 
+
+F6B4 A5 A3 
+
+F 686 95 80 
+
+rrz .dg nr- a p* ' 
+
+JSR TOMOV" 
+
+LDA PIECE 
+
+STA BOARD, X 
+
+i SET" UP TOSQRB, CLEAR MOVFLG. RETURN TO "FROM” SQUARE -- CLEAR~MOVE 
+
+1 
+
+1 
+
+3 
+
+i ODD HLt L-Pi ho 
+
+F68B 
+
+F68B A4 A5 
+fTAan t:n io 
+
+JMP J0Y81 
+
+T011 
+
+LDY MSTJMP 
+
+iWAIT FOR SAME PLAYER~TOMdVE AGAIN - 
+
+; MUST JUMP? 
+
+
+L 
+
+HJEQ T050 
+
+JUMP 
+
+i NCT SKIP i 1 —------ 
+
+m - 
+
+
+CHANGE OPPONENT'S 
+
+PIECE COUNT — REMOVE JUMPED PIECE 
+
+
+F68F 8A 
+
+F690 A4 BE 
+
+TXA 
+
+LDY INDEX 
+
+; CURSOR 
+
+n 
+
+
+i-dYc' 
+
+F693 79 66 FF 
+
+F696 AA 
+
+OLC 
+
+ADC MOVTAB,Y 
+
+TAX 
+
+
+
+
+F697 B5 80 
+
+LDA BOARDTJT 
+
+; LOAD JUMPED PIECE 
+
+
+_ 
+
+F699 AO 00 
+
+LDY #0 
+
+
+
+
+F69B 94HBO 
+
+F69D OA 
+
+F69E OA 
+
+sty board,x 
+
+ASL A 
+
+ASL A 
+
+; REMOVE JUMPED PIECE FROM BOARD 
+i SHIFT KING BIT TO MSB 
+
+
+r~~ 
+
+F69F 20 51 FE 
+
+F6A2 20 D1 FF 
+
+JSR CHGCNT 
+
+JSR TOSUB 
+
+; CHANGE OPPONENT'S PIECE COUNT 
+&lt; DO STUFF WITH PIECE INCLUDING KING CHECK 
+
+STORE IN NEW SQUARE, RETURN X=MOVE. NEW KING? 
+
+
+
+F6A5B0 14 
+
+F6A7 20 2D FA 
+
+F6AA BO OF 
+
+BCS TO51 
+
+JSR MOVCHK 
+
+BCS T051 
+
+! YES. NEW KING CAN'T DO MULTIPLE JUMP 
+; RETURN X UNCHANGED. CAN PIECE JUMP AGAIN? 
+
+; NO. 
+
+
+
+YES. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+
+. IF 
+
+JSR 
+
+PRNT 
+
+PRM0V2 
+
+f 
+
+F6AC 86 AB 
+
+
+.“END IF 
+
+STX 
+
+CURSOR 
+
+
+F6AE A9 BB 
+
+
+LDA 
+
+#JP 
+
+
+F6B0 85 AD 
+
+
+STA 
+
+TOSQRB 
+
+
+F6B2 85 E7 
+
+
+ST A 
+
+FROMTO 
+
+
+F6B4 85 A6 
+
+
+STA 
+
+MLTJMP 
+
+
+F6B6 DO 16 
+
+
+BNE 
+
+J0Y90 
+
+
+F6B8 
+
+T050 
+
+
+
+
+F6BS 20 D1 FF 
+
+
+JSR 
+
+TOSUB 
+
+
+F6BB 
+
+T051 
+
+
+— 
+
+
+
+
+. IF 
+
+PRNT 
+
+
+
+
+JSR 
+
+PRM0V2 
+
+
+
+
+. ENDIF ' 
+
+
+L&gt;/ 
+
+F6BB 86 AB 
+
+
+STX 
+
+CURSOR 
+
+
+F6BD 20 F3 FA 
+
+
+JSR 
+
+TONORM 
+
+
+F6C0 C8 
+
+
+I NY 
+
+
+
+F6C1 84 A5 
+
+
+STY 
+
+MSTJMP 
+
+
+F6C3 20 14 FB 
+
+
+JSR 
+
+SWIT 
+
+F6C6 A9 2D 
+
+
+LDA 
+
+#FRZTIM 
+
+F6C8 85 F2 
+
+
+STA 
+
+FREEZE 
+
+
+i PRINT MOVE IF DEBUG 
+.MOVE MOVE TO CURSOR 
+
+
+;TO MODE 
+
+i&lt;&gt;0 =&gt; CONTINUE JUMPING 
+; JMP 
+
+
+; DO STUFF WITH MOVE S&lt; PIECE INCLUDING KING CHECK &amp; STORE 
+
+
+;RETURNS Y=$FF 
+
+i 0 
+
+;CLEAR MSTJMP 
+
+
+iREVERSE ACTIVE PLAYER 
+;SET FREEZE TIMER 
+
+
+
+
+
+
+
+BRANCH 
+
+BRANCH 
+
+HERE FROM 
+HERE FROM 
+
+SETUP MODE WHEN PUSHBUTTON PUSHED 
+
+CASE WHERE PIECE IS RETURNED TO STARTING 
+
+
+F6CA 
+
+F6CA 
+
+A9 
+
+00 
+
+J0Y81 
+
+LDA 
+
+#0 
+
+
+
+F6CC 
+
+F6CE 
+
+F6CE 
+
+85 
+
+20 
+
+E7 
+
+E9 FF 
+
+J0Y90 
+
+STA 
+
+JSR 
+
+FROMTO 
+
+SOUNDO 
+
+TDCTFRUFTNEXT-——- 
+
+.PIECE DROPPING SOUND 
+
+
+F6D1 
+
+4C 
+
+D6 F7 
+
+
+‘ JMP 
+
+ATTR10 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F6D4 
+
+I-6D4 A5 BB 
+F6D6 2A 
+
+
+LDA active 
+
+ROL A 
+
+
+CHECK FOR JOYSTICK MOVEMENT EVERY FEW FRAMES 
+
+;MOVE BIT 7 OF ACTIVE TO BIT 1 OF Y 
+;SET CARRY IF PLAYER 1 
+
+
+BRANCH HERE FROM SETUP WITH Y=0 CC =&gt; PLAYER 0 
+
+
+I-6D7 _BNEO 
+
+
+
+
+F6D7 7)5 C3 
+F6D9 29 IF 
+F6DB DO 27 
+
+LDA 
+
+AND 
+
+BNE 
+
+FRAME 
+#$ IF 
+
+M0VE36 
+
+iDON'T MOVE THIS FRAME 
+
+
+
+F6DD AD SO 02 
+
+LDA 
+
+SWCHA 
+
+1 
+
+
+
+F6E0 BO 04 
+
+___ BCS 
+
+M0VE20 
+
+,-CHECK CARRY BIT (SET UP PREVIOUSLY) 
+
+
+F6E3 4A 
+
+LSR 
+
+LSR 
+
+A 
+
+A 
+
+i PO 
+
+
+
+F6E4 4A 
+
+LSR 
+
+A 
+
+1 
+
+
+
+F6E6 
+
+M0VE20 
+
+
+' Hg m gc a g “] 
+
+
+
+F6E6 29 OF 
+
+AND 
+
+#»F 
+
+
+
+
+
+#$F 
+
+iIS JOYSTICK CENTERED? 
+
+
+
+
+BEQ 
+
+M0VE36 
+
+;YES. SKIP 
+
+
+
+
+
+
+iJOYSTICK IS NOT CENTERED 
+
+
+
+F-6EC 
+
+M0VE2S 
+
+
+
+
+
+F6EC 20 F3 FA 
+
+JSR 
+
+TONORM 
+
+
+
+F6EF A6 E9 
+
+LDX 
+
+MOVE 
+
+; TO MODE 
+
+
+
+F6F1 A4 E7 
+
+LDY 
+
+FROMTO 
+
+;FROM? 
+
+
+
+F6F3 VO 05 
+
+BlNiET 
+
+M0VE29 
+
+i NO. TO 
+
+
+
+(-6F5 20 DE FE 
+
+JSR 
+
+TOMOV 
+
+;SET UP TOSQRB, CLEAR MOVFLG. RETURN TO "FROM" SQUARE — CLEAR MOVE 
+
+
+F6F8 A6 AB 
+
+CD)T 
+
+CURSOR 
+
+
+
+F6FA 
+
+M0VE29 
+
+
+
+
+
+F6FA AO 03 
+
+LDY 
+
+#3 
+
+;CHECK FOR DIAGONAL MOVEMENT 
+
+
+
+F6FC 
+
+M2SLP 
+
+
+
+
+
+F6FC D9 62 FF 
+
+CMP 
+
+JOYTAB, Y 
+
+
+
+F6FF FO 06- 
+
+BEQ 
+
+M0VE37 
+
+;DIAGONAL FOUND 
+
+
+F701 88 
+
+DEY 
+
+
+
+
+F702 10 F8 
+
+BPL 
+
+M28LP 
+
+iCONTINUE 
+
+
+~F704 
+
+M0VE36 
+
+
+
+
+F704 4C 62 F7 
+
+JMP 
+
+FRM30 
+
+;NOT DIAGONAL —NO SOUND 
+
+
+
+
+
+; DIAGONAL MOVEMENT 
+
+
+F707 
+
+M0VE37 
+
+
+
+
+F707 20 C9 FA 
+
+JSR 
+
+0NBRD2 
+
+; COMPUTE MOVE SQUARE. OFF BOARD? 
+
+
+F70A 90 05 
+
+BCC 
+
+MOVE50 
+
+; NO. OK 
+
+
+F70C 
+
+MDVE40 
+
+
+
+
+F70C A9 80 
+
+LDA 
+
+#$80 
+
+;INDICATE JOYSTICK ILLEGAL MOVE 
+
+
+F70E 4C 5A F6 
+
+
+JOY 13 
+
+; ERROR 
+
+
+F711 
+
+M0VE50 
+
+
+
+
+F711 AA 
+
+TAX 
+
+
+
+— 
+
+
+“ F7I2 r_ A5~E7 
+
+LDA 
+
+FROMTO 
+
+;FROM? 
+
+
+1-714 DO 09 
+
+BNE 
+
+FRM10 
+
+; NO. TO 
+
+
+F716 B5 80 
+
+LDA 
+
+BOARD,X 
+
+YES. FROM 
+
+
+!-718 85 A3 
+
+BTA 
+
+PIECE 
+
+
+
+F71A 86 AB 
+
+STX 
+
+CURSOR 
+
+
+
+F71C 4C 5B F7 
+
+JMP 
+
+FRM20 
+
+; JMP 
+
+
+F71F 
+
+FRM10 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+F71F A5 A5 
+
+LDA 
+
+MSTJMP 
+
+F721 FO OE 
+
+BEQ 
+
+M0VE60 
+
+' F723 B5 80 
+
+LDA 
+
+BOARD,X 
+
+F725 FO E5 
+
+BEQ 
+
+M0VE40 
+
+F727 45 BB 
+
+EOR 
+
+ACTIVE 
+
+1-729 10 El 
+
+BPL 
+
+M0VE40 
+
+F72B 20 C9 FA 
+
+JSR 
+
+0NBRD2 
+
+F72E BO DC 
+
+BCS 
+
+M0VE40 
+
+F730 AA 
+
+TAX 
+
+
+F731 
+
+M0VE60 
+
+
+f-731 E4 AB 
+
+CPX 
+
+CURSOR 
+
+1-733 FO 1C 
+
+BEQ 
+
+FRM15 
+
+P'735 A5 E9 
+
+LDA 
+
+MOVE 
+
+F737 C5 AB 
+
+CMP 
+
+CURSOR 
+
+1-739 DO D1 
+
+BNE 
+
+M0VE40 
+
+F73B B5 80 
+
+LDA 
+
+BOARD,X 
+
+1-73D DO CD 
+
+BNE 
+
+M0VE40 
+
+F73F A5 A3 
+
+LDA 
+
+PIECE 
+
+1-T41 C9 10 
+
+CMP 
+
+#HUMCHK 
+
+F743 DO 04 
+
+BNE 
+
+M0VE70 
+
+F745 CO 02 
+
+CPY 
+
+#2 
+
+F747 90 C3 
+
+BCC 
+
+M0VE40 
+
+F749 
+
+M0VE70 
+
+
+"F749 C9 90 
+
+CMP 
+
+#CMPCHK 
+
+F74B DO 04 
+
+BNE 
+
+FRM15 
+
+F74D CO 02 
+
+CPY 
+
+#2 
+
+1-74F BO BB 
+
+BCS 
+
+M0VE40 
+
+F751 
+
+FRM15 
+
+
+F751 B5 80 
+
+LDA 
+
+BOARD,X _ 
+
+F753 85 E4 
+
+STA 
+
+ROWAL 
+
+F755 86 E9 
+
+STX 
+
+MOVE 
+
+F757 86 AD 
+
+STX 
+
+TOSQRB 
+
+-F75984BE 
+
+STY 
+
+INDEX 
+
+F75B _ 
+
+FRM20 
+
+
+
+LDA 
+
+#$30 
+
+F75D AO OE 
+
+LDY 
+
+#14 
+
+1-75F 20 ED FF 
+
+JSR 
+
+S0UND2 
+
+1-762 
+
+FRM30 
+
+
+F762 A9 00 
+
+LDA 
+
+#0 
+
+F764 85 ED 
+
+STA 
+
+ILEGAL 
+
+
+MUST JUMP? 
+
+NO. 
+
+YES. SQUARE EMPTY? 
+
+YES. ERROR 
+
+NO. OPPONENT'S PIECE? 
+
+NO. ERROR 
+
+;YES. MOVE TO NEXT SQUARE. 
+; YES. ERROR 
+
+
+OFF BOARD? 
+
+
+RETURN TO FROM SQUARE? 
+
+YES. OK 
+
+ALREADY MOVED? 
+
+YES. CAN'T MOVE PIECE AGAIN (EXCEPT TO FROM SQUARE) 
+EMPTY? 
+
+NO. ERROR __ 
+
+YES. LEGAL MOVE DIRECTION? 
+
+HUMAN CHECKER (NOT KING)? 
+
+NO. ___ 
+
+YES. LEGAL? 
+i NO. ERROR 
+
+/RIGHT PLAYER CHECKER (NOT KING)? 
+
+; NO. SKIP 
+
+i YES. LEGAL?______________-_ 
+
+/NO. ERROR 
+
+
+SET UP FOR MOVE SOUND — LOAD AUDFO 
+AUDCO 
+
+USE MAX VOLUME — CALL SOUND ROUTINE 
+
+
+;CLEAR ILLEGAL MOVE FLAG 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+SET UP CURSOR, MOVE, 
+
+
+F766 
+
+F766 A5 C3 
+F768 29 10 
+F76A DO 27 
+F76C A5 E5 
+F76E FO 66 
+
+
+LDA 
+
+AND 
+
+BNE 
+
+
+FRAME 
+
+#$10 
+
+CRSB10 
+
+MOVFLG 
+
+ATTR10 
+
+
+~T770~3S 
+F771 20 CE F9 
+F774 A6 E8 
+
+
+SEC~ 
+
+JSR 
+
+LDX 
+
+
+F776" A9~B 0 
+
+F778 95 80 
+F77A A6 E9 
+F77C A9 00- 
+F77E 95 80 
+
+
+~CDfi~ 
+
+STA 
+
+LDX 
+
+
+LDA 
+
+STA 
+
+
+JMPSET 
+CURSC 
+#CMPCRS 
+BOARD, X 
+MOVE 
+
+
+#0 
+
+BOARD, X 
+
+
+F780 A6 AB"“ 
+
+F782 E4 E9 
+F784 DO 50 
+F7B6 A9 30 
+
+F788 A4 BB 
+F7SA 10 02 
+~F78CA9~B0 
+F78E 
+
+F78E 95 ! 
+
+F790 4C“ D6 F7 
+
+F793 
+
+
+“T-05T“ 
+
+CPX 
+BNE 
+" TDA - 
+
+LDY 
+
+BPL 
+
+LDA 
+
+STA 
+
+JMP 
+
+
+CURSOR 
+
+MOVE 
+
+ATTR10 
+
+#HUMCRS 
+
+ACTIVE 
+
+CRSB03 
+
+#CMPCRS 
+
+BOARD, X 
+
+
+
+F79S 
+
+AS 
+
+E6 
+
+-LDA 
+
+WINSAV 
+
+
+F795 
+
+FO 
+
+OC 
+
+BEQ 
+
+CRSB13 
+
+
+F797 
+
+AS 
+
+“E5“ 
+
+LDA 
+
+MOVFLG 
+
+
+F799 
+
+FO 
+
+22 
+
+BEQ 
+
+CRSB17 
+
+
+F79B 
+
+A6 
+
+E8 
+
+LDX 
+
+CURSC 
+
+
+F /VI) 
+
+A9 
+
+BO 
+
+LDA 
+
+#CMPCRS 
+
+
+F79F 
+
+95 
+
+80 
+
+STA 
+
+BOARD, X 
+
+
+P7A1 
+
+DO 
+
+1A 
+
+BNE 
+
+CRSB17 
+
+
+F7A3 
+
+
+
+CRSB13 
+
+
+
+F7A3 
+
+A6 
+
+AB 
+
+LDX 
+
+CURSOR 
+
+
+F7A5 
+
+A9 
+
+00 
+
+LDA 
+
+#0 
+
+
+F7A7 
+
+A4 
+
+F2 
+
+LDY 
+
+FREEZE 
+
+
+F7A9 
+
+DO 
+
+10 
+
+BNE 
+
+CRSB15 
+
+
+F7AB 
+
+A5 
+
+E5 
+
+LDA 
+
+MOVFLG 
+
+
+FTAD 
+
+FO 
+
+04 
+
+BEQ 
+
+CRSB14 
+
+
+F7AF 
+
+E4 
+
+E9 
+
+CPX 
+
+MOVE 
+
+. . : - 
+
+F7B1 FO OA 
+
+BEQ 
+
+CRSB17 
+
+
+F7B3 
+
+
+
+CRSB14 
+
+
+
+F7B3 
+
+A9 
+
+30 
+
+LDA 
+
+#HUMCRS_ 
+
+
+-F7B5 
+
+A 4 
+
+BE 
+
+LDY 
+
+ACTIVE 
+
+
+F7B7 
+
+10 
+
+02 
+
+BPL 
+
+CRSB15 
+
+
+F7B9 
+
+A9 
+
+BO 
+
+LDA 
+
+#CMPCRS 
+
+
+F7BB 
+
+
+
+CRSB15 
+
+
+
+F7BB 
+
+95 
+
+80 
+
+STA 
+
+BOARD,X 
+
+
+F7BD^ 
+
+
+
+CR5B17 
+
+
+
+F7BD 
+
+A5 
+
+E7 
+
+LDA 
+
+FROMTO 
+
+
+F7BF 
+
+FO 
+
+15 
+
+BEQ 
+
+ATTR10 
+
+
+FTC 1 
+
+A6 
+
+E9 
+
+LDX 
+
+MOVE 
+
+
+JMP DISPLAY 
+
+
+
+
+! • 
+
+j 
+
+i 
+
+
+* 
+
+
+DISPLAY COMPUTER MOVE 
+DISPLAY ANY JUMPED PIECES 
+
+COMPUTER CURSOR __ 
+
+
+;DON'T SHOW COMPUTER'S NEW LOC 
+
+
+HUMAN CURSOR V. COMPUTER MOVE IN SAME SQUARE? 
+
+NO _________ . J 
+
+YES. DISPLAY HUMAN CURSOR NOW 
+
+
+; JMP 
+
+
+;COMPUTER HAS WON -- DISPLAY ITS CURSOR 
+i JMP__ 
+
+
+i 
+
+;HUMAN CURSOR 
+
+
+; FREEZE LAST MOVE? 
+
+i YES. DON'T DISPLAY CURSOR OR PIECE — PIECE WILL BLINK 
+;COMPUTER MOVE BEING DISPLAYED? 
+
+; NO. OK 
+
+; HUMAN CURSOR ?, COMPUTER MOVE ON SAME SQUARE?_ 
+
+;YES. DON'T DISPLAY HUMAN CURSOR NOW 
+
+
+;RIGHT PLAYER (PI) IS ACTIVE 
+
+
+f 
+
+
+;FROM (MAY BE DISPLAYING COMPUTER MOVE) 
+; TO 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9CS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+T-7C3 A4 A3 
+
+F7C5 C4 E4 
+
+LDY 
+
+CPY 
+
+PIECE 
+
+MQWAL 
+
+i DOES PIECE = MOWAL? 
+
+F7C7 DO OB 
+
+BNE 
+
+CRSB20 
+
+i NO. SKIP 
+
+F7C9 A5 C3 
+
+LDA 
+
+FRAME 
+
+i YES. ONLY DISPLAY PIECE ON XXX10100 
+
+F7CB 6A 
+
+ROR 
+
+A 
+
+i WHEN B2 &amp; B3 ARE DIFFERENT. 
+
+F7CC 45 C3 
+
+EOR 
+
+FRAME 
+
+
+F7CE 29 04 
+
+AND 
+
+#4 
+
+
+f 7D0 DO 02 
+
+BNE 
+
+CRSB20 
+
+
+F7D2 AO 00 
+
+LDY 
+
+40 
+
+
+I-7D4 
+
+CRSB20 
+
+
+
+J-7D4 94 80 
+
+STY 
+
+BOARD. X 
+
+
+
+XXX11011 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+© 
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+F7D6 
+
+ATTR10 
+
+LOAD 
+
+RAM TABLE OF GRAPHICS FOR SCORE KERNEL 
+
+&lt; 
+
+F7D6 AO 01 
+
+F7D8 A6 BO 
+F7DA 86 F6 
+
+
+LDY 
+
+LDX 
+
+STX 
+
+#1 
+
+GAMNO 
+
+SCPO 
+
+ONE PLAYER 
+
+( 
+
+F7DC EO TO 
+F7DE DO 01 
+
+F7E0 C8 
+
+
+CPX 
+
+BNE 
+
+I NY 
+
+4PLAY2 
+
+ATTR20 
+
+i2-PLAYER GAME 
+
+
+~ F7E1 
+
+F7E1 84 F7 
+
+~ ATTR20 
+
+STY 
+
+SCP1 
+
+
+
+P7E3 A5 F2 
+F7E5 DO OD 
+F7E7 A6 AB 
+
+
+LDA 
+
+BNE 
+
+LDX 
+
+FREEZE 
+
+ATTR35 
+
+CURSOR 
+
+;FREEZE? 
+
+;YES. SKIP — DON'T CHANGE FROM 
+
+
+-F7E9 A5 E5 
+
+F7EB FO 02 
+F7ED A6 AC 
+
+
+LDA 
+
+BEQ 
+
+LDX 
+
+MOVFLG 
+
+ATTR30 
+
+FROMB 
+
+;COMPUTER MOVE DISPLAY? 
+i NO. 
+
+;YES. USE FROMB 
+
+
+F7EF 
+
+F7EF 20 8D FA 
+F7F2 85 F4 
+
+ATTR30 
+
+USR 
+
+STA 
+
+IEDSP 
+
+FROM 
+
+;CONVERT BINARY TO BCD 
+
+
+F7F4 
+
+F7F4 A6 AD 
+F7F6 20 8D FA 
+
+ATTR35 
+
+LDX 
+
+JSR 
+
+TOSQRB 
+
+IEDSP 
+
+
+
+F7F9 85 F5 
+
+
+STA 
+
+TOSQR 
+
+
+1 
+
+
+
+BASED ON VCS BASKETBALL 
+
+BY AL MILLER (WITH EOR IMPROVEMENT A LA 
+
+COIN-OP) 
+
+-F7FB A2 00 
+
+F7FD 86 CF 
+F7FF A9 FF 
+
+
+LDX 
+
+STX 
+
+LDA 
+
+#0 
+
+T4+1 
+
+#SCRTBL/256 
+
+;INITIALIZE HIGH BYTE INDIRECT POINTER 
+
+
+!-801 85 ~B4 
+F803 85 B6 
+F805 A9 E4 
+
+
+ST A 
+STA 
+LDA 
+
+TO+l 
+
+T2+1 
+
+#5*4+SCRLP0 
+
+
+
+F807 A2 03 
+F809 
+
+LODRAM 
+
+LDX 
+
+#3 
+
+
+
+' F809 38 " 
+
+F80A E9 05 
+
+F80C 85 CE 
+
+
+SEC 
+
+SBC 
+
+STA 
+
+#5 
+
+T4 
+
+
+
+F80E B5 F4 
+
+F810 29 OF 
+
+F812 85 B5 
+
+
+LDA~ 
+
+AND 
+
+STA 
+
+FROM, X 
+#$0F 
+
+T2 
+
+; GET LOW ORDER DIGIT 
+
+
+-FBI4 OA 
+
+F815 OA 
+
+FBI6 65 B5 
+
+
+ASL 
+
+ASL 
+
+ADC 
+
+S' 
+
+A 
+
+T2 _ 
+
+; SHIFT LEFT AND CLEAR CARRY 
+;five TIMES LOW DIGIT 
+
+
+
+;ADD IN BEGINNING OF GRAPHICS ' 
+
+TABLE 
+
+FBI8 69 8C 
+
+FBIA B5 B3 
+
+
+ADCT 
+
+STA 
+
+#SCRTBL&amp;$FF 
+
+TO 
+
+;STORE IN LOW BYTE OF INDIRECT POINTER 
+
+
+F81C B5 F4 
+
+F81E 29 FO 
+
+; 
+
+LDA 
+
+AND 
+
+FROM, X 
+#*F0 
+
+; GET HIGH ORDER DIGIT 
+
+
+F820 4A 
+
+F821 4A 
+
+F822 85 B5 
+
+
+LSR 
+
+LSR 
+
+STA 
+
+A g 
+
+A 
+
+T2 
+
+;SHIFT RIGHT AND CLEAR CARRY 
+
+
+P824 4A 
+
+FB25 4A 
+
+
+LSR 
+
+LSR 
+
+A 
+
+A 
+
+i FIVE TIMES HIGH ORDER DIGIT 
+
+
+P826 65 B5 
+
+
+
+
+;ADD IN BEGINNING OF GRAPHICS 
+
+TABLE 
+
+PS28 69 8C 
+
+
+ADC 
+
+#SCRTBL?&lt;$FF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
+
+
+1 VC(S CHECKERS BY 
+
+CAROL SHAW 5/15/80 9:41 
+
+AM 
+
+F82A 85 B5 
+
+
+STA 
+
+T2 
+
+F-B2C AO 04 
+
+
+LDY 
+
+*4 
+
+F82E 
+
+HIDIGT 
+
+
+
+FB2E B1 B3 
+
+
+LDA 
+
+(TO),Y 
+
+F830 51 B 5 
+
+
+EOR 
+
+&lt; T2)/Y 
+
+FS32 29 OF 
+
+
+AND 
+
+#$0F 
+
+F834 51 B5 
+
+
+EOR 
+
+&lt;T2)/Y 
+
+F836 91 CE 
+
+
+STA 
+
+(T 4) / Y 
+
+F'838 88 
+
+
+DEY 
+
+
+FS39 10 F3 
+
+
+BPL 
+
+HIDIGT 
+
+F83B A5 CE 
+
+
+LDA 
+
+T 4 
+
+F83D CA 
+
+
+DEX 
+
+
+F83E 10 C9 
+
+; 
+
+BPL 
+
+LODRAM 
+
+F840 A2 05 
+
+
+LDX 
+
+#5 
+
+F842 B5 DE 
+
+DOROT 
+
+LDA 
+
+SCRRPF-: 
+
+F844 AO 07 
+
+
+LDY 
+
+#7 
+
+F846 2A 
+
+ROTIT 
+
+ROL 
+
+A 
+
+F‘847 76 DE 
+
+
+ROR 
+
+SCRRPF-: 
+
+F8498B 
+
+
+DEY 
+
+
+F84A 10 FA 
+
+; 
+
+BPL 
+
+ROTIT 
+
+F84C CA 
+
+
+DEX 
+
+
+F84D DO F3 
+
+
+BNE 
+
+DOROT 
+
+
+) STORE IN LOW BYTE OF INDIRECT POINTER 
+
+
+/TAKE UPPER NIBBLE FROM T2, LOWER FROM 
+;STORE IN RAM TAELE OF GRAPHICS 
+
+
+MAKE MIRROR IMAGE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+SET UP PLAYERS AMD MISSILE FOR SCORE 
+
+
+F84F A? 15 
+
+
+LDA 
+
+#$15 
+
+
+
+F851 85 04 
+
+
+STA 
+
+NUSIZO 
+
+
+&gt;2 CLOCK MISSILE/ DOUBLE SIZE PLAYERS (1 COPY) 
+
+1-853 85 05 
+
+
+STA 
+
+NUSIZ1 
+
+
+
+F855 A9 FO 
+
+
+LDA 
+
+#$F0 
+
+
+;1 TO RIGHT 
+
+F857 85 20 
+
+
+STA 
+
+HMPO 
+
+
+
+1-859 A9 30 
+
+
+LDA 
+
+#$30 
+
+
+;3 TO LEFT 
+
+F85B 85 21 
+
+
+STA 
+
+HMP1 
+
+
+
+F85D A9 CO 
+
+
+LDA 
+
+#$C0 
+
+
+f 4 TO RIGHT 
+
+F85F 85 22 
+
+
+STA 
+
+RMMO 
+
+
+
+F861 85 02 
+
+
+STA 
+
+WSYNC 
+
+
+
+F863 AO 08 
+
+
+LDY~ 
+
+#8 
+
+
+8*5+1 = 41 MACHINE CYCLES 
+
+FS65 88 
+
+WSLP 
+
+DEY 
+
+
+
+WARNING — MUST NOT CROSS PAGE BOUNDARY 
+
+F866 DO FD 
+
+
+BNE 
+
+WSLP 
+
+
+DELAY 
+
+F868 85 1^&gt; 
+
+
+STA 
+
+RESPO 
+
+
+44 
+
+F86A EA 
+
+
+NOP 
+
+
+
+46 DELAY 
+
+F86E 85 12 
+
+
+STA 
+
+RESMO 
+
+
+49 
+
+FS6D 85 11 
+
+
+STA 
+
+RESP1 
+
+
+52 
+
+F86F 85 02 
+
+
+STA 
+
+WSYNC 
+
+
+
+F871 85 2A 
+
+
+STA 
+
+HMOVE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+; SET UP 
+
+
+F873 A2 00 LDX 
+
+F875 A5 C2 LDA 
+
+
+F877 29 08 AND 
+F879 DO 3E BNE 
+F87B A9 OF LDA 
+
+
+F87D A4 EF LDY 
+F87F DO 04 BNE 
+F881 A6 EE LDX 
+
+
+'•883 A9 07 LDA 
+
+F885 QQ10 
+
+F885 85 B3 STA 
+
+
+F887 8A TXA . 
+
+F888 49 06 EOR 
+
+F88A 25 B3 AND 
+
+
+FBSC 85 F3 “ STA 
+
+F88E 85 08 STA 
+
+F890 85 09 STA 
+
+
+F892 8A TXA 
+F893 49 OA EOR 
+F895 25 B3 AND 
+
+
+FS97 85 BA STA 
+
+F899 8A TXA 
+
+F89A 49 OC EOR 
+
+
+r-89c 25 b3 And 
+
+
+E 
+
+
+F89E 85 CF 
+F8A0 8A 
+
+
+F8A1 25 B3 
+F8A3 85 CE 
+F8A5 ~ A"4 131 
+F8A7 CO 36 
+F8A9 FO 07 
+
+
+0 
+
+
+STA 
+
+TXA 
+
+
+FBAB“A4 CF 
+
+F8AD 84 CE 
+F8AF 85 CF 
+F8B198 
+
+F8B2 
+
+F8B2 85 06 
+FBB4 85 07 
+
+F8B6 4C OF F9 
+
+
+F8B9 
+FBB9A9FF 
+
+
+—For 
+
+AND 
+
+STA 
+
+-LDY 
+
+CPY 
+BEQ 
+—Lirr 
+STY 
+STA 
+—TYfi 
+
+STA 
+
+
+STA 
+
+JMP 
+
+
+F8BB A4 EF 
+F8BD DO 09 
+F8EF~A5“~EE“ 
+
+F8C1 2A 
+F8C2 2A 
+
+
+F8CT2A 
+
+F8C4 2A 
+F8C 5 AA 
+_ F8C6~A9“F?~ 
+F8C8 
+
+F8C8 85 B3 
+I-8CA 8A 
+
+
+~LDA“ 
+
+LDY 
+
+BNE 
+
+“LBAT“ 
+
+ROL 
+
+ROL 
+
+“ROL 
+
+ROL 
+
+TAX 
+
+~TBA~~ 
+
+STA 
+
+TXA~ 
+
+
+OLDPBQ 
+
+#$08 
+
+QQ30 
+
+#$0F 
+
+GFLG2 
+
+QQ10 
+
+ATIM 
+
+#$07 
+
+
+TO 
+
+
+#$06 
+
+TO 
+
+COLSQ 
+
+COLUPF 
+
+CQLUBK 
+
+#$0A 
+
+
+#$00 
+
+TO 
+
+COLPO 
+
+COLHUM 
+
+#DARK 
+
+QQ20 
+
+
+C0LF1 
+
+COLPO 
+
+C0LP1 
+
+
+COLUPT - 
+
+QQ50 
+
+
+#$FF 
+
+GFLG2 
+
+0040 
+
+“ATTM 
+
+
+ATTRACT IF NECESSARY 
+
+
+iO IF NOT ATTRACT 
+; B/W? 
+
+;N0. COLOR — SKIP 
+
+jYES. _____ 
+
+7 ATTRACT? 
+i NO. SKIP 
+
+; YES. USE ATTRACT TIMER TO CHANGE LUMS 
+iMASK OFF COLOR BITS 
+
+;SAVE M ASK 
+
+;DARK SQUARE COLOR 
+
+
+;USE THIS FOR BK COLOR FOR SCORE 
+i LIGHT SQUARE COLOR 
+
+
+;LIGH T CHECKER C OLOR 
+;ASSUME COMPUTER (PI) IS LIGHT 
+;ASSUME HUMAN &lt;P0&gt; IS DARK 
+
+
+;IS HUMAN DARK? 
+; YES. SKIP 
+; NO. SWITCH 
+
+
+;STORE HUMAN COLOR FOR SCORE 
+
+
+;ATTRACT? 
+
+; NO. SKIP _ 
+
+TYESr ROTATE SO COLORS SHIFT QUICKLY 
+
+
+;MASK OFF HI BIT OF LUM IN ATTRACT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
+
+
+iis HUMAN DARK? 
+»YES. SKIP 
+
+
+iHUMAN IS LIGHT — SO IS SCORE COLOR 
+
+
+;USE DIFFERENT COLORS FOR HARD GAMES 
+
+
+;DARK SQUARE COLOR 
+l SE T UP PLAYFI ELD COLOR 
+
+iATTRACT? 
+iJMO. 
+
+;YES. USE DIF COLORS 
+
+
+;LIGHT SQUARE COLOR AND BK 
+
+
+
+; SOMEONE HAS WON 
+
+; TURN OFF REMAINING PLAYER'S PIECES EVERY 
+FEW FRAMES BY SETTING TO PF COLOR. 
+
+;HUMAN CAN'T MOVE —TURN OFF COMPUTER 
+i JMP 
+
+— TURN OFF HUMAN 
+
+
+;COMPUTER CAN'T MOVE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/30 9:41 AM 
+
+
+F925 
+
+A4 
+
+FO 
+
+
+LDY 
+
+BLNKTM 
+
+F927 
+
+FO 
+
+OF 
+
+
+EEQ 
+
+VBLP 
+
+F929 
+
+AO 
+
+02 
+
+
+LDY 
+
+#2 
+
+!-92B 
+
+C6 
+
+FO 
+
+
+DEC 
+
+BLNKTM 
+
+F92D 
+
+DO 
+
+09 
+
+
+BNE 
+
+VBLP 
+
+F92F 
+
+A5 
+
+BO 
+
+
+LDA 
+
+GAMNO 
+
+F931 
+
+C9 
+
+10 
+
+
+CMP 
+
+#PLAY2 
+
+F933 
+
+FO 
+
+03 
+
+
+BEQ 
+
+VBLP 
+
+F935 
+
+20 
+
+E9 FF 
+
+
+JSR 
+
+SOUNDO 
+
+F938 
+
+AE 
+
+84 02 
+
+VBLP 
+
+LDX 
+
+INTXM 
+
+F93B 
+
+DO 
+
+FB 
+
+
+BNE 
+
+VBLP 
+
+F93D 
+
+S5 
+
+02 
+
+
+STA 
+
+WSYNC 
+
+F93F 
+
+84 
+
+01 
+
+
+STY 
+
+VBLANK 
+
+
+
+
+
+. IF 
+
+PAL 
+
+
+
+
+
+USR 
+
+WAIT3 
+
+
+
+
+
+. ENDIF 
+
+
+F941 
+
+4C 
+
+00 FO 
+
+
+JMP 
+
+JMPBAK 
+
+
+iKEEP VBLANK ON WHILE SYNCING AFTER CALCULATIONS 
+
+
+;BLANK TIME IS UP 
+
+; 2-PLAYER GAME__ 
+
+i PIECE DROPPING SOUND IF 1-PLAY ?y. HUMAN NEXT 
+
+;WAIT FOR TIMER TO RUN OUT 
+
+
+iEND OF VERTICAL BLANK (IF Y=0&gt; 
+
+;IF PAL THEN ADD 3 EXTRA LINES AT TOP OF DISPLAY 
+;DO 3 WSYNC'S 
+
+
+; SKIP BACK TO KERNEL 
+END OF MAIN PROGRAM 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+GSRST 
+
+— SUBROUTINE TO CHECK GAME SELECT AND RESET SWITCHES 
+
+
+
+F944 
+
+F944 A5 C2 
+
+GSRST 
+
+LDA 
+
+OLDPBQ 
+
+;CHECK GAME SELECT 
+
+
+
+F946 6A 
+
+F947 6A 
+
+F948 BO 23 
+
+
+ROR 
+
+ROR 
+
+BCS 
+
+A 
+
+A 
+
+GS1 
+
+;BRANCH IF GAME SELECT NOT PRESSED 
+
+
+
+F94A C6 EB 
+
+
+DEC 
+
+GSTIM 
+
+;GAME SELECT PRESSED — DON'T CHANGE GAME NUMBER TILL TIME UP 
+
+
+
+F94CD0TE 
+
+F94E A9 2B 
+
+
+BNE 
+
+LDA 
+
+GRTN2 
+
+#GSCON 
+
+
+
+
+F950'85 EE' “ 
+
+F952 F8 
+
+
+ST A 
+
+SED 
+
+GSTIM 
+
+i"REINITIALIZE TIMER 
+
+iDECIMAL ARITHMETIC 
+
+
+
+F953 A5 BO 
+
+F955 18 
+
+F956 69 01 
+
+
+LDA 
+
+CLC 
+
+ADC 
+
+GAMNO 
+
+#1 
+
+1 
+
+
+
+F958 C9 20 
+
+F95A DO 02 
+
+F95C A9 01 
+
+
+CMP 
+
+BNE 
+
+LDA 
+
+#$20 
+
+RESET2 
+
+#1 
+
+iGMAX+1 IN DECIMAL 
+
+
+
+F95E 
+
+F95E 85 BO 
+
+F960 D8 
+
+resetst 
+
+STA 
+
+CLD 
+
+GAMNO 
+
+
+
+
+F961 A5 E6 
+
+F963 DO 03 
+
+
+LDA 
+
+BNE 
+
+WINSAV 
+
+GSKIP 
+
+iSTAY IN ATTRACT IF WIN 
+
+
+
+F965 20 F3 FA 
+F968 
+
+GSKIP 
+
+JSR 
+
+TONORM 
+
+;MAKE SURE NOT ATTRACT, RETURN Y=$FF 
+
+
+
+F96A 84 1A 
+
+F96C 
+
+GRTN2 
+
+LDY 
+
+STY 
+
+#0 
+
+AUDV1 
+
+
+
+
+F96C 60 
+
+
+RTS“ 
+
+
+; SET UP GAME SELECT TIMER ?y. CHECK GAME RESET 
+
+
+
+-F96D 
+
+F96D OA 
+
+F96E BO 59 
+
+GS1 
+
+ASL 
+
+BCS 
+
+A 
+
+RES20 
+
+; NOT PRESSED — GSTIMOl &amp; RETURN 
+
+
+
+F970 A9 00 
+
+F972 A2 2F 
+
+
+LDA 
+
+J_DX_ 
+
+#0 
+
+#ZR0END-1 
+
+;RESET BUTTON IS PRESSED 
+
+-ZROBGN _ 
+
+
+j 
+
+- F974 
+
+F974 95 80 
+
+F976 CA 
+
+CLRLP 
+
+STA 
+
+DEX 
+
+ZROBGNi X 
+
+
+
+
+F977 10 FB 
+
+
+BPL 
+
+. IF 
+
+CLRLP 
+
+PRNT 
+
+
+
+
+
+
+LDX 
+
+#0 
+
+
+
+
+
+
+STX 
+
+PRCNT 
+
+
+
+
+
+
+. ENDIF 
+
+
+
+
+F979 85 1A 
+
+
+STA 
+
+AUDV1 
+
+iOFF (0) 
+
+
+
+S-97B A2 03 
+
+
+LDX 
+
+#3 
+
+; CLEAR MORE STUFF — MOWAL, MOVFLG, WINSAV, FROMTO 
+
+
+
+F97D 
+
+RESLP 
+
+
+
+
+
+
+i : 97D 95 E4 
+
+
+STA 
+
+MOWAL. X 
+
+
+
+
+
+V-97F CA ” DEX 
+
+
+•) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+F980 10 FB 
+
+
+BPL 
+
+RESLP 
+
+
+
+
+; 
+
+RESET 
+
+— ENTRY POINT FROM INIT CODE 
+
+
+F982 
+
+F982 20 F3 FA 
+
+F985 84 A4 
+
+RESET 
+
+JSR 
+
+STY 
+
+TONORM 
+
+JMPI 
+
+;NOT ATTRACT, Y&lt;-$FF 
+
+; $FF _ 
+
+
+F987 20 El FE 
+
+F9BA A5 EC 
+
+
+JSR 
+
+LDA 
+
+MOVCLR 
+
+0LDPB6 
+
+;NO CURRENT MOVE SO POINT OFF BOARD 
+
+
+898C DO 17 
+
+F9BE A9 10 
+
+
+BNE 
+
+LDA 
+
+“RES10 
+
+#CHECKER+CLPO 
+
+iIF SETUP MODE THEN LEAVE BOARD EMPTY 
+
+SET UP BOARD 
+
+; HUMAN ON 0-12 (8 NOT USED)__ 
+
+
+f 990 AO 90 
+
+F992 A2 OD 
+
+F994 
+
+BRDLP 
+
+LDY 
+
+LDX 
+
+WCHECKER+CLPl 
+
+#13-1+1 
+
+;COMPUTER ON SQUARES 22-34 &lt;26 NOT USED) 
+
+
+F994 95 7F 
+
+F996 94 95 
+
+F998 CA 
+
+
+STA 
+
+STY 
+
+DEX 
+
+BOARD-1,X 
+
+BOARD-1+22, X 
+
+
+
+F999 DO F 9 
+
+
+BNE 
+
+BRDLP 
+
+
+
+F99B 86 88 
+
+
+STX 
+
+BOARD+8 
+
+i CLEAR PHANTOM SQUARES___ 
+
+— 
+
+F99D 86 9A 
+
+
+STX 
+
+BOARD+26 
+
+
+
+F99F A9 18 
+
+
+LDA 
+
+#12*2 
+
+; INITIALIZE PIECE COUNTS — 12 MEN PER SIDE_ 
+
+
+F9A1 85 AA 
+
+F9A3 85 A9 
+
+
+STA 
+
+STA 
+
+CPIECE 
+
+HPIECE 
+
+;COMPUTER PIECE COUNT &lt;P1&gt; 
+jHUMAN PIECE COUNT (P0&gt; 
+
+
+~F9A5 
+
+F9A5 A2 OB 
+
+F9A7 AO 17 
+
+RE3l'0 
+
+LDX 
+
+LDY 
+
+#11 
+
+#23 
+
+;INITIALIZE CURSOR POSITIONS 
+
+
+F9A9 A5 BO 
+
+F9AB C9 10 
+
+F9AD DO 08 
+
+
+LDA 
+
+CMP 
+
+BNE 
+
+GAMNO 
+
+#PLAY2 
+
+RES15 
+
+
+r 
+
+F9AF A5 BB ' 
+
+F9B1 10 04 
+
+F9B3 A2 17 
+
+
+~ LDA ~ 
+BPL 
+LDX 
+
+-ACTIVE - 
+
+RES15 
+
+#23 
+
+i BOTTOM TPO) PLAYER STARTS'? 
+
+; YES. 
+
+iNO. TOP PLAYER STARTS 
+
+
+F9B5 AO OB 
+
+F9B7 
+
+F9B7 86 AB 
+
+RES 15 
+
+~~ L0V 
+
+STX 
+
+" ¥ii 
+
+CURSOR 
+
+
+
+T9B9 84 E8 
+
+F9BE B5 80 
+
+F9BD 85 A3 
+
+
+■STY 
+
+LDA 
+
+STA 
+
+CURSd 
+
+BOARD,X 
+
+PIECE 
+
+
+
+F9BF A9 80 
+
+F9C1 85 EA 
+
+
+LDA 
+
+STA 
+
+#$80 
+
+OLDINP 
+
+. up ACTIVE, COLHUM, CQLCMP BASED ON RIGHT DIFFICULTY SWITCH 
+
+P 
+
+F9C320 FIT FA 
+
+F9C6 20 E2 FA 
+
+
+JSR 
+
+JSR 
+
+CRSTUP 
+
+TOSET 
+
+, MSTJMP=0 SO CLEAR TQSQRB, MOVFLG---- 
+
+i-— 
+
+F9C9 
+
+F9C9 A2 01 
+
+F9CB 86 EB 
+
+“RES20 
+
+LDX 
+
+STX 
+
+#1 
+
+GSTIM 
+
+
+
+- F9CB S0 
+
+
+RTS~ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 7:41 AM 
+
+
+___ 
+
+. IF PAL 
+
+
+WAITS — DO 3 WSYNC'S 
+
+WAIT2 — DO 2 WSYNC'S 
+
+
+STA 
+
+STA 
+
+
+STA 
+RTS 
+
+TENDIF 
+
+
+WSYNC 
+
+WSYNC 
+
+
+JM PSET — SET UP OR CLEAR BOARD FOR JUMP DISPLAY 
+INPUT: 
+
+
+F9CE 
+
+F9CE A4 A4 
+F9B0T3tfT5~ 
+
+
+— - 
+
+JMPSET 
+
+
+=&gt; CLEAR EACH SQUARE 
+
+&gt; PUT JUMPED CHECKERS IN EACH SQUARE IN JMPLST 
+
+
+LDY 
+
+”BMTT 
+
+
+F9D2 
+
+F9D2 A9 10 
+F9D4E6TC5" 
+
+
+JMPI 
+JMPSR 
+
+
+F9D6 10 06 
+F9D8 SA 
+F9D9 29 ~7F 
+
+
+F9DB AA 
+F9DC A9 20 
+F9DE 
+
+
+LDX~ 
+
+BPL 
+
+TXA 
+
+AND 
+
+
+#HUMCHK 
+TJMPLST7Y “ 
+JMPS10 
+
+
+i &lt;0 =&gt; KING 
+
+
+F9DE BO 02 
+F9E0 A9 00 
+F9E2 
+
+
+JMPS10 
+
+JMPS20 
+
+
+TAX 
+
+LDA 
+
+
+BCS 
+
+LDA 
+
+
+#$7F 
+
+#HUMKNG 
+
+JMPS20 
+
+
+#0 
+
+
+;CLEAR SQUARE 
+
+
+F9E2 95 80 
+F9E4 88 
+F9E5 10 EB 
+F9E7 
+F9E7 60 
+
+
+STA 
+
+DEY 
+
+BPL 
+
+
+BOARD/X 
+JMPSLP 
+
+
+JMPSR 
+
+
+SET UP OLDTNP, MLTJMF, CALL JMPCHK TO SETUP MSTJMP,XMOVE 
+RETURN EQOWIN, NE=&gt; NO WIN 
+
+
+F9E9“ 
+
+F9E8 A9 80 
+F9EA 85 EA 
+F9EC A9 00 
+F9EE 85 A6 
+F9F0 20 FE F9 
+F9F3 DO 08 
+
+
+LDA #$80 
+
+STA OLDINP 
+
+LTTA ¥0 
+
+STA MLTJMP 
+
+JSR JMPCHK 
+
+
+;ASSUME BUTTON NOT PRESSED 
+
+
+9 
+
+9 
+
+m 
+
+m 
+
+9 
+
+•&gt; 
+
+• 
+
+9 
+
+% 
+
+m 
+
+% 
+
+9 
+
+9 
+
+9 
+
+
+ONE" 
+
+
+UMPRTN 
+
+
+;CHECK FOR JUMPS &amp; ANY MOVES 
+;CAN MOVE 
+
+
+. IF 
+
+
+■oar 
+
+BEQ 
+
+JSR 
+
+LDA 
+
+JSR 
+
+JSR 
+
+
+PRNT 
+
+PRFLG 
+
+
+;CAN'T MOVE — OTHER PLAYER WINS 
+
+
+PRSKIP 
+
+CRLF 
+
+SGAMOVR 
+
+OUTMSG 
+
+PRBRD 
+
+
+.DISPLAY "GAME OVER" ON TI IF DEBUG 
+
+
+i 
+
+I 
+
+&lt; 
+
+9 
+
+
+fllPruPPP nv oardi 8HALI 5/15/80 9:41 AM 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VC8 CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+. ENDIF 
+
+F9F5 E6 
+
+E6 
+
+INC 
+
+WINSAV 
+
+F9F7 A9 
+
+80 
+
+LDA 
+
+#$80 
+
+F9F9 85 
+
+FI 
+
+STA 
+
+SNDTIM 
+
+F9FB A9 
+
+00 
+
+LDA 
+
+
+F9FD 
+
+
+JMPRTN 
+
+
+F9FD 60 
+
+
+RTS 
+
+
+
+JMPCHK 
+
+
+CHECK TO SEE IF ACTIVE PLAYER HAS ANY JUMPS. SETUP MSTJMP,CALL 
+RETURN CC=&gt; JUMP, CS =&gt; NO JUMPS 
+MSTJMP=4 OR MSTJMP =0 
+
+NE =&gt; ACTIVE PLAYER CAN MOVE (ANYMVE - 1) 
+
+EQ =&gt; ACTIVE PLAYER CANNOT MOVE AT ALL (ANYMVE 
+
+
+
+
+
+
+S9FE ' JMPCHK 
+
+
+F9FE A? IE 
+
+FAOO 85 FO _ 
+
+P AQ2P A902 
+FA04 85 01 
+
+
+LDA #VBTIM 
+
+STA BLNKTM 
+
+LDA #2 
+
+STA VBLANK 
+
+
+; BLANK SCREEN FOR 1/2 SECOND AFTER t „ o „ m „ 
+i THIS BECAUSE IT TAKES 1203-2080 MIC RO SEC. 
+
+
+j TURN ON VBLANK 
+
+
+JMPCK2 — SAME AS JMPCHK EXCEPT NO VBLANK JUNK 
+
+
+FA06 
+
+FA06 A9“~00 
+FA08 85 B6 
+FAOA A9 04 
+-FAOC"85 A5 
+
+FAOE A2 22 
+FA 10 
+
+-FA 10 20 2D~FA~ 
+
+FA13 FO 04 
+FA15 E6 B6 
+-FA17 90 06 - 
+FA19 
+FA19 CA 
+—FAI7TT0F4 
+FA 1C E8 
+FA1D 86 A5 
+TATF 
+
+FAIF A4 B6 
+FA21 60 
+
+
+JMPCK2 
+
+LDA 
+
+STA 
+
+LDA 
+
+STA 
+
+LDX 
+
+JMPLP1 
+
+JSR 
+
+BEQ 
+
+INC 
+
+--BCC 
+
+JPF1 
+
+DEX 
+
+fpL 
+
+INX 
+
+STX 
+
+“JMPFSF 
+
+LDY 
+
+RTS 
+
+
+#0 
+
+ANYMVE 
+
+#4 
+
+MSTJMP 
+
+#34 
+
+MOVCHK 
+
+JPF1 
+
+ANYMVE 
+
+JMPF2 
+
+
+JMPLP1 
+
+MSTJMP 
+
+
+ANYMVE 
+
+
+i NO MOVE FOUND YET 
+;ASSUME JUMP 
+
+; INDICATE THAT MOVE HAS BEEN FOUND 
+;JUMP FOUND 
+
+;NO JUMP FOUND 0, CS 
+
+
+MOVCHK TO SET UP XMOVE 
+
+
+= 0 ) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VC5 CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+FA22 
+
+FA22 AO 03 
+I A24 B5 SO 
+FA26 C9 90 
+FA28 DO 02 
+FA2A AO 01 
+FA2C 
+FA2C 60 
+
+
+LOADY — Y &lt;— 3 (OR 1 IF CMPCHK) 
+
+
+LDY 
+
+LBA“ 
+
+CMP 
+
+BNE 
+
+LDY' 
+
+
+#CMPCHK 
+
+L0DY10 
+
+
+iCOMPUTER CHECKER CANNOT MOVE FORWARD (UP ) — SKIP RF, LF 
+
+
+
+MQVCHK — CHECK TO SEE IF THIS IS AN ACTIVE PIECE WHICH CAN JUMP 
+
+
+INPUT: X = SQUARE NUMBER (0-34) 
+
+OUTPUT: X=SQUARE # 
+
+CC =&gt; ACTIVE, CAN JUMP 
+
+
+CS »&gt; CANNOT JUMP 
+
+Y&gt;0 (NE) =&gt; ACTIVE PIECE WHICH CAN MOVE — SAVED IN YSAVE 
+
+Y=0 (EQ) =&gt; NO MOVE AT ALL FOR THIS SQUARE 
+
+
+XMOVE=START SQUARE OF FIRST MOVE OR JUMP FOUND IF ANYMVE=0 OR IF JUMP. 
+
+
+FA2D 
+
+MOVCHK 
+
+
+
+
+
+
+-FA2D AO 00 
+
+
+LDY 
+
+#0 
+
+
+
+
+FA2F 84 B5 
+
+
+STY 
+
+YSAVE 
+
+i T2 
+
+
+
+FA31 B5 80 
+
+
+LDA 
+
+BOARD, X 
+
+
+
+
+FS33~F0 44 
+
+
+- BEQ 
+
+JMP12 
+
+;EMPTY SQUARE 
+
+
+
+FA35 45 BB 
+
+
+EOR 
+
+ACTIVE 
+
+
+
+
+FA37 30 40 
+
+
+BMI 
+
+JMP12 
+
+;PASSIVE PIECE — CAN'T MOVE 
+
+
+
+FA39 86 B4 
+
+
+STX 
+
+XSAVE 
+
+i T1 
+
+
+
+FA3B 20 22 FA 
+
+
+JSR 
+
+LOADY 
+
+iY &lt;— 3 (OR i IF CMPCHK) 
+
+
+
+FA3E 
+
+JMPLP2 
+
+
+
+
+
+
+FA3E 20 C9^ FA~ 
+
+
+J5R 
+
+0NBRD2 
+
+;ADD MOVTAB OFFSET TO SQUARE AND CHECK TO SEE IF OFF BOARD 
+
+
+
+FA41 BO 27 
+
+
+BCS 
+
+JMP10 
+
+;OFF BOARD 
+
+
+
+FA43 AA 
+
+
+TAX 
+
+
+
+
+
+FA44 BS SO- 
+
+
+LDA 
+
+BOARD, X 
+
+
+
+
+FA46 DO OD 
+
+
+BNE 
+
+JMP05 
+
+
+
+
+
+; NOT JUMP 
+
+
+
+
+FA48 SA 
+
+
+TXA 
+
+
+;NEXT SQUARE IS EMPTY 
+
+
+
+FA49 A5 B6 
+
+
+LDA " 
+
+ANYMVE 
+
+
+
+
+FA4B DO 04 
+
+
+BNE 
+
+JMP02 
+
+
+
+
+FA4D A6 B4 
+
+
+LDX 
+
+XSAVE 
+
+
+
+
+-FA4F 66 CO 
+
+
+
+“XMOVE 
+
+;SAVE START SQUARE AND OFFSET INDEX 
+
+
+
+FA51 
+
+JMP02 
+
+
+
+
+
+
+FA51 E6 B5 
+
+
+INC 
+
+YSAVE 
+
+
+
+
+
+FA55 45 BB 
+
+EOR 
+
+ACTIVE 
+
+;NEXT SQUARE IS OCCUPIED 
+
+1 A57“1D 11 
+
+BFL 
+
+JMP10 
+
+;ACTIVE PIECE — CAN'T JUMP OWN PIECE 
+
+FA59 20 C9 FA 
+
+JSR 
+
+0NBRD2 
+
+;ADD MOVTAB OFFSET TO SQUARE AND CHECK 
+
+IA5C BO OC 
+
+BCS 
+
+JMP10 
+
+;CAN'T JUMP OFF BOARD 
+
+T-A5E A A 
+
+TAX 
+
+
+
+:-A5F B5 80 
+
+LDA 
+
+BOARD,X 
+
+
+I-A61 DO 07 
+
+BNE 
+
+JMP10 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+FA63 A6 B4 
+FA65 36 CO 
+
+
+
+LDX 
+
+STX 
+
+XSAVE 
+
+XMOVE 
+
+; SAVE START SQUARE AND OFFSET INDEX FOR JUMP 
+} CC» NE JUMP FOUND 
+
+
+
+FA67~S0 01 
+FA69 60 
+
+
+
+LET? 
+
+RTS 
+
+#1 
+
+
+
+
+1A6A JMP10 
+
+
+FA6A 
+
+A6 
+
+B4 
+
+LDX 
+
+XSAVE 
+
+
+FA6C 
+
+88 
+
+
+DEY 
+
+
+
+FA6D 
+
+30 
+
+“0A~ 
+
+BMI 
+
+JMP12 
+
+i DONE 
+
+FA6F 
+
+CO 
+
+01 
+
+CPY 
+
+#1 
+
+
+FA71 
+
+DO 
+
+CB 
+
+BNE 
+
+JMPLP2 
+
+;CONTINUE 
+
+FA73 
+
+B5~ 
+
+80 
+
+LDA 
+
+BOARD, X 
+
+
+FA75 
+
+C9 
+
+10 
+
+CMP 
+
+#HUMCHK 
+
+
+FA77 
+
+DO 
+
+C5 
+
+BNE 
+
+JMPLP2 
+
+
+
+
+
+i 
+
+
+HUMAN CHECKER CAN'T GO BACK (DOWN) SKIP RB, LB 
+
+FA79 
+
+
+
+JMP12 
+
+
+
+FA79 
+
+38 
+
+
+SEC 
+
+
+iNO JUMP FOUND 
+
+FA7A 
+
+A4 
+
+B5 
+
+LDY 
+
+YSAVE 
+
+iLOAD MOVE COUNT 
+
+FA7C 
+
+60 
+
+
+RTS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+r 
+
+
+XIEl — INPUT X = INTERNAL SQUARE NUMBER (0-34) 
+
+OUTPUT X = EXTERNAL SQUARE #-l (0-31) 
+
+AFFECTS X, CARRY SET IF RESULT = 24-31 
+_ INTERNAL #'S 8, 17 AND 26 ARE NOT USED. 
+
+
+FA7D XIEl 
+
+
+FA7D EO 08 
+
+CPX 
+
+#8 
+
+
+!• A7F 90 OB 
+
+BCC 
+
+ARTN 
+
+; 0-7 OK 
+
+FA81 CA 
+
+DEX 
+
+
+i 9-34 TO 8-33 
+
+FA82 EO 10 
+
+CPX 
+
+#16 
+
+
+FA84 90 06 
+
+BCC 
+
+ARTN 
+
+rs-15 OK 
+
+FA86 CA 
+
+DEX 
+
+
+»17-33 TO 16-32 
+
+!-AS7 EO 18 
+
+CPX 
+
+#24 
+
+
+I-A89 90 01 
+
+BCC 
+
+ARTN 
+
+“TT6-230K 
+
+FA8B CA 
+
+DEX 
+
+
+;25-32 TO 24-31 
+
+FA8C 
+
+ARTN 
+
+
+
+FA8C 60 
+
+RTS 
+
+
+
+
+i IEDSP 
+
+— CONVERT 
+
+INTERNAL SQUARE # IN X (0-34) TO 
+
+FA8D 
+
+IEDSP 
+
+
+EXTERNAL IN A FOR DISPLAY. 
+
+1-32 IF HUMAN IS DARK, 32-1 IF HUMAN IS LIGHT 
+
+FA8D 8A 
+
+TXA 
+
+
+
+FA8E 10 OA 
+
+BPL 
+
+IED04 
+
+
+FA90 A5 C3 
+
+LDA 
+
+FRAME 
+
+
+FA92 29 10 
+
+AND 
+
+#$10 
+
+
+FA94 FO 02 
+
+BEQ 
+
+IED02 
+
+
+~ FA96 A2~ AA 
+
+LDX 
+
+#BLANK 
+
+;IF SPECIAL CHAR (E.G. "JP"&gt; THEN BLINK ON &amp; OFF 
+
+FA98 
+
+FA98 8A 
+
+IED02 
+
+TXA 
+
+
+
+FA99 60 
+
+RTS 
+
+
+
+FA9A 
+
+IED04 
+
+
+
+I-A9A 20 7D FA 
+
+JSR 
+
+XIEl 
+
+
+FA9D A5 C2 
+
+LDA 
+
+OLDPBQ 
+
+;CHECK "B/W SWITCH" 
+
+FA9F A4 B1 
+
+— LDY 
+
+COLHUM 
+
+
+l-AAl CO 36 
+
+CPY 
+
+#DARK 
+
+
+FAA3 DO 06 
+
+BNE 
+
+IED05 
+
+;HUMAN LIGHT =&gt; REVERSE NUMBERING 
+
+FAA5 29 08 
+
+AND 
+
+#$8 
+
+;DARK=&gt;DON y T REVERSE 
+
+FAA7 FO 06 
+
+BEQ 
+
+IED07 
+
+;B/W =&gt; REVERSE 
+
+FAA9 DO OB 
+
+BNE 
+
+IED10 
+
+;NQT B/W =&gt; DON'T REVERSE 
+
+“ FAAB 
+
+IED05 
+
+
+
+FAAB 29 08 
+
+AND 
+
+#8 
+
+;CHECK B/W 
+
+FAAD FO 07 
+
+BEQ 
+
+IEDIO^_ 
+
+iB/W IMPLIES DON'T REVERSE _ 
+
+FAAF 
+
+IED07 
+
+
+
+FAAF 8A 
+
+TXA 
+
+
+;BOARD REVERSED 
+
+FABO 38 
+
+SEC 
+
+
+. .■■■■■[::' ____ 
+
+l-ABl E9 20 
+
+“BBC 
+
+#32 
+
+j 31-X = -(X-31) = -((X—32)+1) = COMP (X-32) 
+
+FAB3 49 FF 
+
+EOR 
+
+#$FF 
+
+;COMPLEMENT 
+
+FAB5 AA 
+
+TAX 
+
+
+
+FAB 6 
+
+I ED 10 
+
+
+
+FAB6 E8 
+
+INX 
+
+
+i 1-32 
+
+FAB7 8A 
+
+TXA 
+
+
+
+
+CONVERT BINARY IN A TO DECIMAL IN A 
+
+{-ABB AO 00 LDY #0 - _ _ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+[•ABA 
+
+C9 
+
+OA 
+
+
+CMP 
+
+#10 
+
+f'ABC 
+
+90 
+
+07 
+
+
+BCC 
+
+IED20 
+
+T-ABE 
+
+E9 
+
+OA 
+
+
+SBC 
+
+#10 
+
+f ACO 
+
+C8 
+
+
+
+I NY 
+
+
+FAC 1 
+
+DO 
+
+F7 
+
+
+BNE 
+
+IEDLP1 
+
+FAC 3 
+FAC3 
+
+69 
+
+10 
+
+IEDLP2 
+
+ADC 
+
+#16 
+
+FAC 5 
+
+1 AC 5 
+
+88 
+
+
+IED20 
+
+DEY 
+
+
+1 AC6 
+
+10 
+
+FB 
+
+
+BPL 
+
+IEDLP2 
+
+FAC8 
+
+60 
+
+
+
+RTS 
+
+
+
+i 0-9 =&gt; DONE 
+
+i JMP 
+
+
+;CONVERT BINARY TO DECIMAL 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCB CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+
+
+; 
+
+0NBRD2 
+
+— ADD MOVTAB OFFSET TO SQUARE AND CHECK TO SEE IF OFF BOARD 
+
+
+FAC9 
+
+T-AC? 
+
+SA 
+
+
+0NBRD2 
+
+TXA 
+
+
+
+i ACA 
+FACB 
+
+79 
+
+66 FF 
+
+
+CLC 
+
+ADC 
+
+MOVTAB, Y 
+
+
+
+
+
+
+ONBRD - 
+
+- INPUT: A=INTERNAL SQUARE # 
+
+OUTPUT: CS =&gt; OFF BOARD 
+
+A,X,Y ARE NOT CHANGED 
+
+
+FACE 
+
+C9 
+
+S3 
+
+
+CMP 
+
+#35 
+
+
+F ADO 
+
+BO 
+
+OE 
+
+
+BCS 
+
+NOTON i &gt;=35 OR &lt;0 
+
+
+FADS _ 
+
+cv 
+
+1A 
+
+
+CTiP 
+
+#26 - 
+
+
+FAD4 
+
+FO 
+
+OA 
+
+
+BEQ 
+
+NOTON 
+
+
+FAD6 
+
+C9 
+
+11 
+
+
+CMP 
+
+#17 
+
+
+TADS 
+
+(-0 
+
+06 
+
+
+BEG 
+
+NOTON 
+
+
+! ADA 
+
+C9 
+
+OS 
+
+
+CMP 
+
+#8 
+
+
+F ADC 
+
+FO 
+
+02 
+
+
+BEQ 
+
+NOTON 
+
+
+F-ADE 
+
+TF 
+
+
+
+“ CLC 
+
+
+
+FADF 
+
+60 
+
+
+
+RTS 
+
+
+
+FAEO 
+
+
+
+NOTON 
+
+
+
+
+FAEO 
+
+3S 
+
+
+
+SEC 
+
+
+1 
+
+FAE1 
+
+60 
+
+
+
+RTS 
+
+
+
+
+
+
+
+; . 
+
+TOSET - 
+
+— SET UP TOSQRB# TtUvFLG# RETURN Y-~G# A# X UNCHANGED# EQ 
+
+1 
+
+FAES 
+
+
+
+TOSET 
+
+
+
+
+-FAES 
+
+A 4 
+
+A5 
+
+
+LDY 
+
+' " MSTJMP F n FROM" 
+
+
+F AE4 
+
+FO 
+
+04 
+
+
+BEQ 
+
+MV285 
+
+
+FAE6 
+
+AO 
+
+BB 
+
+
+LDY 
+
+#JP ; MUST JUMP 
+
+
+FAES 
+
+DCF 
+
+02 
+
+
+BNE 
+
+MV287 TUMP 
+
+
+FAEA 
+
+
+
+MV285 
+
+
+
+
+FAEA 
+
+AO 
+
+AA 
+
+
+LDY 
+
+#BLANK &gt; NO JUMP 
+
+
+FAEC 
+
+
+
+^ MV287 
+
+
+
+
+! AEC 
+
+84 
+
+AD 
+
+
+STY 
+
+TOSQRB 
+
+
+FAEET 
+
+AO 
+
+00 
+
+
+LDY 
+
+m 
+
+
+FAFO 
+
+84 
+
+E5 
+
+
+STY 
+
+MOVFLG 
+
+
+FAF2 
+
+60 
+
+
+
+RTS 
+
+-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+/ 
+
+
+TONORM — GO OUT OF ATTRACT INTO NORMAL MODE 
+
+
+FAF3 
+
+FAF3 AO 00 
+FAF5 84 EE 
+FAF7 88 
+FAF8 84 EF 
+FAFA 60 
+
+
+TONORM 
+
+LDY #0 ;CLEAR TIMER 
+
+STY ATTR 
+
+DEY ;RETURN Y=$FF 
+
+STY GFLG2 
+
+RTS --- 
+
+
+CRSTUP — SET UP ACTIVE AND COLORS (COLHUM&amp;COLCMP) (DEPENDS ON RIGHT DIFFICULTY SWITCH) 
+
+
+FAFB 
+
+CRSTUP - 
+
+
+
+
+FAFB A4 C2 
+
+
+LDY 
+
+OLDPBQ 
+
+
+FAFD 10 08 
+
+
+BPL 
+
+FSET20 
+
+;0 (AM,B,DOWN) =&gt; PO FIRST (ACTIVE) 
+
+• FAFF A9 SO 
+
+
+L.DA 
+
+#$80 
+
+;COMPUTER STARTS 1 (PRO,A,UP) 
+
+PB01 "A2 OC 
+
+
+~ LDX 
+
+#light 
+
+;HUMAN IS LIGHT 
+
+FB03 AO 35 
+
+
+LDY 
+
+#DARK 
+
+;COMPUTER IS DARK (OR RIGHT HAND PLAYER) 
+
+F-B05 DO 06 
+
+
+BNE 
+
+FSET30 
+
+; JMP 
+
+FB07 
+
+FSET20 
+
+
+
+
+FB07 A9 00 
+
+
+LDA 
+
+#0 
+
+
+FB09 A2 36 
+
+
+LDX 
+
+#DARK 
+
+;HUMAN IS DARK 
+
+FBOB AO OC 
+
+
+LDY 
+
+#L1GHT 
+
+;COMPUTER IS LIGHT (OR RIGHT HAND PLAYER) 
+
+FBOD 
+
+FSET30 
+
+
+
+
+FBOD 85 BB 
+
+
+STA 
+
+ACTIVE 
+
+
+FBOF 86 B1 
+
+
+STX 
+
+“COLFRJM 
+
+
+FB11 84 B2 
+
+
+STY 
+
+COLCMP 
+
+
+FB13 60 
+
+
+RTS 
+
+
+
+
+SWIT -- SWITCH ACTIVE PLAYER, RETURN A=ACTIVE 
+
+
+FB14 SWIT 
+
+FB I 4 A 5 I3B-— CDA“ 
+
+FBI6 49 80 EOR 
+
+FBI8 85 BB STA 
+
+TUTS - 50" 
+
+
+
+
+"RTS 
+
+
+ACTIVE" 
+
+#$80 
+
+ACTIVE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL 
+
+SHAW 5/15/80 9:41 
+
+AM 
+
+
+
+m 
+
+l t" 
+
+
+
+RESTR6 
+
+— RESTORE A BUNCH OF STUFF INCLUDING FRSMOV 
+
+
+• 
+
+FB1B 
+
+RESTR6 
+
+
+
+
+
+
+f-BlB 29 CO 
+
+FB1D 85 BF 
+
+
+AND 
+
+STA 
+
+#*C0 
+
+FRSMOV 
+
+
+
+— 
+
+-• 
+
+
+RESTR4 
+
+— RESTORE BOARD 
+
+AFTER JUMP 
+
+
+
+FB1F 
+
+RESTR4 
+
+
+
+
+•--;---s------1 
+
+• 
+
+FB1F A6 BC 
+
+FB21 B5 D2 
+
+FB23 29 30 
+
+
+LDX 
+
+LDA 
+
+AND 
+
+DEPTH 
+
+OTHER-1, X 
+#$30 
+
+; COMPUTE PIECE 
+
+
+
+FB25 05 BB 
+
+FB27 85 A3 
+
+
+ORA 
+
+STA 
+
+ACTIVE 
+
+PIECE 
+
+
+
+• 
+
+FB29 B5 D2 
+
+FB2B 48 
+
+FB2C A 5 AC- 
+
+
+LDA 
+
+PHA 
+
+LDA 
+
+OTHER-1, X 
+
+FROMB 
+
+iCAPTURED PIECCE 
+
+; FROM SQUARE __ 
+
+
+
+-FS2E~A4n3E 
+
+FB30 18 
+
+FB31 79 66 FF 
+
+
+LDY 
+
+CLC 
+
+ADC 
+
+INDEX 
+
+MOVTAB,Y 
+
+
+
+# 
+
+' FB34 AA 
+
+FB35 ie 
+
+FB36 79 66 FF 
+
+
+TAX 
+
+CLC 
+
+ADC 
+
+MOVTAB,Y 
+
+iJUMP SQUARE 
+
+
+
+~ FB39S5 AD 
+
+FB3B 68 
+
+
+STA 
+
+PLA 
+
+TOSQRB 
+
+
+
+
+FB3C 
+
+RESTR5 
+
+RESTR5 
+
+—ENTRY POINT 
+
+,SET UP TO INCREMENT OPPONENT'S PIECE COUNT 
+iKING? 
+
+
+
+FB3C AO“02 
+
+FB3E 2A 
+
+FB3F A9 90 
+
+
+LDY 
+
+ROL 
+
+LDA 
+
+#2 
+
+A 
+
+#CMPCHK 
+
+
+• 
+
+FB41 90 03 
+
+FB43 C8 
+
+FB44 A9 AO 
+
+
+BCC 
+
+I NY 
+
+LDA_ 
+
+NOK - 
+
+#CMPKNG _ 
+
+; NO. 
+
+iKING =&gt; 3 
+
+
+
+FB46 
+
+FB46 45 BB 
+
+FB48 95 80 
+
+NOK 
+
+EOR 
+
+STA 
+
+ACTIVE 
+
+BOARD, X_ 
+
+iOPPOSITE PLAYER — JUMPED PIECE 
+
+
+
+FB4A 29 80 
+
+FB4C OA 
+
+
+AND 
+
+ASL 
+
+#$80 
+
+A 
+
+;ACTIVE EOR #$80 
+
+
+# 
+
+-FB4D 2A 
+
+FB4E AA 
+
+FB4F 98 
+
+
+ROL 
+
+TAX 
+
+TYA 
+
+~"AT 
+
+jSHIFT AND CLEAR CARRY 
+
+
+
+FB50 75 A9 
+
+FB52 95 A9 
+
+
+ADC 
+
+STA 
+
+HPIECE, X 
+
+HPIECE, X 
+
+i STORE NEW PIECE COUNT 
+
+
+
+FB54 CO 03 
+
+FB56 DO 02 
+
+FB58 F6 AE 
+
+
+CPY 
+
+BNE 
+
+INC 
+
+#3 
+
+NOK 10 
+
+HKING,X_ 
+
+
+
+
+!-B 5 A 
+
+FB5A A5 A7 
+
+N0K10 
+
+LDA 
+
+MSTFLG 
+
+
+
+
+
+MST JMP 
+
+-- 
+
+
+
+FB5C 85 A5 
+
+FB5E A5 A8 
+
+i. ra in A A 
+
+
+STA 
+
+LDA 
+
+STA 
+
+MLTFLG 
+
+MLTJMP 
+
+;RESTORE FLAGS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IB60 85 Ao 
+
+
+SI A 
+
+
+mltjmp 
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 
+
+AM 
+
+
+[ 
+
+* 
+
+RESTOR 
+
+— MOVE PIECE 
+
+BACK &amp; DEC PIECE COUNT IF NEW KING 
+
+TT362 RESTOR 
+
+
+
+
+FB62 A6 AD 
+
+LDX 
+
+TOSQRB 
+
+
+FB64 B5 80 
+
+LDA 
+
+BOARD,X 
+
+
+FB66 C5 A3 
+
+CMP 
+
+PIECE 
+
+
+FB68 FO 09 
+
+BEQ 
+
+TERR 
+
+i SAME — NOT NEW KING 
+
+FB6A A5 BB 
+
+LDA 
+
+ACTIVE 
+
+iMOVE BIT7 TO BIT 1 
+
+S-B6C OA 
+
+ASL 
+
+A 
+
+
+FB6D 2A 
+
+ROL 
+
+A 
+
+
+FB6E AA 
+
+TAX 
+
+
+
+FB6F D6 A9 
+
+DEC 
+
+HPIECE,X 
+
+
+FB71 D6 AE 
+
+DEC 
+
+HKING, X 
+
+;DECREMENT KING COUNT 
+
+FB73 TERR 
+
+
+
+
+FB73 A6 AD 
+
+LDX 
+
+TOSQRB 
+
+
+FB75 A9 00 
+
+LDA 
+
+#0 
+
+
+FB77 95 80 
+
+STA 
+
+BOARD, X 
+
+;CLEAR TO SQUARE 
+
+FB79 A6 AC 
+
+LDX 
+
+FROMB 
+
+
+FB7B A5 A3 
+
+LDA 
+
+PIECE 
+
+iMOVE PIECE TO FROM SQUARE 
+
+FB7D 95 80 
+
+STA 
+
+BOARD, X 
+
+
+FB7F 60 
+
+RTS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+JUMP 1 
+
+— SETS UP 
+
+JMPLST IF MULTIPLE JUMP FOR COMPUTER (FOR END OF ALPHA-BETA) 
+
+
+
+
+INPUT 
+
+TO = STARTING SQUARE 
+
+
+
+
+
+Y = INDEX 
+
+INTO MOVTAB 
+
+
+
+
+
+11 = CURRENT JMPLST INDEX 
+
+
+
+
+OUTPUT: TO = ENDING SQUARE (AFTER JUMP) 
+
+
+
+
+
+T1 = Tl+1 COLD T1 TN X) 
+
+---: 
+
+
+
+
+JMPLST, X 
+
+= JUMPED PIECE (B7=l =&gt; KING) AND SQUARE 
+
+
+
+
+
+CS = DONE 
+
+(LAST JUMP) 
+
+
+FB80 
+
+} 
+
+JUMP 1 
+
+
+
+
+PESO A5 B3 
+
+
+LDA 
+
+TO 
+
+
+
+M382 IS 
+
+
+CLC 
+
+
+
+
+FB83 79 66 FF 
+
+
+ADC 
+
+MDVTAB, Y 
+
+
+
+FB86 48 
+
+
+PHA 
+
+
+
+
+““F B2T7 AA 
+
+
+TAX 
+
+
+
+
+FB88 B5 80 
+
+
+LDA 
+
+BOARD, X 
+
+;SAVE JUMP SQUARE 
+
+
+F-B8A C6 A9 
+
+
+DEC 
+
+HPIECE 
+
+;DECREMENT HUMAN'S PIECE COUNT 
+
+
+FB8C C6 A9 
+
+
+DEC 
+
+HPIECE 
+
+
+
+FB8E C9 20 
+
+
+CMP 
+
+#HUMKNG 
+
+
+
+FB90 - DO 04 
+
+
+BNE 
+
+NK 
+
+
+—— 
+
+FB92 C6 A9 
+
+
+DEC 
+
+HPIECE 
+
+j KING —DECREMENT AGAIN 
+
+
+FB94 C6 AE 
+
+
+DEC 
+
+HKING 
+
+iDEC KING COUNT 
+
+
+FB96 
+
+NK 
+
+
+
+
+FB96 48 
+
+
+PHA 
+
+
+;SAVE JUMPED PIECE 
+
+
+FB97 A9 00 
+
+
+LDA 
+
+#0 
+
+;CLEAR OUT JUMP SQUARE 
+
+
+FB'99~9 1 5 — B0 
+
+
+STA 
+
+BOARD, 
+
+
+- - 
+
+FB9B 68 
+
+
+PLA 
+
+
+
+
+FB9C AA 
+
+
+TAX 
+
+
+
+
+FB9D 68 
+
+
+PLA 
+
+
+;JUMP SQUARE 
+
+
+FB9E 48 
+
+
+PHA 
+
+
+
+
+FB9F EO 20 " 
+
+
+CPX 
+
+#HUMKNG 
+
+;DOES JUMP SQUARE CONTAIN HUMAN KING? 
+
+
+FBA1 DO 02 
+
+
+BNE 
+
+JUMPS 
+
+; NO. 
+
+
+FBA3 09 80 
+
+
+ORA 
+
+#$80 
+
+; YES. KING 
+
+
+FBA5 
+
+JUMPS 
+
+
+
+
+FBA5 A6 B4 
+
+
+LDX 
+
+T1 
+
+
+
+FBA7 95 C5 
+
+
+STA 
+
+JMPLST, X 
+
+
+
+~ FBA9 E6 B4 
+
+
+INC 
+
+T1 
+
+
+
+FEAB 68 
+
+
+PLA 
+
+
+iRELOAD JUMP SQUARE 
+
+
+-FBAC 18 
+
+
+CLC 
+
+
+i COMPUTE TO SQUARE 
+
+
+FBAD 79 66 FF 
+
+
+ADC 
+
+MOVTAB, Y 
+
+
+
+FBBO 85 B3 
+
+
+STA 
+
+TO 
+
+
+
+FBB2 24 A4 
+
+
+CPX 
+
+JMPI 
+
+;DONE? 
+
+
+FBB4 60 
+
+
+RTS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+JUMP4 -- SIMILAR TO JUMP1, EXCEPT DOES 4 JUMPS 
+
+
+
+
+
+INPUT: 
+
+A = 4 OFFSET INDEXES (B7-6 = FIRST! 
+TO = START SQUARE (FOR JUMP1) 
+
+
+
+;« 
+
+USES: 
+
+T2 = LOOP 
+
+T INDEX (FOR JUMP!) 
+
+COUNT 
+
+
+
+
+OUTPUT: 
+
+T3 = INDEXES 
+
+: TO = END SQUARE, CS=&gt; DONE 
+
+FBB5 
+
+
+JUMP4 
+
+
+
+
+FBB5 
+
+85 B6 
+
+
+STA 
+
+T3 
+
+
+FSB 7 
+
+A9 03 
+
+
+LDA 
+
+#3 
+
+
+FBB9 
+
+85 B5 
+
+
+STA 
+
+T2 
+
+
+FBBB 
+
+
+JUMPL 
+
+
+
+
+FEBB“ 
+
+A9~”0G 
+
+
+LDA 
+
+#0 
+
+
+FBBD 
+
+06 B6 
+
+
+ASL 
+
+T3 
+
+;SHIFT 2 BITS OF 3 
+
+FBBF 
+
+2A 
+
+
+ROL 
+
+A 
+
+
+FBCO 
+
+06B6 
+
+
+ASL 
+
+T3 
+
+
+FBC2 
+
+2A 
+
+
+ROL 
+
+A 
+
+
+FBC3 
+
+A8 
+
+
+TAY 
+
+
+
+-FBB4^0^80 FB 
+
+
+JSR 
+
+JUMP 1 
+
+
+FBC7 
+
+BO 04 
+
+
+BCS 
+
+JUMPR 
+
+iBRANCH IF DONE 
+
+FBC9 
+
+C6 B5 
+
+
+DEC 
+
+T2 
+
+
+FBCB 
+
+10 EE ‘ 
+
+
+BPL 
+
+JUMPL 
+
+7 CONTINUE 
+
+FBCD 
+
+
+JUMPR 
+
+
+
+
+FBCD 
+
+60 
+
+
+RTS 
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+: 
+
+TERMNODE — CHECK FOR 
+
+TERMINAL NODE 
+
+1 
+
+' 
+
+RETURN 
+
+ACTIVE SWITCHED 
+
+
+
+CC =&gt; NOT TERMINAL — 
+
+XMOVE, AND MSTJMP SET UP FOR NEXT LEVEL 
+
+
+
+CS -&gt; TERMINAL — NUM 
+
+= STATICT VALUE OF BOARD 
+
+T-BCE 
+
+TERMNODE 
+
+
+
+FBCE 20 14 FB 
+
+
+JSR 
+
+SWIT 
+
+; SWITCH ACTIVE PLAYER TO GET ACTIVE FOR NEXT LEVEL 
+
+
+
+JSR 
+
+JMPCK2 
+
+i CHECK FOR MOVE OR JUMP, SET UP MSTJMP, XMOVE,YMOVE 
+
+FBD4 DO OF 
+
+
+BNE 
+
+ALP200 
+
+,' CAN MOVE 
+
+
+
+
+DEPTH 
+
+; CAN'T MOVE — VERY BAD 
+
+FBD8 8A 
+
+
+TXA 
+
+
+
+FBD9 IS 
+
+
+CLC 
+
+
+
+i'-BDA 69 02 
+
+FBDC 95 DF 
+
+
+ADC 
+
+STA 
+
+#2 
+
+ALPHAL+1,X 
+
+
+FBDE A9 80 
+
+
+LDA 
+
+#$80 
+
+
+f-BEO 95 EC 
+
+
+STA 
+
+ALPHAH+1,X 
+
+;-INFINITY = $8C-02+DEPTH = -(7FFF - DEPTH-1) (-7FFD TO -7FF3) ($8003 - $800—1 
+
+
+» 
+
+JMP 
+
+SED20 
+
+iNEGATE IF LOSING CHECKERS &amp; RETURN CARRY SET 
+
+
+
+
+— ENTRY POINT 
+
+— CHECK DEPTH — WE KNOW WE CAN JUMP. CS=:TERMINAL NODE 
+
+FBE5 A5 BC 
+
+ALP200 
+
+LDA 
+
+DEPTH 
+
+
+
+
+CMP 
+
+#MAXMAX 
+
+
+FBE9 90 22 
+
+
+BCC 
+
+ALP220 
+
+
+
+
+JSR 
+
+STATEVAL 
+
+;"STACK" FULL — MUST STOP 
+
+FBEE A5 A5 
+
+
+LDA 
+
+MSTJMP 
+
+
+FBFO FO 19 
+
+
+BEQ 
+
+ALP210 
+
+
+
+
+
+
+MUST JUMP— MODIFY VALUE FOR PENDING JUMP 
+
+DECREASE MAGNITUDE OF SCORE. 
+
+FBF2 AO 00 
+
+
+LDY 
+
+#0 
+
+;ADD NEGATIVE NUMBER 
+
+F-BF4 A6 BC 
+
+
+LDX 
+
+DEPTH 
+
+
+FBF6 B5 EC 
+
+
+LDA 
+
+ALPHAH+1,X 
+
+
+FBFB 10 02 
+
+
+BPL 
+
+ALP205 
+
+
+FEFA AO 02 
+
+FBFC 
+
+ALP205 
+
+LDY 
+
+#2 
+
+;&lt;0 =&gt; ADD POSITIVE NUMBER 
+
+FBFC B9 CB FF 
+
+
+LDA 
+
+ADDTAB,Y 
+
+;POS. =&gt; -ADDTRM. NEG =&gt; ADDTRM 
+
+FBFF IS 
+
+
+CLC 
+
+
+_____ 
+
+FCOO 75 DF 
+
+
+ADC 
+
+ALPHAL+1,X 
+
+
+FC02 95 DF 
+
+
+STA 
+
+ALPHAL+1,X 
+
+
+FC04 B9 C9 FF 
+
+
+LDA 
+
+ADDTAB+1 ,"Y 
+
+; POS=&gt; $ FF. RES =&gt;~0 
+
+FC07 75 EC 
+
+
+ADC 
+
+ALPHAH+1,X 
+
+
+FC09 95 EC 
+
+
+STA 
+
+ALPHAH+1,X 
+
+
+FCOB 
+
+ALP210 
+
+
+
+
+FCOB 38 
+
+
+SEC 
+
+
+
+FCOC 60 
+
+
+RTS 
+
+
+
+FOOD 
+
+ALP220 
+
+
+
+
+~FCOD A6 A 5 
+
+
+LDX 
+
+MSTJMP 
+
+i MUST JUMP? 
+
+FCOF FO 02 
+
+
+BEQ 
+
+ALP235 
+
+i NO. BRANCH 
+
+FC11 
+
+ALP230 
+
+
+
+
+FC11 18 
+
+
+CLC 
+
+
+;YES. CONTINUE TREE SEARCH 
+
+FC12 
+
+ALP231 
+
+
+
+
+FC12 60 
+
+
+RTS 
+
+
+
+FC 13 
+
+ALP235 
+
+
+
+
+FC13 A5 BO 
+
+
+LDA 
+
+GAMNO 
+
+;CHECK MAX DEPTH 
+
+FC 15 29 OF 
+
+
+AND 
+
+#$0F 
+
+
+FC17 C5 BC 
+
+
+CMP 
+
+DEPTH 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+FC19 FO 02 BEQ ALP240 ; IF GAMNO = DEPTH THEN STOP UNLESS OTHER PLAYER CAN JUMP 
+
+PC IB BO F4 BCS ALP230 i IF GAMNO &gt; DEPTH THEN CONTINUE TREE SEARCH 
+
+
+; i IF GAMNO &lt; DEPTH THEN STOP UNLESS OTHER PLAYER CAN JUMP 
+
+5CID ALP240 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+STATEVAL — COMPUTE STATIC VALUE OF BOARD 
+
+
+HUMAN ACTIVE =&gt; -CPIECE/HPIECE THEN SHIFT LEFT 4 BITS (2 BYTE RESULT) 
+
+COMPUTER ACTIVE =&gt; CPIECE/HPIECE 
+
+RESULT IS TWO BYTES IN NUM &amp; ALPHA(DEPTH+1) (THIS MIGHT REPLACE OLD ALPHA VALUE). 
+
+
+NUM = LSB = FRACTIONAL PART. 
+
+NUM+1 = MSB = INTEGER PART. 
+
+
+R ETUR N'CARR Y ' SET ‘ 
+
+
+FCID STATEVAL 
+
+
+FCID A6 A9 
+
+FC1F A4 AA 
+
+FC21 86 B8 
+
+
+TDJT 
+
+LDY 
+
+STX 
+
+HPIECU 
+
+CPIECE 
+
+DEN 
+
+i HUMAN ACTIVE =&gt; HPIECE/CPIECE 
+
+FC23 84 B6 
+
+
+“STY 
+
+NUM+1 
+
+; MSB 
+
+FC25 A9 00 
+
+
+LDA 
+
+#0 
+
+; LSB 
+
+FC27 85 B5 
+
+
+STA 
+
+NUM 
+
+
+“FC29 A2 11 
+
+
+LDX 
+
+#17 
+
+
+FC2B IS 
+
+
+CLC 
+
+
+
+FC2C 
+
+SELF 
+
+
+
+
+FC2C 26 B5 
+
+
+ROL 
+
+NUM 
+
+i LSB 
+
+FC2E 26 B6 
+
+
+ROL 
+
+NUM+1 
+
+; MSB 
+
+FC30 CA 
+
+
+DEX 
+
+
+
+FC31 FO 09 
+
+
+BEG 
+
+SEDONE 
+
+;BRANCH IF DONE 
+
+FC33 2A 
+
+
+ROL 
+
+A 
+
+
+FC34 C5 B8 
+
+
+CMP 
+
+DEN 
+
+
+FC36~90HF4 
+
+
+BCC 
+
+SELP 
+
+i 0 
+
+FC38 E5 B8 
+
+
+SBC 
+
+DEN 
+
+
+FC3A BO FO 
+
+
+BCS 
+
+SELP 
+
+;JUMP — ROTATE IN 1 
+
+FC3C 
+
+SEDONE 
+
+
+
+
+FC3C A9 00 
+
+
+LDA 
+
+#0 
+
+
+FC3E 85 B4 
+
+
+STA 
+
+T1 
+
+i INIT CREDIT TO 0 
+
+FC40 06 B5 
+
+
+ASL 
+
+NUM 
+
+;SHIFT LEFT 4 BITS 
+
+FC42 26 B6 
+
+
+ROL 
+
+NUM+1 
+
+;CHECK FOR OVERFLOW 
+
+FC44 06 B5 
+
+
+ASL 
+
+NUM 
+
+
+FC46 26 B6 
+
+
+ROL 
+
+NUM+1 
+
+
+FC4S 06 B5 
+
+
+ASL 
+
+NUM 
+
+
+FC4A 26 B6 
+
+
+“ROL 
+
+NUM+1 
+
+
+FC4C 06 B5 
+
+
+ASL 
+
+NUM 
+
+
+FC4E 26 B6 
+
+
+ROL 
+
+NUM+1 
+
+
+FC50 BO 02 
+
+
+BCS^ 
+
+SED05 
+
+;OVERFLOW 
+
+FC52 10 OB 
+
+
+BPL 
+
+SED07 
+
+;NO OVERFLOW 
+
+FC54 
+
+SED05 
+
+
+
+
+-FC'54 A9 F2 
+
+
+
+#$FF-MAXMAX-2 
+
+; $F2 IF MAXMAX“= TT 
+
+FC56 85 B5 
+
+
+STA 
+
+NUM 
+
+
+FC58 A9 7F 
+
+
+LDA 
+
+#$7F 
+
+i SET TO MAX MAGNITUDE (-S800E TO ALLOW ROOM FOR DEC)_ 
+
+FC5A 85 B6 
+
+
+STA 
+
+NUM+1 
+
+
+FC5C 4C 1A FE 
+
+
+JMP 
+
+ADDSUM 
+
+;IGNORE REST OF CREDITS 
+
+
+FC5F SED07 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCF CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+FC5F A9 FF 
+FC61 35 B9 
+
+FC63 A5 A9 
+FC65 3S 
+FC66 E5 AE 
+FC68 C9 08 
+FC6A 90 03 
+FC6C 
+
+FC6C 4C 10 FD 
+
+1_ FC6F_ 
+
+:C6F 65 AF 
+FC71 38 
+FC73 E5 AA 
+FC74“S0^F&amp;- 
+
+FC76 
+
+— IC76 A2 22 
+FC7B 
+
+FC78 86 B9 
+FC7A S5 80 
+
+FC7C FO 64 
+
+FC7E2920 
+FC80 DO OD 
+
+FCB2 "20 7D FA- 
+
+FC85 8A 
+FC86 4A 
+-FC87 4A- 
+
+FC88 18 
+FC89 65 B4 
+FC8B 85 B4 
+FC8D A6 B9 
+FCSF 
+
+FCBFD5 80- 
+
+FC91 30 4F 
+FC93 20 7D FA 
+
+-FC96 8A- 
+
+FC97 4A 
+FC9S 4A 
+FC99B5B7 
+
+FC9B 49 01 
+FC9D 6A 
+FC9E~BA~- 
+
+FC9F 2A 
+
+_FCAO 2907 
+
+FCA2 85 B8 
+
+
+END GAME CLE AN UP - 
+
+LDA #$FF 
+
+STA T7 
+
+
+LDA 
+
+SEC 
+
+SBC 
+
+CMP 
+
+BCC 
+
+DIS02- 
+
+UMP 
+
+DIS03 
+
+ADC 
+
+SEC 
+
+SBC 
+
+BCS - 
+
+
+HPIECE 
+
+HKTNG 
+
+#ENDPC 
+
+DIS03 
+
+
+DIS70 
+
+
+CKING 
+
+CPIECE 
+
+DTS02 
+
+
+DIS04 
+
+LDX #34 
+
+DISLP1 
+
+STX T7 
+
+LDA BOARD, X 
+
+BEQ DIS65 
+
+AND 4KING 
+
+BNE DIS05 
+
+U5R XTEI- 
+
+TXA 
+
+LSR A 
+
+LSR A 
+
+CLC 
+
+ADC T1 
+
+-sta- rr - 
+
+LDX T7 
+
+DIS05 
+
+" CUB-TJDARBTX ~ 
+
+BMI DIS65 
+
+JSR XIE1 
+
+- rxA —— -~ 
+
+LSR A 
+
+LSR A 
+
+STA TST — 
+
+EOR #1 
+
+ROR A 
+
+— TXA'—--- 
+
+ROL A 
+
+AND #7 
+
+STAT "DEN- 
+
+
+FCA4 A2 22 LDX #34 
+
+FCA6 D1SLP2 | H 
+
+FCA6 B5 80 LDA BOARD, X 
+
+FCAS 10 35 BPL DIS60 
+
+
+
+FCAA 8A 
+FCAB 48 
+FCAC 20 7D FA 
+
+
+TXA 
+
+PHA 
+
+"JSR XIEl 
+
+
+DO ONLY J^F COMPUTER IS WINNING OR EVEN 
+
+
+i INDICATE NOT END GAME UNTIL PROVEN OTHERWISE 
+
+; COMPUTE # OF HUMAN PIECES # 2 = HPIECE-HKING 
+i DOES HUMAN HAVE MORE THAN END GAME AMOUNT? 
+
+i YES. NOT END GAME 
+
+i NO. END GAME. IS COMPUTER AHEAD IN # OF PIECES? 
+iSKIP IF HUMAN &gt;= COMPUTER 
+
+
+;SAVE X 
+
+;EMPTY SQUARE? 
+
+;YES. TRY NEXT SQUARE 
+
+;KING? 
+
+;YES. SKIP 
+
+;NO. ORDINARY MAN. COMPUTE DISTANCE OF MAN FROM BOTTOM OF BOARD 
+
+
+; ADD T1_ 
+
+i RELOAD X 
+
+i SKIP IF COMPUTER 
+
+;CONVERT INTERNAL SQUARE # TO EXTERNAL 
+
+
+; ROW 
+
+;COMPLEMENT LSBIT 
+iAND SHIFT TO CARRY. 
+
+;SHIFT CARRY INTO BO 
+i AND MASK TO GET COL. 
+
+“ /'COL"""—-■"—- 
+
+;FIND COMPUTER'S PIECES 
+
+
+;EMPTY OR HUMAN 
+CHECK FOR KING? 
+
+;SAVE INTERNAL SQUARE # 
+
+
+;CONVERT INTERNAL SQUARE # TO EXTERNAL 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCfi CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+FCAF BA 
+
+TXA 
+
+
+FCBO 4A 
+
+LSR 
+
+A 
+
+FCB1 4A 
+
+L5R 
+
+A 
+
+FCB2 38 
+
+SEC 
+
+
+FCB3 E5 B7 
+
+SBC 
+
+T6 
+
+PCB5 10 05 
+
+BPL 
+
+DIS30 
+
+FCB7 49 FF 
+
+EOR 
+
+#$FF 
+
+FCB9 18 
+
+CLC 
+
+
+l-CB'A 69 01 
+
+ADC 
+
+#1 
+
+FCBC 
+
+DIS30 
+
+
+FCBC 85 B3 
+
+STA 
+
+TO 
+
+'■ CBE SA 
+
+TXA 
+
+
+FCBF 4A 
+
+LSR 
+
+A 
+
+FCCO 4A 
+
+LSR 
+
+A 
+
+~FCCl 49 01 
+
+EOR 
+
+#1 
+
+FCC3 6A 
+
+ROR 
+
+A 
+
+FCC4 8A 
+
+TXA 
+
+
+F-CC5 2A 
+
+ROL- 
+
+A 
+
+FCC6 29 07 
+
+AND 
+
+#7 
+
+FCCS 38 
+
+SEC 
+
+
+FCC9 E5 B8 
+
+SBC 
+
+DEN 
+
+FCCB 10 05 
+
+BPL 
+
+DIS40 
+
+FCCD 49 FF 
+
+EOR 
+
+#$FF 
+
+
+CLC 
+
+
+FCDO 69 01 
+
+ADC 
+
+#1 
+
+FCD2 
+
+DIS40 
+
+
+. r -CD2 C5 B3 
+
+'CMP 
+
+TO 
+
+FCD4 BO 02 
+
+BCS 
+
+DIS50 
+
+FCD6 A5 B3 
+
+LDA 
+
+TO 
+
+FCD8 
+
+DIS5G 
+
+
+FCD8 18 
+
+CLC 
+
+
+FCD9 65 B4 
+
+ADC 
+
+T1 
+
+FCDD 85 B4 
+
+^TA 
+
+T1 
+
+FCDD 68 
+
+PLA 
+
+
+FCDE AA 
+
+TAX 
+
+
+FCDF 
+
+DIS60 
+
+
+FCDF CA 
+
+DEX 
+
+
+FCEO 10 C4 
+
+BPL 
+
+DISLP2 
+
+FCE2 
+
+DIS65 
+
+
+PCE2 A6 B9 
+
+LDX 
+
+T7 
+
+FCE4 CA 
+
+DEX 
+
+
+FCE5 10 91 
+
+BPL 
+
+DISLP1 
+
+FCE7 A5 B5 
+
+LDA 
+
+NUM 
+
+FCE9 38 
+
+SEC 
+
+
+FCEA E5 B4 
+
+SBC 
+
+T1 
+
+FCEC 85 B5 
+
+STA 
+
+NUM ' 
+
+FCEE BO 02 
+
+BCS 
+
+DIS67 
+
+FCFO C6 B6 
+
+DEC 
+
+NUM+1 
+
+FCF2 
+
+DIS67 
+
+
+FCF2 A9 00 
+
+LDA 
+
+#0 
+
+F-CF4 85 B4 
+
+STA 
+
+T1 
+
+
+* 
+
+
+iCOMPUTE ROW 
+
+
+&gt;COMPUTE DIFFERENCE IN ROWS 
+.MAKE POSITIVE 
+
+
+iCOMPUTE DIFFERENCE IN COLS 
+
+
+iSHIFT TO CARRY 
+
+
+; COL 
+
+
+.MAKE POSITIVE 
+
+
+i FIND LARGER' OF DIF IN ROWS AND COLS 
+
+&gt; USE FIRST VALUE 
+
+; THIS IS THE DISTANCE BET. THE COMPUTER PIECE &amp; THE HUMAN PIECE 
+iADD NEG. ft TO CREDIT 
+
+.RESTORE INTERNAL SQUARE # 
+
+
+; STOP WHEN T7=0 
+
+.SUBTRACT CREDIT FROM NUM 
+
+iBORROW? 
+
+;YES. DECREMENT MSB 
+
+
+;CLEAR OUT T1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I 
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+-- 
+
+
+
+; 
+
+COUNT 
+
+COMPUTER PIECES 
+
+ON DIAGONAL 
+
+FCF6 AO OD 
+
+* 
+
+LDY 
+
+#14-1 
+
+
+FCFS 
+
+DIAGLP 
+
+
+
+
+FCFS BE 7E FF 
+
+
+LDX 
+
+DIAG,Y 
+
+
+FCFB B5 80 
+
+
+LDA 
+
+BOARD/X 
+
+
+FCFD FO OE 
+
+
+BEQ 
+
+DIAG20 
+
+;EMPTY 
+
+FCFF 2A 
+
+
+ROL 
+
+A 
+
+
+FDOO 29 40 
+
+
+AND 
+
+#KING*2 
+
+;KING? 
+
+FD02 FO 09 
+
+
+BEQ 
+
+DIAG20 
+
+; NO. 
+
+FD04 90 05 
+
+
+see 
+
+DIAG10 
+
+FYES: “ BRANCH IF HUMAN 
+
+FD06 E6 B4 
+
+
+INC 
+
+T1 
+
+iCOMPUTER 
+
+FDOS 4C OD FD 
+
+
+JMP 
+
+DIAG20 
+
+
+1-DOB 
+
+DIAGIO 
+
+
+
+
+FDOB C6 B4 
+
+
+DEC 
+
+T1 
+
+;HUMAN 
+
+FDOD 
+
+DIAG20 
+
+
+
+
+FOOD 88 
+
+
+DEY 
+
+
+
+FDOE 10 E8 
+
+
+BPL 
+
+DIAGLP 
+
+
+FD10 
+
+DIS70 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+1 
+
+FD10 A5 BO 
+
+
+LDA 
+
+GAMNO 
+
+
+FD12 29 OE 
+
+
+AND 
+
+#$0E 
+
+
+FD14 DO 03 
+
+
+BNE 
+
+ADS 10 
+
+
+FD16 
+
+BACK25 
+
+
+
+
+FD16 4C 1A FE 
+
+
+JMP 
+
+ADDSUM 
+
+
+FD19 
+
+ADSTO 
+
+
+
+
+FD19 A5 AE 
+
+
+LDA 
+
+HKING 
+
+
+FBTB OA 
+
+
+ASL 
+
+A 
+
+
+FD1C 65 AE 
+
+
+ADC 
+
+HKING 
+
+
+FD1E C5 A9 
+
+
+CMP 
+
+HPIECE 
+
+
+FD20 FO 23 
+
+
+BEQ 
+
+BACK10 
+
+
+FD22 A9 00 
+
+
+LDA 
+
+#0 
+
+
+FD24 A4 9F 
+
+
+LDY 
+
+BOARD+31 
+
+
+FD26 10 02 
+
+
+BPL 
+
+BACK30 
+
+
+FD28 09 08 
+
+
+ORA 
+
+_#8_ 
+
+
+FD2A 
+
+BACK30 
+
+
+
+
+FD2A A4 AO 
+
+
+LDY 
+
+BOARD+32 
+
+
+FD2C 10 02 
+
+
+BPL 
+
+BACK40 
+
+
+FD2E 09 04 
+
+
+ORA 
+
+#4 
+
+
+FD30 
+
+BACK40 
+
+
+
+
+FD30 A4 A1 
+
+
+LDY 
+
+BOARD+33 
+
+
+FD32 10 02 
+
+
+BPL 
+
+BACK50 
+
+
+FD34 09 02 
+
+
+ORA 
+
+#2 
+
+
+FD36 
+
+BACK50 
+
+
+
+1 
+
+FD36 A4A2 
+
+
+LDY 
+
+EOARD+34 
+
+
+FD38 10 02 
+
+
+BPL 
+
+BACK60 
+
+
+FD3A 09 01 
+
+
+ORA 
+
+#1 
+
+
+FD3C 
+
+BACK60 
+
+
+
+
+FD3C AA 
+
+
+TAX 
+
+
+
+FD3D BD 52 FF 
+
+
+LDA 
+
+BAKTAB,X 
+
+.jgS 
+
+-FB40 18 
+
+
+CLC 
+
+
+
+FD41 65 B4 
+
+
+ADC 
+
+T1 
+
+
+FD43 85 B4 
+
+
+STA 
+
+T1 
+
+
+FD45 
+
+BACK10 
+
+
+
+
+FD45 A5 AF 
+
+
+LDA 
+
+CKING 
+
+m 
+
+FD47 OA 
+
+
+ASL 
+
+A ~ 
+
+
+FD48 65 AF 
+
+
+ADC 
+
+CKING 
+
+L 
+
+FD4A C5 AA 
+
+
+CMP 
+
+CPIECE 
+
+
+"FD4C FO 2B “ SEQ BACK20 
+
+
+FD4E A9 00 
+FD50 A4 83 
+FD52 FO 04 
+FD54 30 02 
+FD56 09 08 
+
+FD58 
+
+FD58 A4 82 
+FD5A FO 04 
+FD5C 30 02 
+FD5E 09 04 
+
+FDSO 
+
+PD60 A4 81 
+FD62 FO 04 
+FD64 30 02 
+
+
+LDA #0 
+
+- LBT BOARD+3 
+
+BEQ BACK70 
+
+BMI BACK70 
+
+ORA #8 
+
+BACK70 
+
+LDY BOARD+2 
+
+-BEQ ' BACKSO 
+
+BMI BACK80 
+
+ORA #4 
+
+BACK80 
+
+LDY BQARD+1 
+
+BEQ BACK90 
+
+BMI BACK90 
+
+
+(KING ROW PROTECTION) 
+
+
+i GAME # = 1? 
+
+; NO. SKIP 
+
+; SKIP THE REST IF GAME # _•=_ 1 OR $11 
+
+iDOES HKING * 3 = HPIECE? _ 
+
+;SHIFT LEFT AND CLEAR CARRY 
+
+iYES. =&gt; NO ORDINARY MEN TO CONVERT TO KINGS 
+
+
+i OR IN 1 BIT FOR EACH BACK ROW SQUARE WHICH IS OCCUPIED BY A COMP PIECE _ 
+
+
+;ADD TABLE VALUE TO CURRENT CREDIT 
+
+
+;DOES CKING»3 = CPIECE? _ 
+
+;YES. NO CHECKERS TO CONVERT TO KINGS 
+
+
+;0R IN 1 BIT FOR EACH BACK ROW SQUARE WHICH IS OCCUPIED BY A HUMAN PIECE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+FD66 
+
+ID68 
+
+09 
+
+02 
+
+BACK90 
+
+ORA 
+
+FD68 
+
+A4 
+
+80 
+
+
+LDY 
+
+1-D6A 
+
+FO 
+
+04 
+
+
+BEQ 
+
+FD6C 
+
+30 
+
+02 
+
+
+BMI 
+
+FD6E 
+
+09 
+
+01 
+
+
+ORA 
+
+FD70 
+
+
+
+BACK95 
+
+
+FD70 
+
+AA 
+
+
+
+TAX 
+
+FD71 
+
+A5 
+
+B4 
+
+
+LDA 
+
+FD73 
+
+38 
+
+
+
+SEC 
+
+FD74 
+
+FD 
+
+52 FF 
+
+
+SBC 
+
+FD77 
+
+85 
+
+B4 
+
+
+STA 
+
+
+#2 
+
+BOARD+O 
+
+BACK95 
+
+BACK95 
+
+#1 
+
+
+T1 
+
+BAKTAB,X 
+
+TV 
+
+
+FD79 
+
+
+BACK20 
+
+
+;SUBTRACT TABLE VALUE FROM CURRENT CREDIT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+* 
+
+
+COMPUTE DOUBLE CORNER CREDIT 
+
+
+FD79 A5 BO 
+FD7B 29 OF 
+FD7D C9 &lt;73 
+FD7F 90 95 
+
+
+GAMNO 
+
+#$0F 
+
+#3 
+
+BACK25 
+
+
+; GAME # = T OR 2? 
+
+JUMP ADDSUM IF GAME # TOO SMALL 
+
+
+FD81 A9 20 
+FD83 A2 FC 
+FD85 A4 A9 
+FD87 C4 AA 
+FD89 FO 06 
+FD8B 90 04 
+FD8D A9 AO 
+FDBF A2 04 
+FD91 
+
+FD91 85 B8 
+
+
+#HUMKNG 
+
+#—CORNS&lt;$FF 
+
+HPIECE 
+
+CPIECE 
+
+C0RN20 
+
+C0RN20 
+
+#CMPKNG 
+
+#CORN 
+
+
+iDO IF EQUALS 
+;HUMAN &lt;= COMPUTER 
+
+
+
+
+_ HUMAN WANTS CORN 
+
+;HUMAN &gt; COMPUTER =&gt;COMPUTER WANTS CORN 
+iINC ALPHA 
+
+
+FD93 86 B3 
+FD95 AO 00 
+FD97 A5 80 
+FD99 FO 05 
+FD9B 45 B8 
+
+FD9D DO IF!- 
+
+FD9F CS 
+FDAO 
+
+FDA0A5 84- 
+
+FDA2 FO 05 
+FDA4 45 B8 
+
+
+“STA“ 
+
+STX 
+
+LDY 
+
+LDAT 
+
+
+BEN¬ 
+
+TO 
+
+
+#0 
+
+
+;HUMAN OR COMPUTER 
+;-CORN OR +CORN 
+
+
+BEQ 
+EOR 
+HSNE~ 
+I NY 
+
+
+BOARD+0 
+
+C0RN30 
+
+DEN 
+
+C0RN50 
+
+
+iIS SQUARE OCCUPIED? 
+i NO. EMPTY 
+
+;CORRECT PLAYER AND KING? 
+iNO. OTHER PLAYER — TOO BAD 
+iYES. INC CORN COUNT 
+
+
+“LBA~ 
+
+BEQ 
+
+EOR 
+
+
+BOARD+4'' 
+
+C0RN40 
+
+DEN 
+
+
+iCHECK OTHER SQUARE IN THIS CORNER 
+iEMPTY 
+
+
+FDA6 DO OC 
+
+BNE 
+
+C0RN50 
+
+;WRONG PLAYER— TOO BAD 
+
+FDA8 C8 
+
+I NY 
+
+
+
+FDA9 
+
+C0RN40 
+
+
+
+FDA9 CO 01 
+
+CPY 
+
+#1 " 
+
+
+FDAB DO 07 
+
+BNE 
+
+C0RN50 
+
+
+FDAD A5 B4 
+
+LDA 
+
+T1 
+
+
+FDAF IS 
+
+CLC 
+
+
+
+FDBO 65 B3 
+
+ADC 
+
+TO 
+
+i WE GET CREDIT 
+
+FDB2 85 B4 
+
+STA 
+
+T1 __ 
+
+
+FDB4 
+
+CORN50" 
+
+
+
+FDB4 AO 00 
+
+LDY 
+
+#0 
+
+CHECK OTHER CORNER 
+
+FDB6 A5 9E 
+
+LDA 
+
+B0ARD+30 
+
+IS SQUARE OCCUPIED? 
+
+FDB8 FO 05 
+
+BEQ ~ 
+
+C0RN60 
+
+NO. EMPTY 
+
+FDBA 45 B8 
+
+EOR 
+
+DEN 
+
+CORRECT PLAYER AND KING? 
+
+FDBC DO 15 
+
+BNE 
+
+CRN100 
+
+NO. TOO BAD 
+
+FDBE CET 
+
+INY 
+
+
+
+FDBF 
+
+C0RN60 
+
+
+
+FDBF AS A2 
+
+LDA 
+
+BOARD+34 
+
+
+FDCI FO 05 
+
+BEQ 
+
+C0RN70 
+
+NO. EMPTY 
+
+FDC3 45 B8 
+
+EOR 
+
+DEN 
+
+CORRECT PLAYER AND KING? 
+
+FDC 5 DO OC 
+
+BNE 
+
+CRN100 
+
+NO. 
+
+FDC7 C8 
+
+INY 
+
+
+
+FDC8 
+
+C0RN70 
+
+
+
+FDC8 CO 01 
+
+CPY 
+
+#1 
+
+
+FDCA DO 07 
+
+BNE 
+
+CRN100 
+
+
+FDCC A5 B4 
+
+LDA 
+
+T1 
+
+
+FDCE 18 
+
+CLC 
+
+
+
+FDCF 65 B3 
+
+ADC 
+
+TO 
+
+
+FDD1 85 B4 
+
+STA 
+
+T1 
+
+
+
+FDD3 CRN100 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCrs CHECKERS BY CAROL SHAW 5/15/SO 9:41 AM 
+
+
+COMPUTE CENTER CREDIT 
+
+
+FDD3 
+
+FDD3 A5 B9 
+FDD5 FO OC. 
+FDD7 A5 93 
+FDD9 10 02 
+FDDB E6 B4 
+FDDD 
+
+FDDD A5 94 
+! • DDF TO 02 
+FDE1 E6 B4 
+FDE3 
+
+
+DOCENT 
+
+LDA T7 
+
+BEQ CENT90 
+
+LDA BOARD+19 
+
+BPL CENT50 
+
+INC T1 
+
+CENT50 
+
+LDA B0ARD+20 
+
+BPL CENT90 
+
+INC T1 
+
+CENT90 
+
+
+;SKIP IF END GAME 
+
+;COUNT EACH COMPUTER PIECE IN SQUARES 19&amp;20 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VC8 CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+COMPUTE MOVE CREDIT (ADD CREDIT IF COMPUTER HAS MOVE) 
+
+
+FDE3 
+
+FDE5 
+
+A5 BO 
+
+29 OC 
+
+
+LDA 
+
+AND 
+
+GAMNO 
+
+#$0C 
+
+i GAME # &lt; 4? 
+
+FDE7 
+
+FO 31 
+
+
+BEQ 
+
+ADDSUM 
+
+T YES. SKIP 
+
+FDE9 
+
+A5 A9 
+
+
+LDA 
+
+HPIECE 
+
+
+FDEB 
+
+18 
+
+
+CLC 
+
+
+
+"FDEC 
+
+65~AA 
+
+
+ADC 
+
+CPIECE 
+
+
+FDEE 
+
+C9 19 
+
+
+CMP 
+
+#24+1 
+
+;TOTAL PIECE COUNT &gt; 24? 
+
+FDFO 
+
+BO 28 
+
+
+BCS 
+
+QMV100 
+
+; YES. SKIP MOVE 
+
+
+FDF2 A5 A9 
+
+FDF4 38 
+
+LDA 
+
+SEC 
+
+HPIECE 
+
+iSUBTRACT OFF EXTRA POINT FOR EACH KING TO GET 
+j 2 TIMES PIECE COUNT FOR EACH PLAYER. 
+
+FDFS^ES’AE 
+
+SBC 
+
+HKING 
+
+
+FDF7 38 
+
+SEC 
+
+
+
+FDF8 E5 AA 
+
+SBC 
+
+CPIECE 
+
+;HPIECE-HKING-CPIECE+CKING 
+
+FDFA 18 
+
+CLC 
+
+
+7=HPIECE-HKING-(CPIECE-CKING) 
+
+FDFB 65 AF 
+
+ADC 
+
+CKING 
+
+
+FDFD DO IB 
+
+BNE 
+
+QMV100 
+
+;PIECE COUNTS ARE DIFFERENT _ 
+
+
+COUNT PIECES IN COMPUTER'S SYSTEM 
+
+
+FDFF AO OF 
+
+
+LDY 
+
+#16-1 
+
+
+FE01 A9 00 
+
+
+LDA 
+
+#0 
+
+;INIT COUNT 
+
+FE03 85 B3 
+
+
+STA 
+
+TO 
+
+
+FE05 
+
+QMVLP 
+
+
+
+
+FE05 BE 75 FF 
+
+
+LDX 
+
+SYSTEM,Y 
+
+
+FE08 B5 80 
+
+
+LDA 
+
+BOARD, X 
+
+
+FEOA FO 02 
+
+
+BEQ 
+
+QMV10 
+
+
+FEOC E6 B3 
+
+
+INC 
+
+TO 
+
+
+FEOET 
+
+QMVID 
+
+
+
+
+FEOE 88 
+
+
+DEY 
+
+
+
+{•EOF 10 F4 
+
+
+BPL 
+
+QMVLP 
+
+
+FE11 66 B3 
+
+
+ROR 
+
+TO 
+
+;ODD OR EVEN? 
+
+FE13 6A 
+
+
+ROR 
+
+A 
+
+
+5E14 45 BB 
+
+
+EOR 
+
+ACTIVE 
+
+;COMPUTER OR HUMAN ACTIVE? 
+
+FE16 30 02 
+
+
+BMI 
+
+QMV100 
+
+;HUMAN HAS MOVE — DON'T ADD CREDIT 
+
+FE1B E6 B4 
+
+
+INC 
+
+T1 
+
+iHUMAN IS ACTIVE AND EVEN COUNT 
+
+
+FE1A ■QHVTOO 
+
+L_ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+ADD SUM OF BACK, CORN, ETC. IN T1 TO PIECE COUNT RATIO IN NUM 
+
+
+FE1A ADDSUM 
+
+FE1A A6 BC LDX DEPTH 
+
+FETCT A5 B4 DBA TI 
+
+FE1E 18 CLC 
+
+FE1F 65 B5 ADC NUM 
+
+!E21 95 DF STA ALPHAL+1, X 
+
+FE23 A9 00 LDA #0 ;COMPUTE MSB 
+
+FE25 A4 B4 LDY Tl iNEGATIVE? 
+
+I-E27 10 02 " BPL ADD 10 ; NO. POSITIVE. USE 0 
+
+FE29 A9 FF LDA #$FF ;YES. USE *FF 
+
+FE2B __ADD 10 ______ 
+
+! E2B 65 B6 ADC NUM+1 ' LADD WITH CARRY FROM LSB 
+
+FE2D 95 EC STA ALPHAH+1,X ; SHOULD NEVER GET OVERFLOW 
+
+
+FE2F A5 BB LDA" ACTIVE - LHUMAN ACTIVE? 
+
+FE31 30 07 BMI SED20 i NO. 
+
+FE33 A5 BO LDA GAMNO 
+
+- FE35 C9 10 CMP #PLAY2 “ i LOSING CHECKERS?" 
+
+FE37 90 09 BCC SED25 ;NO. WINNING CHECKERS — NEGATE ALPHA 
+
+PE39 60 _ RTS ; YES. DOUBLE NEGATE =&gt; NO NEGATE. RETURN CARRY J3ET 
+
+
+IF LOSING CHECKERS &lt;GAMES &gt; 2-PLAYER GAME) THEN NEGATE ALPHA — ENTRY POINT 
+RETURN CARRY SET 
+
+
+
+FE3A 
+
+FE3A A6 BC 
+
+FE3C A5 BO 
+FE3E C9 10 
+"FE40 90 OD 
+FE42 
+FE42 38 
+FE43 A9 "00 
+FE45 F5 DF 
+FE47 95 DF 
+FE49 A9 00 
+FE4B F5 EC 
+FE4D 95 EC 
+~FE4F 
+FE4F 38 
+FE50 60 
+
+
+SED20 
+
+
+XDX 
+
+LDA 
+
+CMP 
+
+BCC “ 
+
+
+SED25 
+
+
+SEC 
+
+LDA 
+
+SBC 
+
+STA 
+
+
+LDA 
+
+SBC 
+
+STA 
+
+
+DEPTH 
+
+GAMNO 
+
+#PLAY2 
+
+SED30 
+
+
+;LOSING CHECKERS 
+
+TKT " 
+
+ALPHAL+1,X 
+
+ALPHAL+1 ,X_ 
+
+#0 
+
+ALPHAH+1, X 
+
+ALPHAH+1, X __ 
+
+
+SED30 
+
+
+SEC 
+
+RTS 
+
+
+;RETURN CARRY SET &lt;FOR TERMNODE) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a VCS CHECKERS BY 
+
+CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+
+
+; CHGCNT 
+
+— CHANGE PIECE 
+
+COUNT TO REFLECT OPPONENT'S JUMPED PIECE 
+
+
+
+• i FE51 
+
+CHGCNT 
+
+
+
+
+
+FE51 AO FE 
+
+LDY 
+
+#-2&amp;$FF 
+
+;DECREASE OPPONENT'S PIECE COUNT FOR JUMPED PIECE 
+
+
+
+FES3 AA 
+
+TAX 
+
+
+;KING? 
+
+
+
+^ FE54 10 01 
+
+BPL 
+
+AJ10 
+
+i NO. 
+
+
+
+FE56 80 
+
+DEY 
+
+
+; YES. USE -3 
+
+
+
+" FE57 
+
+AJ10 
+
+
+
+
+
+^ FE57 A5 BB 
+
+LDA 
+
+ACTIVE 
+
+
+
+
+FE59 49 80 
+
+EOR 
+
+#$80 
+
+iOPPONENT 
+
+
+
+FESB OA 
+
+ASL 
+
+A 
+
+
+
+
+• FE5C 2A 
+
+ROL 
+
+A 
+
+;SHIFT CLEARS CARRY 
+
+
+
+FE5D AA 
+
+TAX 
+
+
+
+
+
+FE5E 98 
+
+TYA 
+
+
+
+
+
+• FE5F 75 A9 
+
+ADC 
+
+HPIECE, X 
+
+
+
+
+FE61 95 A9 
+
+STA 
+
+HPIECE, X 
+
+
+
+
+• FE63 CO FD 
+
+CPY 
+
+#—3S&lt;$FF 
+
+
+
+
+FE65 DO 02 
+
+BNE 
+
+AJ15 
+
+
+
+
+FE67 D6 AE 
+
+DEC 
+
+HKINGi X 
+
+;DECREMENT KING COUNT BECAUSE KING WAS CAPTURED 
+
+
+
+^ FE69 
+
+AJ15 
+
+
+
+
+
+FE69 60 
+
+RTS 
+
+
+
+
+
+
+; JMPSV2 
+
+— SAVE MOVE IN 
+
+JMPLST (COMPACTED FORMAT FOR ALPHA-BETA) 
+
+
+
+FE6A 
+
+■ JMPSD2 
+
+
+
+
+
+FE6A AO 00 
+
+LDY 
+
+#0 
+
+;YES. SAVE FIRST MOVE IN JMPLST 
+
+
+
+FE6C A6 BC 
+
+LDX 
+
+DEPTH 
+
+; 1-9 
+
+
+
+FE6E CS~ 
+
+DEX 
+
+
+
+
+
+FE6F DO OA 
+
+BNE 
+
+WASJ18 
+
+
+
+
+FE71AF^E 
+
+LDA 
+
+INDEX 
+
+;DEPTH=1 
+
+
+
+FE73 4A 
+
+LSR 
+
+A 
+
+
+
+
+FE74 6A 
+
+ROR 
+
+A 
+
+
+
+
+FE75 6A 
+
+ROR 
+
+
+
+
+
+j FE76 05 AC 
+
+ORA 
+
+FROMB 
+
+
+
+
+FE78 85 C5 
+
+STA 
+
+JMPLST 
+
+
+
+
+_ FE7A 60 
+
+RTS 
+
+
+
+
+
+FE7B 
+
+WASJf8 
+
+
+
+
+
+FE7B CA 
+
+DEX 
+
+
+iDEPTH-2 (0-7) 
+
+
+
+FE7C SA 
+
+TXA 
+
+
+
+
+
+FE7D 48 
+
+PHA 
+
+
+, 
+
+
+
+FE7E 4A 
+
+LSR 
+
+A 
+
+
+
+
+FE7F 4A 
+
+LSR 
+
+A 
+
+» 0 OR~T 
+
+
+
+FE80 AA 
+
+TAX 
+
+
+
+
+
+FE81 E8 
+
+INX 
+
+
+i 1 OR 2 
+
+
+
+FEB2 68 
+
+FLA 
+
+
+
+
+
+FE83 29 03 
+
+AND 
+
+#3 
+
+; 0-2 
+
+
+
+FE85 A8 
+
+TAY 
+
+
+
+
+
+§ FE86 A5 BE 
+
+LDA 
+
+INDEX 
+
+
+
+
+FE88 84 B3 
+
+STY 
+
+TO 
+
+
+
+
+FE8A 
+
+WASJtP 
+
+
+
+
+
+| FE8A CO 03 
+
+CPY 
+
+#3 
+
+i DONE? 
+
+
+1 
+
+FESC BO 05 
+
+BCS 
+
+WASJ90 
+
+i YES. 
+
+
+
+I-E8E OA ASL A i NO. SHIFT LEFT 2 MORE BITS' 
+
+
+| r-E8F OA ASL A 
+
+PE90 C8 INY 
+
+! E91 90 F7 BCC 
+
+
+WASJLP 
+
+
+i JMP 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FE91 90 F7 
+
+
+BCC WASJL.P 7 JMP 
+
+
+0 VCF CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+' 1 
+
+3 
+
+
+FE93 
+
+FE93 A4 B3 
+FE95 55 C5 
+FE97 39 4A FF 
+FE9A 55 C5 
+FE9C 95 C5 
+FE9E 60 
+
+
+L.DY 
+
+AND 
+
+EOR 
+
+STA 
+
+RTS 
+
+
+TO 
+
+jmplst ,r 
+
+MSKLST»Y 
+JMPLST/ X 
+JHPLST7X- 
+
+
+/COMBINE WITH JMPLST (CO,30,OC,03) 
+
+
+JMPSAV — SAVE VARIABLES FOR JUMP &amp; INC DEPTH 
+
+
+FE9F A5 BD 
+
+LDA 
+
+jmpsqr 
+
+FEA1 29 CO 
+
+AND 
+
+#$co 
+
+FEA3 05 A7 
+
+ORA 
+
+MSTFLG 
+
+FEA5 05 AS 
+
+ORA 
+
+MLTFLG 
+
+FEA7 05 BE 
+
+ORA 
+
+INDEX 
+
+FEA9 45 A3 
+
+EOR 
+
+PIECE 
+
+FEAE 29 CF 
+
+AND 
+
+wcf ' ~ ■; 
+
+FEAD 45 A3 
+
+EOR 
+
+PIECE 
+
+
+, SAVE1 
+
+— ENTRY POINT 
+
+F E AF 
+
+SAVE! 
+
+
+FEAF E6 BC 
+
+INC 
+
+DEPTH 
+
+FEB 1 A6 BC 
+
+LDX 
+
+DEPTH 
+
+FEB3 95 D1 
+
+STA 
+
+OTHER-2, X 
+
+FEB5 A5 AC 
+
+LDA 
+
+FROMB 
+
+FEB7 05 BF 
+
+ORA 
+
+FRSMOV 
+
+FEB9 95 C6 
+
+STA 
+
+FR0MT-2/X 
+
+FEBB 60 
+
+RTS 
+
+
+
+JUMPED PIECE 
+
+
+COMBINE A WITH BITS 5-4 OF PIECE (KING OR CHECKER) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+AD=* 
+
+
+^7 1 i-^. . '" fixy, 
+
+IF PRNT 
+
+. ENDIF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+f 
+
+
+W 
+
+w 
+
+
+FF52 00 02 02 
+FF55 06 02 OC 
+FF58 04 OC 02 
+FF5B 06 08 OA 
+FF5E 02 OC 08 
+FF61 OC 
+FF62 05 09 06 
+FF65 OA 
+
+
+FF66 FB FC 04 
+FF69 05 
+FF 6 A F 6 F 8 08 
+FF 6 D OA 
+
+
+BAKTAE . BYTE 0*2, 1*2, 1*2,3*2, 1*2, 6*2,2*2,6*2, 1*2,3*2,4*2, 5*2, 1*2, 6*2,4*2, 6*2 
+
+
+JOYTAB BYTE 5, 9, 6 , $A ;JOYSTICK READINGS FDR DIAGONAL MOVEMENT. 
+
+; MOVTAB Sc MVTAB2 GO TOGETHER — DO NOT SEPARATE!!! 
+
+,' HUMAN CHECKER CAN'T DO 0,1; COMPUTER CHECKER CAN'T DO 2,3. 
+
+MOVTAB TBYTE RBTLBTRFTLF ; OFFSETS FOR DIAGONAL MOVEMENT (RELATED TO^JOYTaST 
+
+MV T A ? 2 ■ BYTE 2*RB, 2*LB,2*RF,2*LF ;OFFSETS FOR JUMPS ___ 
+
+
+; LIST OF FIRST MOVES 
+
+FF 6 E 59 19 58 FRSTAB .BYTE $40+25, $00+25,$40+24,$00+24,*40+23, $40+22, 540+23 ; USE 23 FROM SYSTEM 
+
+FF71 18 57 56 
+FF74 57 
+
+
+COMPUTER'S MOVE SYSTEM (INTERNAL NUMBERING) 
+
+
+FF75 17 06 
+FF78 OD 10 
+
+07 
+
+16 
+
+SYSTEM 
+
+. BYTE 
+
+23, 6 , 7, 13, 16, 22, 31, 32, 
+
+33 
+
+;23 IS PART OF FRSTAB 
+
+
+
+FF7B IF 20 
+
+21 
+
+
+
+
+
+
+
+
+FF7E 04 05 
+
+OE 
+
+DIAG 
+
+SQUARES 
+. BYTE 
+
+ON DIAGONAL BETWEEN DOUBLE CORNERS 
+
+4, 5, 14, 15, 24, 25, 34 ; PART OF SYSTEM 
+
+ALSO 
+
+
+FF81 OF 18 
+
+19 
+
+
+
+
+
+
+
+
+FFB4~22 
+FF85 00 09 
+
+OA 
+
+
+. BYTE 
+
+0, 9, 10, 19, 20, 29, 30 
+
+
+;REST OF DIAG 
+
+
+
+FF 88 13 14 
+
+ID 
+
+
+
+
+
+
+
+
+FF 8 B IE 
+
+
+. 
+
+"SCORE" 
+
+TABLE — CHARACTERS 0- 
+
+-9, BLANK, JP 
+
+
+
+
+
+
+MUST NOT CROSS PAGE BOUNDARY 
+
+-- THIS 
+
+INCLUDES BOTH LISTING PAGE 
+
+Sc RAM PAGE. 
+
+
+-FFBC ~ 
+
+FF 8 C OE OA 
+FF 8 F OA OE 
+
+OA 
+
+SCRTBL 
+
+. BYTE 
+
+$0E, $0A, $0A, $0A, $0E 
+
+; 0 
+
+HIGH ORDER 0 IS DISPLAYED 
+
+AS BLANK 
+
+
+FF9T~ EE 44 
+
+44 
+
+
+. BYTE 
+
+$EE, $44, $44, $CC, $44 
+
+/I I TT 
+
+
+
+
+FF94 CC 44 
+FF96 EE 88 
+
+EE 
+
+
+. BYTE 
+
+$EE,$ 88 ,$EE,$22, $EE 
+
+; 2 
+
+
+
+
+FF99 22 EE 
+FF9B EE 22 
+FF9E 22 EE 
+
+66 
+
+
+. BYTE 
+
+$EE,$22,$ 66 , $22, $EE 
+
+; 3 
+
+
+
+
+FFAO 22 22 EE 
+
+
+TBYTE 
+
+$22, $22, $EE, $AA, $AA 
+
+, 4 
+
+
+
+
+FFA3 AA AA 
+FFA5 EE 22 
+
+EE 
+
+
+. BYTE 
+
+$EE,$22,$EE,$ 88 , $EE 
+
+; 5 
+
+
+
+
+FFAS 88 EE 
+FFAA EE AA 
+FFAD 88 EE 
+
+EE 
+
+
+. BYTE 
+
+$EE,$AA,$EE,$ 88 , $EE 
+
+; 6 
+
+
+
+
+FFAF 22 22 22 
+
+
+. BYTE 
+
+$22,$22,$22,$22, $EE 
+
+77 
+
+
+
+
+FFB2 22 EE 
+FFB4 EE AA 
+
+EE 
+
+
+. BYTE 
+
+$EE, $AA, $EE, $AA, $EE 
+
+i 8 
+
+
+
+
+FFB7 - AA EE 
+FFB9 EE 22 
+FFBC AA EE 
+
+EE 
+
+
+. BYTE 
+
+$EE,$22,$EE, $AA, $EE 
+
+; 9 
+
+
+
+
+FFBE 00 00 
+
+00 
+
+
+7 BYTE 
+
+0,0,0,070 “ 
+
+; AA 
+
+BLANK 
+
+
+
+FFC1 00 00 
+I-FC3 E4 A4 
+
+27 
+
+
+■ BYTE 
+
+$E4, $A4, $27, $25, $27 
+
+; BB 
+
+JP 
+
+
+
+
+~FFCS 27 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCO CHECKERS BY CAROL SHAW 5/15/80 9:41 AH 
+
+
+V 
+
+
+FFC8 EO FF 20 
+
+T-FCB 00 34 36 
+FFCE BO 26 26 
+
+
+c 
+
+
+ADDTAB BYTE -ADDTRM, *FF, ADDTRM ; TERMS TO ADD IN TERMNODE IF FULL PENDING JMP 
+
+i _USE O FROM COLTB FOR END OF ADDTAB 
+
+COLTB .BYTE EDARK/ ELIGHT, ELIAT,HDARK,HLIGHT,HLIAT ;COLORS FOR DIFFERENT SQUARES S &lt; EASY OR HARD 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+TOSUB -- SUBROUTINE TO DO JUNK FOR TO CODE 
+
+
+FFD1 
+
+FFD1 A 6 E9 
+FFD3 A5 A3 
+FFD5 20 DF FF 
+FFD 8 85 A3 
+FFDA 95 80 
+FFDC 85 E4 
+FFDE 60 
+
+
+LDX MOVE 
+
+lda piece— 
+
+JSR KNGCHK 
+
+STA PIECE 
+
+STA BOARD.K 
+
+STA MOVVAL 
+
+RTS 
+
+
+;MOVE TO NEW SQUARE FOR MOVCHK 
+;NEW KING? 
+
+
+# 
+
+1 « 
+
+
+KNGCHK — SAME AS KNGCK2 EXCEPT USES Y TO SET MSTJMP TO O IF NEW KING 
+
+
+
+
+i-FDF KNGCHK"- 
+
+FFDF 20 BC FE JSR KNGCK2 
+
+FFE2 90 04 BCC T081 
+
+FFE4 AO 00-LDY-#0 
+
+!-FE 6 84 A5 STY MSTJMP 
+
+FFE 8 T081 
+
+TFE9~ ~50 RTS 
+
+
+S0UND0-S0UND3 — SET UP SOUND REGISTERS 
+
+
+FFE9 SOUNDO 
+
+T-FE9 A9 36 LDA #DROP ; AUDFO__ __ j 
+
+
+i-FEB AO 04 LDY #PURE2 ; AUDCO 
+
+f-FED S0UND2 
+
+i 
+
+FFED A2 OF LDX #$0F ; AUDVO - MAX VOL 
+
+FFEF S0UND3 , 
+
+FFEF 85 17 STA AUDFO 
+
+
+FFF1 86 19 STX AUDVO 
+
+FFF3 84 15 STY AUDCO 
+
+FFF5 60 RTS ' : _ ____ 
+
+
+FFF6 00 00 \ 
+
+. BYTE 0,0 ; EXTRA BYTES 
+
+
+~ FFF8 OO OO CIO" 
+FFFB 00 
+
+. BYTE - 0,0,0, 0 iMORE EXTRA BYTES 
+
+FFFC 00 FI 
+
+*=ROMSTR+$FFC 
+
+. WORD PSTART i START VECTOR ____ 1 
+
+l-FFE 00 00 .BYTE' 0,0 ; EXTRA BYTES 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CAROL SHAW 5/15/80 9:41 AM 
+
+
+THE FOLLOWING CODE IS FOR DEBUGGING ONLY. 
+
+IT IS NOT TO BE INCLUDED IN THE FINAL CARTRIDGE. 
+
+THESE SUBROUTINES USE THE KIM MONITOR ROUTINES TO PRINT VARIOUS 
+INFORMATION ON THE TI TERMINAL CONNECTED TO THE DEVELOPMENT SYSTEM 
+
+
+. IF 
+*=AD 
+
+
+PRNT 
+
+
+-1/256+1*256 
+
+
+PRMOVE — PRINT FROMB-TOSQRB 
+
+
+LDX 
+
+BEQ 
+
+DEC 
+
+“BPL 
+
+JSR 
+
+LDA 
+
+STA 
+
+LDX 
+
+
+PRFLG 
+
+PRRTN 
+
+PRCNT 
+
+PRMV10 
+
+CRLF 
+
+# 10-1 
+
+PRCNT 
+
+
+FROMB 
+
+IEDSP 
+
+PRTBYT 
+
+
+iPRINT FLAG SET? 
+
+;N0. DON'T PRINT 
+;PRINT 10 MOVES TO THE LINE 
+
+
+i YES. 
+
+iPRINT FROM SQUARE # 
+
+
+PRTO — PRINT TO SQUARE 
+
+
+
+
+LDA 
+
+BEQ 
+
+LDA 
+
+JSR 
+
+LDX 
+
+TXA 
+
+BMI 
+
+JSR 
+
+JSR 
+
+JMP 
+
+
+PRFLG 
+
+PRRTN 
+
+
+PR0T1 
+
+IEDSP 
+
+
+PRTBYT 
+
+OUTSP 
+
+
+PRINT'FLAG SET? 
+NO. DON'T PRINT 
+YES. PRINT '-' 
+
+;PRINT TO 
+
+
+
+
+;SKIP IF TO = BLANK &lt;AA&gt; OR JP &lt;BB) 
+iCONVERT FROM INTERNAL TO EXTERNAL NUMBERING 
+
+
+PRBRD — PRINT ENTIRE BOARD &amp; OTHER INFO 
+
+
+LDA PRFLG 
+
+BEQ PRRTN 
+
+LDA #0 
+
+STA AUDVO 
+
+JSR CRLF 
+
+
+LDA 
+
+JSR 
+
+LDA 
+
+
+#GAMMSG 
+0UTAL3 
+GAMNO 
+JSR PRTBYT 
+
+JSR CRLF 
+
+
+LDA 
+
+
+#BLKMSG 
+
+
+iPRINT FLAG SET? 
+iNO. DON'T PRINT 
+iYES. TURN OFF SOUND, I F AN Y 
+
+iYES. PRINT CR 
+
+;PRINT "GAME NUMBER ”=" 
+
+
+"COMPUTER IS DARK" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LDA 
+
+
+#BLKMSG 
+
+
+"COMPUTER IS DARK" 
+
+
+© 
+
+(1 
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+LDX COLCMP 
+
+CPX #DARK 
+
+BEQ AXB 
+
+LDA #WHMSG 
+
+AXB 
+
+JSR OUTMSG 
+
+LDX #B 112 
+
+LDA OLDPBQ 
+
+AND #‘8 
+
+BNE AXC 
+
+LDX #W112 
+
+AXC 
+
+TXA 
+
+JSR OUTMSG 
+
+LDA #TOPLFT 
+
+
+
+JSR 0UTMS2 
+
+LDX-#34~~ 
+
+JSR IEDSP 
+
+JSR PRTBYT 
+
+
+;"COMPUTER IS WHITE" 
+
+;PRINT MSG WITH CR 
+;"DARK STARTS ON 1-12" (IF COLOR) 
+
+
+i COLOR 
+
+iB/W "WHITE STARTS ON 1-12" 
+
+
+;PRINT MSG WITH CR 
+
+;"top Left square is" 
+
+;PRINT MSG WITHOUT CR 
+
+
+;COMPUTE TOP LEFT SQUARE # IN EXTERNAL FORM 
+
+
+
+
+JSR CRLF 
+
+LDX #34 
+
+JSR PR2RQW 
+
+JSR PR2R0W 
+
+JSR PR2R0W 
+
+JSR PR2R0W 
+
+PRBD70 
+
+JMP CRLF 
+
+
+;PRINT BOARD 
+
+
+
+
+PR2R0W -- PRINT 2 ROWS AND DECREMENT X 
+
+JSR BL2 i2 BLANK SPACES 
+
+JSR PRROW 
+
+JSR PRROW 
+
+DEX 
+
+RTS 
+
+BL2 -- PRINT TWO SP ACES _ 
+
+
+TXA 
+
+-PHA- 
+
+JSR OUTSP 
+
+JSR OUTSP 
+
+
+
+
+
+
+”PLA“ 
+
+TAX 
+
+RTS 
+
+
+PRROW -- PRINT ONE ROW (4 PIECES) &amp; CR 
+
+
+-FRFEOIT JSR' PRPTEC ' 
+
+
+JSR BL2 
+
+JSR PRPIEC 
+
+'JSR-BL2 
+
+JSR PRPIEC 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+TXA 
+
+PHA 
+
+JSR' 
+
+PLA 
+
+TAX 
+
+
+RTS 
+
+PRPIEC 
+
+
+PRINT ONE PIECE (OR — IF EMPTY) 
+
+
+PRPIEC TXA 
+PHA 
+
+
+“LDA~ 
+
+BNE 
+
+LDA 
+
+
+BOARD/X 
+
+PRPIO 
+
+
+~JSR~ 
+
+LDA 
+
+JSR 
+
+
+DUTCH 
+
+OUTCH 
+
+
+PHA 
+
+LDX 
+
+TAY 
+
+BMI 
+
+
+.COMPUTER — PRINT SPACE 
+
+
+_ 
+
+PRP20 
+
+LDX 
+
+TXA 
+
+4FH 
+
+;HUMAN —* PRINT "H” 
+
+
+
+
+
+
+JSR 
+
+LDX 
+
+PLA 
+
+OUTCH 
+
+#'l 
+
+
+
+
+
+
+
+AND 
+
+CMP 
+
+BNE 
+
+#$7F 
+
+#KING 
+
+PRP30 
+
+;CHECKER = 1 
+;KING = 2 
+
+
+
+Jl 
+
+
+PRP30 
+
+INJC 
+
+TXA 
+
+
+
+
+
+
+
+PRP40 
+
+JSR 
+
+PLA 
+
+DUTCH 
+
+
+
+
+
+. 
+
+
+TAX 
+
+DEX 
+
+RTS 
+
+
+
+
+
+
+
+! 
+
+0UTMS2 
+
+— PRINT STRING 
+
+AT MESSAG/256*256+A ON TI 
+
+WITH NO CR 
+
+
+
+
+0UTMS2 
+
+LDY 
+
+BEG 
+
+PRFLG 
+
+PRRTN2 
+
+;PRINT FLAG SET? 
+jNO. DON'T PRINT 
+
+
+
+
+
+
+TAX 
+
+LDA 
+
+PHA 
+
+TO 
+
+;SAVE TO,TO+1 
+
+
+
+
+. 
+
+
+LDA 
+
+PHA 
+
+STX 
+
+TO+1 
+
+TO 
+
+; MESSAGE ADR LSB 
+
+
+
+
+
+
+LDA 
+
+STA 
+
+JSR 
+
+#MESSAG/256 
+
+TO+1 
+
+0UTM3 
+
+; MESSAGE ADR MSB 
+
+
+
+
+
+TAX 
+
+PLA 
+
+STA 
+
+
+j RESTORE TO, TO+1 
+
+
+TO+1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt; 
+
+(I 
+
+
+VCO CHECKERS BY CAROL 
+
+SHAW 5/15/80 9.41 
+
+AM 
+
+
+
+
+PRRTN2 
+
+STA 
+
+TXA 
+
+TO 
+
+
+
+
+RTS 
+
+
+
+
+
+' 
+
+OUTMSG 
+
+— SAME AS 0UTMS2 EXCEPT DO CR 
+
+
+
+
+OUTMSG 
+
+
+
+
+
+
+
+LDY 
+
+BEQ 
+
+JSR 
+
+PRFLG 
+
+PRRTN2 
+
+0UTMS2 
+
+
+
+
+
+JMP 
+
+CRLF 
+
+
+
+
+
+PRMB — 
+
+INPUT: Y=LSB OF ADDR OF MESSAGE TO BE PRINTED 
+
+
+
+■ X=ADDR OF RAM PAGE ZERO VAR TO BE PRINTED 
+
+OUTPUT: X RESTORED, A, Y MODIFIED 
+
+
+PRMB 
+
+TXA 
+
+PHA 
+
+
+
+
+
+
+TYA 
+
+JSR 
+
+PLA 
+
+0UTMS2 
+
+
+
+
+
+PHA- 
+
+JSR 
+
+JSR 
+
+PRTBYT 
+
+OUTSP 
+
+
+
+
+
+PLA 
+
+TAX 
+
+RTS 
+
+
+
+
+
+CALL OUTALP. THEN PRALL 
+
+
+DEPTH 
+
+PRDEP 
+
+FRRTN2 _ 
+
+OUTALP 
+
+
+PRALL - -- PRINT A BUNCH OF JUNK FOR ALPHA-BETA PRUNING DEBUG 
+
+
+"FRMOVE 
+
+DEPTH 
+
+#QDEPTH 
+
+PRMB- 
+
+ACTIVE 
+ttQACTIVE 
+PRMB ' 
+
+
+- JSR - 
+
+LDX 
+
+LDY 
+
+
+OUTSP 
+
+
+
+DEPTH 
+ALPHAH-1, X 
+PRTBYT 
+
+
+TDX 
+
+LDA 
+
+JSR 
+
+
+DEPTH - 
+
+ALPHAL-1, 
+
+PRTBYT 
+
+OUTSP- 
+
+
+DEPTH 
+ALPHAH,X 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCvS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+JSR 
+
+LDX 
+
+LDA 
+
+JSR 
+
+JSR 
+
+LDX 
+
+LDA 
+
+JSR 
+
+LDX 
+
+LDA 
+
+JSR 
+
+
+E 
+
+
+JSR 
+
+' LDA 
+CMP 
+BCC 
+LDX 
+CPX 
+BEG 
+CPX 
+BNE 
+JSR" 
+
+
+PRTBYT 
+DEPTH 
+ALPHAL,X 
+PRTBYT 
+OUTSP 
+
+DEPTH 
+
+ALPHAH+1,X 
+
+PRTBYT 
+
+DEPTH 
+
+ALPHAL+1,X 
+
+PRTBYT 
+
+OUTSP 
+
+CRLF 
+
+PRDEP 
+
+#4 
+
+PRA20 
+
+DEPTH 
+
+
+#2 
+
+PRA10 
+
+
+PRA20 
+CRLF- 
+
+
+; 2 SPACES IF LEVEL 1 
+;1 SPACE IF LEVEL 2 
+
+
+0UTAL3 — OUTPUT MSG A WITHOUT CR 
+
+
+LDY~ 
+
+STA 
+
+STY 
+
+
+' #MJ/256 
+TO 
+TO+1 
+
+
+0UTM3 — MESSAGE PRINTING LOOP 
+
+
+(TO),Y 
+0UTM20 
+OUTCH 
+
+
+
+
+LDY 
+
+TYA 
+
+PHA 
+
+LDA 
+
+BEG 
+
+JSR 
+
+PLA 
+
+TAT 
+
+INY 
+
+TYA 
+
+PHA* 
+
+BNE 
+
+~PLA 
+RTS 
+
+
+OUTALP — OUTPUT MESSAGE A WITH CR 
+
+
+i END OF MESSAGE IS INDICATED BY A 0 BYTE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+JMP CRLF 
+
+PASK — INPUT MEW PRFLG AND PRDEP FROM TI 
+
+
+PASK 
+
+
+LOA m 
+
+STA PRFLG 
+
+JSR CRLF 
+
+
+L 
+
+
+LDA #PRMSG 
+
+
+JSR 0UTMS2 
+J SR GETBYT 
+PHA 
+
+
+
+JSR CRLF 
+
+
+LDA ttPRDMSG 
+
+
+JSR 0UTMS2 
+
+JSR GETBYT 
+
+STA PRDEP 
+
+PLA 
+
+
+1 
+
+
+
+STA PRFLG 
+
+JMP CRLF 
+
+
+PRM0V2 — SIMILAR TO PRMOVE 
+
+
+LDA CURSOR 
+
+
+STA FROMB 
+
+
+LDA PRFLG 
+
+AND #$FE 
+
+
+iDO CR'S IF PRINTING ALPHA-BETA JUNK 
+
+
+BEQ J0Y800 
+
+JSR CRLF 
+
+JSR CRLF 
+
+JSR PRMOVE 
+
+
+JSR CRLF 
+JSR CRLF 
+LDX MOVE 
+
+
+RTS 
+
+
+JSR PRMOVE 
+
+“LDX MOVE 
+
+RTS 
+. PAGE 
+
+
+;GO ON TO NEXT PAGE BOUNDARY 
+
+
+*=*-1/256+1*256 
+
+
+MESSAG 
+
+
+PRMSG . BYTE "ENTER PRFLG?"70 
+
+PRDMSG BYTE "ENTER PRDEP?". 0 
+
+GAMOVR . BYTE "GAME OVER".0 
+BLKMSG . BYTE "COMPUTER IS DARK". O' 
+WHMSG BYTE "COMPUTER IS WHITE", 0 
+
+B112 BYTE "DARK STARTS ON 1-12",0 
+
+W112 BYTE "WHITE STARTS ON^i-T^ 1 ', 0 
+
+TOPLFT .BYTE "TOP LEFT SQUARE IS ",0 
+
+. PAGE 
+
+JLERR BYTE "JOYLP ERR0R TT 7~0 
+
+QDEPTH .BYTE "DEPTH=",0 
+
+QINDEX . BYTE "INDEX^O^_ 
+
+QBETA .BYTE "ALPHA(DEPTH-1)=",0 
+
+QALP1 BYTE "ALPHA(DEPTH+1)=",0 
+
+QHPIECE . BYTE "HPTECE= ri , 0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VC8 CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+GCPIECE .BYTE "CPIECE=",0 
+
+GACTIVE . BYTE "ACTIVE=",0 
+
+“HPAGE-“ 
+
+
+*=*-1/256+1*256 
+
+MJ . BYTE "MULTIPLE JUMP "..0 
+
+MJBA .BYTE "FRSMOV &amp; BETTER ALPHA",0 
+
+WA . BYTE "WORSE ALPHA",0 
+
+PRUNE . BYTE "PRUN£ n ,0- 
+
+BANFM .BYTE "BETTER ALPHA NOT FRSMOV",0 
+
+BAFM .BYTE "BETTER ALPHA FRSMOV".. 0 
+
+
+■ PAGE-:- 
+
+GAMMSG .BYTE "GAME NUMBER=",0 
+
+R AN BYTE "RANDOM ", 0 
+
+
+*=*“1/256+i*25^ 
+
+
+' PRINTING VARS FOR DEBUG 
+
+PRCNT 
+
+
+
+#=*+1 
+
+;COUNT OF NUMBER 
+
+OF MOVES PRINTED ON A LINE 
+
+PRFLG 
+
+PRDEP 
+
+#=*+i 
+
+/PRINTING FLAG 
+
+
+
+*=*+1 
+. ENDIF 
+. END 
+
+;MAX DEPTH TO BE 
+
+PRINTED+1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+m 
+
+
+VC S’ CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+SYMBOL TABLE 
+
+
+
+
+
+
+
+
+
+AH JO 
+
+F4F6 
+
+AB20 
+
+F4FE 
+
+AB30 
+
+F500 
+
+AB50 
+
+F2CD 
+
+
+
+
+t\mp - 
+
+F50A 
+
+ABDDNE 
+
+F 515' 
+
+~ABRET1 
+
+F51E 
+
+ABRET2 
+
+F3C4 
+
+
+
+
+ACTIVE 
+
+OOBB 
+
+ADD 10 
+
+FE2B 
+
+ADDSUM 
+
+FE1A 
+
+ADDTAB 
+
+FFC8 
+
+
+
+
+ADDfRM 
+
+0020 
+
+ADS 10 
+
+FD19 
+
+AJ05 
+
+F333 
+
+AJ10 
+
+FE57 
+
+
+
+
+AJJ5 
+
+FE69 
+
+AJUMP 
+
+F328 
+
+ALJ 
+
+F4ET 
+
+ALOQP1 
+
+F2D7 
+
+
+
+
+Al P20O 
+
+FBE5 
+
+ALP205 
+
+FBFC 
+
+ALP210 
+
+FCOB 
+
+ALP220 
+
+FCOD 
+
+
+
+
+AL P230 
+
+FC11 
+
+ALP231 
+
+FC12 
+
+ALP235 
+
+FC 13 
+
+ALP240 
+
+FC ID 
+
+
+
+
+AT PF IMP 
+
+OOFS 
+
+ALPH05 
+
+F2E2 
+
+ALPH10 
+
+F2E7 
+
+ALPHAH 
+
+OOEB 
+
+
+
+
+ALPHAL 
+
+OODE 
+
+ALPHBE 
+
+F2BC 
+
+ALPUMP 
+
+F376 
+
+ANYMVE 
+
+00B6 
+
+
+
+
+ART N 
+
+FA8C 
+
+ATIM 
+
+OOEE 
+
+ATTR10 
+
+F7D6 
+
+ATTR20 
+
+F7E1 
+
+
+
+
+-ATTE3Q - 
+
+F7EF 
+
+ATTR35 
+
+F7F 4 
+
+AUDCO 
+
+oo rs 
+
+AUDC1 
+
+0016 
+
+
+
+
+AUDFO 
+
+0017 
+
+AUDF1 
+
+0018 
+
+AUDVO 
+
+0019 
+
+AUDV1 
+
+001 A 
+
+
+
+
+BACK10 
+
+FD45 
+
+BACK20 
+
+FD79 
+
+BACK25 
+
+FD16 
+
+BACK30 
+
+FD2A 
+
+
+
+
+-11ACK40 FD30 
+
+BACK50 FD36 
+
+BACK60 
+
+FD3C 
+
+BACK70 
+
+FD58 
+
+
+
+
+BACK80 
+
+FD60 
+
+BACK90 
+
+FD68 
+
+BACK95 
+
+FD70 
+
+BAKTAB 
+
+FF52 
+
+
+
+
+HI ANK 
+
+OOAA 
+
+BLKJMP 
+
+F1CD 
+
+BLNKTM 
+
+OOFO 
+
+BNEO 
+
+F6D7 
+
+
+
+
+BOARD 
+
+0080 
+
+BRDOHR 
+
+~FFOO 
+
+BRDLP 
+
+F994 
+
+BSWLP 
+
+F19F - 
+
+
+
+
+CENT50 
+
+FDDD 
+
+CENT90 
+
+FDE3 
+
+CHECKE 
+
+0010 
+
+CHGCNT 
+
+FE51 
+
+
+
+
+! OKINO 
+
+OOAF 
+
+CKTAB 
+
+FF45 
+
+CLPO 
+
+0000 
+
+CLP 1 
+
+0080 
+
+
+
+
+-CLRLP 
+
+F974 
+
+CMPCHK 
+
+0090 
+
+CMPCRS 
+
+OOBO 
+
+‘ CMPKNG 
+
+OOAO 
+
+
+
+
+O.MPMVE 
+
+F243 
+
+COLO 
+
+OODO 
+
+C0L1 
+
+00D2 
+
+C0L2 
+
+00D4 
+
+
+
+
+C0L3 
+
+00D6 
+
+COLCMP 
+
+00B2 
+
+COLHUM 
+
+OOB1 
+
+COLPO 
+
+OOCE 
+
+
+
+
+CULP I 
+
+~OOCF~ 
+
+COLSQ 
+
+00F3 cOCTB 
+
+FFCB COLUBK 
+
+0009 ~ 
+
+
+
+
+CD1.UP0 
+
+0006 
+
+COLUP1 
+
+0007 
+
+COLUPF 
+
+0008 
+
+COMPOS 
+
+F213 
+
+
+
+
+COMP06 
+
+F238 
+
+C0MP07 
+
+F23C 
+
+COMP 10 
+
+F240 
+
+C0MPU2 
+
+F2BC 
+
+
+
+
+CUM PUT 
+
+
+
+F4D0 
+
+-COT4T2 
+
+F4D2 
+
+C0NT2J 
+
+F330 
+
+
+
+
+C0NT3 
+
+F4E4 
+
+C0NT3J 
+
+F2DF 
+
+CORN 
+
+0004 
+
+C0RN20 
+
+FD91 
+
+
+
+
+C0RN30 
+
+FDAO 
+
+C0RN40 
+
+FDA9 
+
+C0RN50 
+
+FDB4 
+
+C0RN60 
+
+FDBF 
+
+
+
+
+r C0RN70 
+
+FDCS 
+
+CPIECE 
+
+OOAA 
+
+CRLF 
+
+
+
+
+
+
+
+CRSB03 
+
+F78E 
+
+CRSB10 
+
+F793 
+
+CRSB13 
+
+F7A3 
+
+CRSB14 
+
+F7B3 
+
+
+
+
+CRSB15 
+
+F7BB 
+
+CRSB17 
+
+F7BD 
+
+CRSB20 
+
+F7D4 
+
+CRSBLK 
+
+F766 
+
+
+
+
+CRBTDF 
+
+FAFE 
+
+-CTAB- 
+
+FF40 
+
+CTLSWA 
+
+0281 
+
+CTLSWB" 
+
+0283 
+
+
+
+
+CTRLPF 
+
+OOOA 
+
+CURS 
+
+0030 
+
+CURSC 
+
+00E8 
+
+CURSOR 
+
+OOAB 
+
+
+
+
+CXBLPF 
+
+0036 
+
+CXCLR 
+
+002C 
+
+CXMOFB 
+
+0034 
+
+CXMOP 
+
+0030 
+
+
+
+
+-CXMIFTT 
+
+0035 
+
+-CXMTF 
+
+003T 
+
+CXPOFB 
+
+0032 
+
+“ CXP1FB 
+
+0033 
+
+
+
+
+CXPPMM 
+
+0037 
+
+DARK 
+
+0036 
+
+DEN 
+
+00B8 
+
+DEPTH 
+
+OOBC 
+
+
+
+
+D) AG 
+
+FF7E 
+
+DIAGIO 
+
+FDOB 
+
+DIAG20 
+
+FDOD 
+
+DIAGLP 
+
+FCF8 
+
+
+
+
+-DTS02 
+
+FC6C 
+
+D rsoT 
+
+HFC6F~ 
+
+01804 
+
+FCT6 
+
+DIS05 
+
+“FCSF " 
+
+
+
+
+D1330 
+
+FCBC 
+
+DIS40 
+
+FCD2 
+
+DIS50 
+
+FCD8 
+
+DIS60 
+
+FCDF 
+
+
+
+
+DIS65 
+
+FCE2 
+
+DIS67 
+
+FCF2 
+
+DIS70 
+
+FD10 
+
+DISLP1 
+
+FC78 
+
+
+
+
+
+
+" DOCENT - 
+
+FDD3 
+
+-DOR 01— 
+
+“FB42 
+
+DRKCHR 
+
+0092' 
+
+
+
+
+1 PROP 
+
+0036 
+
+EDARK 
+
+0000 
+
+EL I AT 
+
+0036 
+
+ELIGHT 
+
+0034 
+
+
+
+
+! EMPTY 
+
+0000 
+
+ENABL 
+
+00 IF 
+
+ENAMO 
+
+00 ID 
+
+ENAM1 
+
+001E 
+
+
+
+
+-FMLJPC ■ 
+
+0008 
+
+ERRSNIT 
+
+OOOF 
+
+FH20 ~ 
+
+F4E5 
+
+FH21 
+
+F4CB 
+
+
+
+
+
+Ff II* 
+n IQ 
+
+FRAMLF" 
+
+FRMl 5 
+FROM 
+
+“FROMTO” 
+
+FSET20 
+GET CH 
+GUI M2 
+
+GSRST 
+
+HKING 
+
+
+F465 
+
+F4B7 
+
+TT25~ 
+
+F751 
+
+00F4 
+
+FB07 
+
+1E5A 
+
+F96C“ 
+
+
+FH6 
+
+FINSH3 
+
+FRAQ 
+
+FRM2Q 
+
+FR0M10 
+
+
+F498 
+F44A 
+F47C' 
+
+F75B 
+
+F63D 
+
+
+FH7 
+FRAM10 
+FREEZET 
+
+FRM30 
+
+FROMB 
+
+
+FSET30 FBOD GAMNO 
+
+GFLG2 OOEF GRPO 
+
+GST F95D-GSCON 
+
+F944 GSTIM OOEB HDARK 
+
+OOAE HKTAB FF43 HLIAT 
+
+
+HMM1 0023 HMOVE 002A HMPO 
+
+HFIECE 00A9 HTAB FF3E HUMCHK 
+
+! lUMKNf: 0020 IED02 FA98 IED04 
+
+
+F49B 
+
+F14E 
+
+00F2 - 
+
+F762 
+
+OOAC 
+
+OOBO 
+00 IB 
+0020 “ 
+
+OOBO 
+0026 
+0005 
+0020 
+0010 
+FA9A 
+
+
+FHBLEC 
+
+FRAME 
+
+
+
+HIDIGT 
+
+HLIGHT 
+
+HMMO 
+
+HMP1 
+
+HUMCRS 
+
+IED05 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+
+FABA 
+OOBE 
+003A 
+0284 
+FA79 
+OOCE 
+FA10 
+F9DE 
+F9D2 
+F9E8 
+F658 
+F 6 CA 
+FF62 
+F61D 
+FB80 
+FBA5 
+0020 
+F0S6 
+OOOC 
+FA2C 
+FODO 
+F 8 D 6 
+OOOB 
+F39S 
+00A6 
+F6D4 
+F 6 FA 
+F711 
+FF 66 
+00A7“ 
+FF 6 A 
+FB96 
+F55A 
+F19B 
+00B5 
+OOEA 
+00D3 
+F1CF 
+OOOF 
+00D8 
+00C4 
+FI 00 
+FE05 
+F8C8 
+OOOB 
+F9C9 
+F97D 
+0029 
+FB1F 
+FOOD 
+0003 
+F019 
+OODA 
+FC54~ 
+FE4F 
+OOF 1 
+FFEF 
+FC ID 
+F270 
+0280 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM 
+
+
+SWCHB 
+
+1 0 
+
+0282 
+
+00B3 
+
+SWIT 
+
+T1 
+
+FB14 
+00B4 
+
+SWLP 
+
+T1024T 
+
+F16E 
+
+0297 
+
+i j 
+
+O0B6 
+
+T4 
+
+OOCE 
+
+T5 
+
+00 CF 
+
+T7 
+
+00B9 
+
+T8 
+
+OOBA 
+
+TER 
+
+F31B 
+
+TERR 
+
+FB73 
+
+TIM1T 
+
+0294 
+
+TIM64T 
+
+0296 
+
+11M0U1 
+
+00C1 
+
+1010 
+
+F673 
+
+TOT 1 
+
+F68B 
+
+TCI 51 
+
+F6BB 
+
+T060 
+
+FECA 
+
+T070 
+
+FED6 
+
+TD81 
+
+FFE8 
+
+TOMOV 
+
+FEDE 
+
+TONQRM 
+
+FAF3 
+
+TOSQR 
+
+OOFS 
+
+TOSQRB 
+
+GOAD 
+
+TOSUB 
+
+FFD1 
+
+VBLCON 
+
+002C 
+
+VBLP 
+
+F938 
+
+VBTIM 
+
+00 IE 
+
+VDELPO 
+
+0025 
+
+VDELP1 
+
+0026 
+
+VSYNC, 
+
+0000 
+
+WASJTO 
+
+F421 
+
+WASJ1T~ 
+
+P441 
+
+WASJ18 
+
+FE7B 
+
+WASJLP 
+
+FE8A 
+
+WIN60 
+
+F20E 
+
+WIN70 
+
+F210 
+
+WSi P 
+
+F865 
+
+WSYNC 
+
+0002 
+
+XIE1 
+
+FA7D 
+
+XSAVE 
+
+00B4 
+
+YSAVE 
+
+00B5 
+
+ZROBGN 
+
+0080 
+
+
+SYSTEM FF75 
+T2 jOOB5 
+T6 00B7 
+TERMNO FBCE 
+TIMST 0295 
+TQ5G F6B8 
+T080 FEDC 
+TOSET FAE2 
+VBLANK 0001 
+VDELBL 0027 
+WASJ F40D 
+WASJ90 FE93 
+WINSAV 00E6 
+XMOVE OOCO 
+ZROEND OOBO 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
