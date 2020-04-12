@@ -21606,69 +21606,7 @@ FFFC 00 FI
 
 l-FFE 00 00 .BYTE' 0,0 ; EXTRA BYTES
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+==================================
 
 		;
 		;	THE FOLLOWING CODE IS FOR DEBUGGING ONLY.
@@ -21732,1170 +21670,338 @@ l-FFE 00 00 .BYTE' 0,0 ; EXTRA BYTES
 			LDA	#BLKMSG		;"COMPUTER IS DARK"
 
 
+===========================
 
 
-LDA
+     VCS CHECKERS BY CAROL SHAW 5/15/80 9:41   AM
 
 
-#BLKMSG
-
-
-"COMPUTER IS DARK"
-
-
-©
-
+                                      LDX      COLCMP
+                                      CPX      #DARK
+                                      BEQ      AXB
+                                      LDA      #WHMSG           ;"COMPUTER   IS WHITE"
+                             AXB
+                                      JSR      OUTMSG           ;PRINT MSG WITH CR
+                                      LDX      #B 112           ;"DARK STARTS ON 1-12"   (IF COLOR)
+                                      LDA      OLDPBQ
+                                      AND      #‘8
+                                      BNE      AXC              i COLOR
+                                      LDX      #W112            iB/W "WHITE STARTS ON 1-12"
+                             AXC
+©                                     TXA
+                                      JSR      OUTMSG           ;PRINT MSG WITH CR
+                                      LDA      #TOPLFT          ;"top Left square is"
 (1
-
-
-VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM
-
-
-LDX COLCMP
-
-CPX #DARK
-
-BEQ AXB
-
-LDA #WHMSG
-
-AXB
-
-JSR OUTMSG
-
-LDX #B 112
-
-LDA OLDPBQ
-
-AND #‘8
-
-BNE AXC
-
-LDX #W112
-
-AXC
-
-TXA
-
-JSR OUTMSG
-
-LDA #TOPLFT
-
-
-
-JSR 0UTMS2
-
-LDX-#34~~
-
-JSR IEDSP
-
-JSR PRTBYT
-
-
-;"COMPUTER IS WHITE"
-
-;PRINT MSG WITH CR
-;"DARK STARTS ON 1-12" (IF COLOR)
-
-
-i COLOR
-
-iB/W "WHITE STARTS ON 1-12"
-
-
-;PRINT MSG WITH CR
-
-;"top Left square is"
-
-;PRINT MSG WITHOUT CR
-
-
-;COMPUTE TOP LEFT SQUARE # IN EXTERNAL FORM
-
-
-
-
-JSR CRLF
-
-LDX #34
-
-JSR PR2RQW
-
-JSR PR2R0W
-
-JSR PR2R0W
-
-JSR PR2R0W
-
-PRBD70
-
-JMP CRLF
-
-
-;PRINT BOARD
-
-
-
-
-PR2R0W -- PRINT 2 ROWS AND DECREMENT X
-
-JSR BL2 i2 BLANK SPACES
-
-JSR PRROW
-
-JSR PRROW
-
-DEX
-
-RTS
-
-BL2 -- PRINT TWO SP ACES _
-
-
-TXA
-
--PHA-
-
-JSR OUTSP
-
-JSR OUTSP
-
-
-
-
-
-
-”PLA“
-
-TAX
-
-RTS
-
-
-PRROW -- PRINT ONE ROW (4 PIECES) & CR
-
-
--FRFEOIT JSR' PRPTEC '
-
-
-JSR BL2
-
-JSR PRPIEC
-
-'JSR-BL2
-
-JSR PRPIEC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-VCS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM
-
-
-TXA
-
-PHA
-
-JSR'
-
-PLA
-
-TAX
-
-
-RTS
-
-PRPIEC
-
-
-PRINT ONE PIECE (OR — IF EMPTY)
-
-
-PRPIEC TXA
-PHA
-
-
-“LDA~
-
-BNE
-
-LDA
-
-
-BOARD/X
-
-PRPIO
-
-
-~JSR~
-
-LDA
-
-JSR
-
-
-DUTCH
-
-OUTCH
-
-
-PHA
-
-LDX
-
-TAY
-
-BMI
-
-
-.COMPUTER — PRINT SPACE
-
-
-_
-
-PRP20
-
-LDX
-
-TXA
-
-4FH
-
-;HUMAN —* PRINT "H”
-
-
-
-
-
-
-JSR
-
-LDX
-
-PLA
-
-OUTCH
-
-#'l
-
-
-
-
-
-
-
-AND
-
-CMP
-
-BNE
-
-#$7F
-
-#KING
-
-PRP30
-
-;CHECKER = 1
-;KING = 2
-
-
-
-Jl
-
-
-PRP30
-
-INJC
-
-TXA
-
-
-
-
-
-
-
-PRP40
-
-JSR
-
-PLA
-
-DUTCH
-
-
-
-
-
-.
-
-
-TAX
-
-DEX
-
-RTS
-
-
-
-
-
-
-
-!
-
-0UTMS2
-
-— PRINT STRING
-
-AT MESSAG/256*256+A ON TI
-
-WITH NO CR
-
-
-
-
-0UTMS2
-
-LDY
-
-BEG
-
-PRFLG
-
-PRRTN2
-
-;PRINT FLAG SET?
-jNO. DON'T PRINT
-
-
-
-
-
-
-TAX
-
-LDA
-
-PHA
-
-TO
-
-;SAVE TO,TO+1
-
-
-
-
-.
-
-
-LDA
-
-PHA
-
-STX
-
-TO+1
-
-TO
-
-; MESSAGE ADR LSB
-
-
-
-
-
-
-LDA
-
-STA
-
-JSR
-
-#MESSAG/256
-
-TO+1
-
-0UTM3
-
-; MESSAGE ADR MSB
-
-
-
-
-
-TAX
-
-PLA
-
-STA
-
-
-j RESTORE TO, TO+1
-
-
-TO+1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<
-
+                                      JSR  0UTMS2               ;PRINT MSG WITHOUT CR
+                                      LDX-#34~~
+                                      JSR  IEDSP                ;COMPUTE TOP LEFT SQUARE # IN EXTERNAL FORM
+                                      JSR  PRTBYT
+
+                                      JSR      CRLF             ;PRINT BOARD
+                                      LDX      #34
+                                      JSR      PR2RQW
+                                      JSR      PR2R0W
+                                      JSR      PR2R0W
+                                      JSR      PR2R0W
+                             PRBD70
+                                       JMP     CRLF
+
+
+                                       PR2R0W -- PRINT 2 ROWS AND DECREMENT X
+
+
+                                       JSR      BL2             i2 BLANK SPACES
+                                       JSR      PRROW
+                                       JSR      PRROW
+                                       DEX
+                                       RTS
+
+                                       BL2 -- PRINT TWO SPACES_
+
+
+
+                                       TXA
+                                       -PHA-
+                                       JSR  OUTSP
+                                       JSR  OUTSP
+                                      ”PLA“
+                                       TAX
+                                       RTS
+
+                                       PRROW -- PRINT ONE ROW   (4 PIECES)   & CR
+
+                        -FRFEOIT       JSR'  PRPTEC '
+                                       JSR   BL2
+                                       JSR   PRPIEC
+                                       'JSR-BL2
+                                       JSR   PRPIEC
+    VCS CHECKERS BY CAROL SHAW 5/15/80 9:41       AM
+
+
+                                         TXA
+                                         PHA
+                                         JSR'
+                                         PLA
+                                         TAX
+                                         RTS
+
+                                         PRPIEC        PRINT ONE PIECE   (OR — IF EMPTY)
+
+                               PRPIEC    TXA
+                                         PHA
+                                        “LDA~     BOARD/X
+                                         BNE      PRPIO
+                                         LDA
+                                        ~JSR~     DUTCH
+                                         LDA
+                                         JSR      OUTCH
+
+
+                                         PHA
+                                         LDX
+                                         TAY
+                                         BMI                         .COMPUTER — PRINT SPACE
+                                         LDX      4FH                ;HUMAN —* PRINT "H”
+                           PRP20
+_                                       TXA
+                                        JSR       OUTCH
+                                        LDX       #'l
+                                        PLA
+                                        AND       #$7F
+
+
+
+
+                           PRP30
+                                        CMP
+                                        BNE
+                                        INJC
+                                                  #KING
+                                                  PRP30
+                                                                     ;CHECKER = 1
+                                                                     ;KING = 2                              Jl
+                                        TXA
+                                        JSR       DUTCH
+                           PRP40
+                                        PLA
+                                        TAX
+                  .                     DEX
+                                        RTS
+
+                           !            0UTMS2 — PRINT STRING AT MESSAG/256*256+A ON TI        WITH NO CR
+
+                           0UTMS2
+                                        LDY       PRFLG              ;PRINT FLAG SET?
+                                        BEG       PRRTN2             jNO. DON'T PRINT
+                                        TAX
+                                        LDA       TO                 ;SAVE TO,TO+1
+                                        PHA
+                                        LDA       TO+1
+                                        PHA
+      .                                 STX       TO                 ; MESSAGE ADR LSB
+                                        LDA       #MESSAG/256        ; MESSAGE ADR MSB
+                                        STA       TO+1
+                                        JSR       0UTM3
+                                        TAX
+                                        PLA                         j RESTORE TO, TO+1
+                                        STA       TO+1
+     VCO CHECKERS BY CAROL SHAW 5/15/80 9.41    AM
+
+
+                                       STA      TO
+                                       TXA
+                             PRRTN2
+<                                      RTS
+
+                             '         OUTMSG   — SAME AS 0UTMS2 EXCEPT DO CR
 (I
+                             OUTMSG
+                                       LDY      PRFLG
+                                       BEQ      PRRTN2
+                                       JSR      0UTMS2
+                                       JMP      CRLF
 
+                                       PRMB —    INPUT:     Y=LSB OF ADDR OF MESSAGE TO BE PRINTED
+                             ■                              X=ADDR OF RAM PAGE ZERO VAR TO BE PRINTED
+                                                 OUTPUT:    X RESTORED, A, Y MODIFIED
+
+                             PRMB
+                                       TXA
+                                       PHA
+                                       TYA
+                                       JSR       0UTMS2
+                                       PLA
+                                       PHA-
+                                       JSR       PRTBYT
+                                       JSR       OUTSP
+                                       PLA
+                                       TAX
+                                       RTS
 
-VCO CHECKERS BY CAROL
+                                                     CALL OUTALP.   THEN PRALL
 
-SHAW 5/15/80 9.41
 
-AM
+                                                 DEPTH
+                                                 PRDEP
+                                                 FRRTN2 _
+                                                 OUTALP
 
+                                       PRALL--- PRINT A BUNCH OF JUNK FOR ALPHA-BETA PRUNING DEBUG
 
 
+                                                "FRMOVE
+                                                 DEPTH
+                                                 #QDEPTH
+                                      - JSR-     PRMB-
+                                        LDX      ACTIVE
+                                        LDY      ttQACTIVE
+                                                 PRMB '
+                                                 OUTSP
 
-PRRTN2
+                                                DEPTH
+                                                ALPHAH-1, X
+                                                PRTBYT
+                                      TDX       DEPTH-
+                                      LDA       ALPHAL-1,
+                                      JSR       PRTBYT
+                                                OUTSP-
 
-STA
+                                                DEPTH
+                                                ALPHAH,X
+    VCvS CHECKERS BY CAROL SHAW 5/15/80 9:41   AM
 
-TXA
 
-TO
-
-
-
-
-RTS
-
-
-
-
-
-'
-
-OUTMSG
-
-— SAME AS 0UTMS2 EXCEPT DO CR
-
-
-
-
-OUTMSG
-
-
-
-
-
-
-
-LDY
-
-BEQ
-
-JSR
-
-PRFLG
-
-PRRTN2
-
-0UTMS2
-
-
-
-
-
-JMP
-
-CRLF
-
-
-
-
-
-PRMB —
-
-INPUT: Y=LSB OF ADDR OF MESSAGE TO BE PRINTED
-
-
-
-■ X=ADDR OF RAM PAGE ZERO VAR TO BE PRINTED
-
-OUTPUT: X RESTORED, A, Y MODIFIED
-
-
-PRMB
-
-TXA
-
-PHA
-
-
-
-
-
-
-TYA
-
-JSR
-
-PLA
-
-0UTMS2
-
-
-
-
-
-PHA-
-
-JSR
-
-JSR
-
-PRTBYT
-
-OUTSP
-
-
-
-
-
-PLA
-
-TAX
-
-RTS
-
-
-
-
-
-CALL OUTALP. THEN PRALL
-
-
-DEPTH
-
-PRDEP
-
-FRRTN2 _
-
-OUTALP
-
-
-PRALL - -- PRINT A BUNCH OF JUNK FOR ALPHA-BETA PRUNING DEBUG
-
-
-"FRMOVE
-
-DEPTH
-
-#QDEPTH
-
-PRMB-
-
-ACTIVE
-ttQACTIVE
-PRMB '
-
-
-- JSR -
-
-LDX
-
-LDY
-
-
-OUTSP
-
-
-
-DEPTH
-ALPHAH-1, X
-PRTBYT
-
-
-TDX
-
-LDA
-
-JSR
-
-
-DEPTH -
-
-ALPHAL-1,
-
-PRTBYT
-
-OUTSP-
-
-
-DEPTH
-ALPHAH,X
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-VCvS CHECKERS BY CAROL SHAW 5/15/80 9:41 AM
-
-
-JSR
-
-LDX
-
-LDA
-
-JSR
-
-JSR
-
-LDX
-
-LDA
-
-JSR
-
-LDX
-
-LDA
-
-JSR
-
-
-E
-
-
-JSR
-
-' LDA
-CMP
-BCC
-LDX
-CPX
-BEG
-CPX
-BNE
-JSR"
-
-
-PRTBYT
-DEPTH
-ALPHAL,X
-PRTBYT
-OUTSP
-
-DEPTH
-
-ALPHAH+1,X
-
-PRTBYT
-
-DEPTH
-
-ALPHAL+1,X
-
-PRTBYT
-
-OUTSP
-
-CRLF
-
-PRDEP
-
-#4
-
-PRA20
-
-DEPTH
-
-
-#2
-
-PRA10
-
-
-PRA20
-CRLF-
-
-
-; 2 SPACES IF LEVEL 1
-;1 SPACE IF LEVEL 2
-
-
-0UTAL3 — OUTPUT MSG A WITHOUT CR
-
-
-LDY~
-
-STA
-
-STY
-
-
-' #MJ/256
-TO
-TO+1
-
-
-0UTM3 — MESSAGE PRINTING LOOP
-
-
-(TO),Y
-0UTM20
-OUTCH
-
-
-
-
-LDY
-
-TYA
-
-PHA
-
-LDA
-
-BEG
-
-JSR
-
-PLA
-
-TAT
-
-INY
-
-TYA
-
-PHA*
-
-BNE
-
-~PLA
-RTS
-
-
-OUTALP — OUTPUT MESSAGE A WITH CR
-
-
-i END OF MESSAGE IS INDICATED BY A 0 BYTE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-VCH CHECKERS BY CAROL SHAW 5/15/80 9:41 AM
-
-
-JMP CRLF
-
-PASK — INPUT MEW PRFLG AND PRDEP FROM TI
-
-
-PASK
-
-
-LOA m
-
-STA PRFLG
-
-JSR CRLF
-
-
-L
-
-
-LDA #PRMSG
-
-
-JSR 0UTMS2
-J SR GETBYT
-PHA
-
-
-
-JSR CRLF
-
-
-LDA ttPRDMSG
-
-
-JSR 0UTMS2
-
-JSR GETBYT
-
-STA PRDEP
-
-PLA
-
-
-1
-
-
-
-STA PRFLG
-
-JMP CRLF
-
-
-PRM0V2 — SIMILAR TO PRMOVE
-
-
-LDA CURSOR
-
-
-STA FROMB
-
-
-LDA PRFLG
-
-AND #$FE
-
-
-iDO CR'S IF PRINTING ALPHA-BETA JUNK
-
-
-BEQ J0Y800
-
-JSR CRLF
-
-JSR CRLF
-
-JSR PRMOVE
-
-
-JSR CRLF
-JSR CRLF
-LDX MOVE
-
-
-RTS
-
-
-JSR PRMOVE
-
-“LDX MOVE
-
-RTS
-. PAGE
-
-
-;GO ON TO NEXT PAGE BOUNDARY
-
-
-*=*-1/256+1*256
-
-
-MESSAG
-
-
-PRMSG . BYTE "ENTER PRFLG?"70
-
-PRDMSG BYTE "ENTER PRDEP?". 0
-
-GAMOVR . BYTE "GAME OVER".0
-BLKMSG . BYTE "COMPUTER IS DARK". O'
-WHMSG BYTE "COMPUTER IS WHITE", 0
-
-B112 BYTE "DARK STARTS ON 1-12",0
-
-W112 BYTE "WHITE STARTS ON^i-T^ 1 ', 0
-
-TOPLFT .BYTE "TOP LEFT SQUARE IS ",0
-
-. PAGE
-
-JLERR BYTE "JOYLP ERR0R TT 7~0
-
-QDEPTH .BYTE "DEPTH=",0
-
-QINDEX . BYTE "INDEX^O^_
-
-QBETA .BYTE "ALPHA(DEPTH-1)=",0
-
-QALP1 BYTE "ALPHA(DEPTH+1)=",0
-
-QHPIECE . BYTE "HPTECE= ri , 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                    JSR        PRTBYT
+                                    LDX        DEPTH
+                                    LDA        ALPHAL,X
+                                    JSR        PRTBYT
+                                    JSR        OUTSP
+
+                                    LDX        DEPTH
+                                    LDA        ALPHAH+1,X
+                                    JSR        PRTBYT
+                                    LDX        DEPTH
+                                    LDA        ALPHAL+1,X
+                                    JSR        PRTBYT
+                                               OUTSP
+
+                                     JSR       CRLF
+                                   ' LDA       PRDEP
+                                     CMP       #4
+                                     BCC       PRA20
+                                     LDX       DEPTH
+                                     CPX       #2
+                                     BEG       PRA10
+                                     CPX
+                                     BNE       PRA20
+                                     JSR"      CRLF-        ; 2 SPACES IF LEVEL       1
+
+
+E                                                           ;1   SPACE   IF LEVEL 2
+
+
+
+
+                                    0UTAL3 — OUTPUT MSG A WITHOUT CR
+
+
+                                    LDY~    ' #MJ/256
+                                    STA       TO
+                                    STY       TO+1
+
+                                    0UTM3 — MESSAGE PRINTING LOOP
+
+
+
+                                    LDY
+                                    TYA
+                                    PHA
+
+                                    LDA        (TO),Y
+                                    BEG        0UTM20       iEND OF MESSAGE     IS    INDICATED BY A 0 BYTE
+                                    JSR        OUTCH
+                                    PLA
+                                    TAT
+                                   INY
+                                   TYA
+                                   PHA*
+                                   BNE
+
+                                  ~PLA
+                                   RTS
+
+                                   OUTALP — OUTPUT MESSAGE A WITH CR
+    VCH CHECKERS BY CAROL SHAW 5/15/80 9:41    AM
+
+
+
+                                     JMP       CRLF
+
+                                     PASK —    INPUT MEW PRFLG AND PRDEP FROM TI
+
+                            PASK
+                                     LOA       m
+                                     STA       PRFLG
+L                                    JSR       CRLF
+                                     LDA       #PRMSG
+                                     JSR       0UTMS2
+                                     JSR       GETBYT
+                                     PHA
+                                     JSR       CRLF
+                                     LDA       ttPRDMSG
+                                     JSR       0UTMS2
+                                     JSR       GETBYT
+                                     STA       PRDEP
+
+
+
+1                                    PLA
+                                     STA
+                                     JMP
+                                               PRFLG
+                                               CRLF
+
+                                     PRM0V2 — SIMILAR TO PRMOVE
+
+
+                                     LDA       CURSOR
+                                     STA       FROMB
+                                     LDA       PRFLG
+                                     AND       #$FE             iDO CR'S IF PRINTING ALPHA-BETA JUNK
+                                     BEQ       J0Y800
+                                     JSR       CRLF
+                                     JSR       CRLF
+                                     JSR       PRMOVE
+                                     JSR       CRLF
+                                     JSR       CRLF
+                                     LDX       MOVE
+                                     RTS
+
+                                      JSR      PRMOVE
+                                     “LDX      MOVE
+                                      RTS
+                                      . PAGE
+
+                                     *=*-1/256+1*256            ;GO ON TO NEXT PAGE BOUNDARY
+                            MESSAG
+                            PRMSG    . BYTE    "ENTER PRFLG?"70
+                            PRDMSG     BYTE    "ENTER PRDEP?". 0
+                            GAMOVR   . BYTE    "GAME OVER".0
+                            BLKMSG   . BYTE    "COMPUTER IS DARK". O'
+                            WHMSG      BYTE    "COMPUTER IS WHITE", 0
+                            B112       BYTE    "DARK STARTS ON 1-12",0
+                            W112       BYTE    "WHITE STARTS ON^i-T^1', 0
+                            TOPLFT   .BYTE     "TOP LEFT SQUARE IS ",0
+                                     . PAGE
+                            JLERR      BYTE    "JOYLP ERR0RTT7~0
+                            QDEPTH   .BYTE     "DEPTH=",0
+                            QINDEX   . BYTE    "INDEX^O^_
+
+                            QBETA   .BYTE      "ALPHA(DEPTH-1)=",0
+                            QALP1     BYTE     "ALPHA(DEPTH+1)=",0
+                            QHPIECE . BYTE     "HPTECE=ri, 0
+
+=======================
 
 GCPIECE	.BYTE	"CPIECE=",0
 GACTIVE	.BYTE	"ACTIVE=",0
