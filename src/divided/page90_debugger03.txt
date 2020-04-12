@@ -1,0 +1,60 @@
+			TXA
+			PHA
+			JSR	CRLF
+			PLA
+			TAX
+			RTS
+		;
+		;	PRPIEC -- PRINT ONE PIECE (OR -— IF EMPTY)
+		;
+		PRPIEC	TXA
+			PHA
+                        LDA	BOARD,X
+			BNE	PRP1O
+			LDA	#'-		;EMPTY
+			JSR	DUTCH
+			LDA	#'-
+			JSR	OUTCH
+			JMP	PRP40
+		PRP10
+			PHA			;NOT EMPTY
+			LDX	#'
+			TAY
+			BMI	PRP20		;COMPUTER -- PRINT SPACE
+			LDX	#'H		;HUMAN —- PRINT "H”
+		PRP20
+			TXA
+			JSR	OUTCH
+			LDX	#;1
+			PLA
+			AND	#$7F
+			CMP	#KING		;CHCEKER = 1
+			BNE	PRP30		;KING = 2
+			INX
+		PRP30
+			TXA
+			JSR	DUTCH
+		PRP40
+			PLA
+			TAX
+			DEX
+			RTS
+		;
+                ;	OUTMS2 -— PRINT STRING AT MESSAG/256*256+A ON TI WITH NO CR
+		;
+		OUTMS2
+			LDY	PRFLG		;PRINT FLAG SET?
+			BEQ	PRRTN2		;NO. DON'T PRINT
+			TAX
+			LDA	T0		;SAVE T0,T0+1
+			PHA
+			LDA	T0+1
+			PHA
+			STX	T0		; MESSAGE ADR LSB
+			LDA	#MESSAG/256	; MESSAGE ADR MSB
+			STA	T0+1
+			JSR	OUTM3
+			TAX
+			PLA			; RESTORE T0,T0+1
+			STA	T0+1
+			PLA
